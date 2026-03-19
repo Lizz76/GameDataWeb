@@ -94,8 +94,24 @@ body {
 .card-badges { display: flex; flex-wrap: wrap; gap: 8px; }
 .badge { display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 7px; background: rgba(255, 248, 240, 0.86); border: 1px solid rgba(90, 63, 41, 0.12); font-size: 12px; font-weight: 700; }
 .badge-primary, .playlist-tag { background: rgba(141, 67, 49, 0.1); color: var(--accent-deep); }
-.card-actions { margin-bottom: 14px; }
-.mini-action { border: 1px solid rgba(90, 63, 41, 0.14); border-radius: 999px; padding: 8px 12px; background: rgba(255, 252, 247, 0.86); color: var(--ink); font-size: 12px; font-weight: 700; cursor: pointer; }
+.card-actions { position: relative; z-index: 30; margin-bottom: 14px; }
+.mini-action {
+  position: relative;
+  z-index: 30;
+  border: 1px solid rgba(90, 63, 41, 0.14);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255, 252, 247, 0.86);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mini-action.is-in-playlist {
+  background: rgba(88, 104, 74, 0.12);
+  border-color: rgba(88, 104, 74, 0.18);
+  color: var(--olive);
+}
 .field-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
 .field { grid-column: span 4; padding: 14px 15px; border-radius: 18px; background: rgba(255, 252, 247, 0.82); border: 1px solid rgba(90, 63, 41, 0.11); }
 .field-wide { grid-column: span 6; }
@@ -2587,6 +2603,19 @@ function addCardToPlaylist(gameId) {
     renderPlaylist();
   }
 }
+function bindLibraryCardActions() {
+  const cardsRoot = document.getElementById('cardsRoot');
+  if (!cardsRoot || cardsRoot.dataset.boundActions === 'true') return;
+  cardsRoot.dataset.boundActions = 'true';
+  cardsRoot.addEventListener('click', event => {
+    const button = event.target.closest('.mini-action');
+    if (!button || !cardsRoot.contains(button)) return;
+    const card = button.closest('.game-card');
+    const gameId = card?.dataset.gameId;
+    if (!gameId) return;
+    addCardToPlaylist(gameId);
+  });
+}
 function clearFiltersForJump() {
   const input = document.getElementById('searchInput');
   if (input && input.value) input.value = '';
@@ -2626,6 +2655,17 @@ function syncPlayedFlags() {
     card.classList.toggle('is-played', playedSet.has(card.dataset.gameId));
   });
 }
+function syncLibraryActionLabels() {
+  document.querySelectorAll('.game-card').forEach(card => {
+    const gameId = card.dataset.gameId;
+    const button = card.querySelector('.mini-action');
+    if (!button) return;
+    const inPlaylist = playlist.includes(gameId);
+    button.textContent = inPlaylist ? '已在游玩清单' : '加入游玩清单';
+    button.classList.toggle('is-in-playlist', inPlaylist);
+    button.setAttribute('aria-pressed', inPlaylist ? 'true' : 'false');
+  });
+}
 function escapeHtml(value) {
   return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 }
@@ -2651,6 +2691,7 @@ function renderPlaylist() {
   document.getElementById('playlistCount').textContent = String(playlist.length);
   document.getElementById('playedCount').textContent = String(playlist.filter(id => playedSet.has(id)).length);
   syncPlayedFlags();
+  syncLibraryActionLabels();
 }
 function toggleSortOrder() {
   currentSortMode = currentSortMode === 'newest' ? 'oldest' : 'newest';
@@ -2660,6 +2701,7 @@ function toggleSortOrder() {
 }
 applySortMode();
 updateSortButtonLabel();
+bindLibraryCardActions();
 renderPlaylist();
 filterNow();
 document.getElementById('searchInput').addEventListener('input', filterNow);
