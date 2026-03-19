@@ -131,10 +131,35 @@ body {
 .playlist-item.is-played { border-color: rgba(88, 104, 74, 0.24); background: rgba(240, 247, 235, 0.9); }
 .playlist-check { width: 22px; height: 22px; margin-top: 3px; accent-color: var(--olive); cursor: pointer; }
 .playlist-item-main { min-width: 0; }
-.playlist-item-name { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0; font-size: 15px; font-weight: 800; }
+.playlist-item-name { margin: 0; }
+.playlist-jump {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+}
+.playlist-jump:hover { color: var(--accent-deep); }
 .playlist-item.is-played .playlist-item-name { color: var(--olive); }
 .playlist-tag { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; }
 .playlist-remove { border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; }
+.game-card.is-targeted {
+  outline: 2px solid rgba(141, 67, 49, 0.55);
+  box-shadow: 0 0 0 6px rgba(141, 67, 49, 0.08), var(--shadow);
+  animation: targetPulse 1.4s ease-out 1;
+}
+@keyframes targetPulse {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
 .footer { padding: 14px 22px 22px; color: var(--muted); font-size: 12px; text-align: right; letter-spacing: 0.08em; }
 .hidden { display: none !important; }
 @media (max-width: 1260px) {
@@ -2562,6 +2587,27 @@ function addCardToPlaylist(gameId) {
     renderPlaylist();
   }
 }
+function clearFiltersForJump() {
+  const input = document.getElementById('searchInput');
+  if (input && input.value) input.value = '';
+  if (currentCategory) {
+    currentCategory = '';
+    document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
+    const firstChip = document.querySelector('.chip');
+    if (firstChip) firstChip.classList.add('is-active');
+  }
+  filterNow();
+}
+function scrollToGameCard(gameId) {
+  const card = document.querySelector(`.game-card[data-game-id="${gameId}"]`);
+  if (!card) return;
+  if (card.classList.contains('hidden')) {
+    clearFiltersForJump();
+  }
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  card.classList.add('is-targeted');
+  window.setTimeout(() => card.classList.remove('is-targeted'), 1400);
+}
 function removeFromPlaylist(gameId) {
   playlist = playlist.filter(item => item !== gameId);
   saveState();
@@ -2593,8 +2639,11 @@ function renderPlaylist() {
     const item = document.createElement('li');
     item.className = 'playlist-item';
     if (playedSet.has(gameId)) item.classList.add('is-played');
-    item.innerHTML = `<input class="playlist-check" type="checkbox" ${playedSet.has(gameId) ? 'checked' : ''} aria-label="标记已玩 ${game.name}"><div class="playlist-item-main"><p class="playlist-item-name"><span>${escapeHtml(game.name)}</span><span class="playlist-tag">${escapeHtml(game.category || '其他')}</span></p><div class="playlist-item-meta"><span>${escapeHtml(game.developer || '暂无')}</span><span>${escapeHtml(game.releaseDate || '暂无日期')}</span></div></div><button class="playlist-remove" type="button">×</button>`;
+    item.innerHTML = `<input class="playlist-check" type="checkbox" ${playedSet.has(gameId) ? 'checked' : ''}><div class="playlist-item-main"><p class="playlist-item-name"><button class="playlist-jump" type="button"><span>${escapeHtml(game.name)}</span><span class="playlist-tag">${escapeHtml(game.category || '其他')}</span></button></p><div class="playlist-item-meta"><span>${escapeHtml(game.developer || '暂无')}</span><span>${escapeHtml(game.releaseDate || '暂无日期')}</span></div></div><button class="playlist-remove" type="button">×</button>`;
+    item.querySelector('.playlist-check').setAttribute('aria-label', `标记已玩 ${game.name}`);
+    item.querySelector('.playlist-jump').setAttribute('aria-label', `跳到 ${game.name} 在资讯库中的位置`);
     item.querySelector('.playlist-check').addEventListener('change', event => togglePlayed(gameId, event.target.checked));
+    item.querySelector('.playlist-jump').addEventListener('click', () => scrollToGameCard(gameId));
     item.querySelector('.playlist-remove').addEventListener('click', () => removeFromPlaylist(gameId));
     list.appendChild(item);
   });
