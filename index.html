@@ -133,16 +133,68 @@ body {
 .playlist-shell { border: 1px solid rgba(90, 63, 41, 0.14); border-radius: 24px; background: rgba(253, 249, 242, 0.98); box-shadow: var(--shadow-soft); overflow: hidden; }
 .playlist-head { padding: 18px 18px 14px; border-bottom: 1px solid rgba(90, 63, 41, 0.1); background: linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(246, 239, 229, 0.92)); }
 .playlist-kicker { margin-bottom: 10px; font-size: 11px; letter-spacing: 0.18em; color: var(--muted); }
+.playlist-head-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.playlist-heading { min-width: 0; flex: 1; }
 .playlist-title { margin: 0; font-family: "STSong", "Songti SC", "Noto Serif SC", serif; font-size: 28px; line-height: 1.05; }
-.playlist-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.playlist-note { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.playlist-head-tools { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.playlist-inline-action,
+.playlist-toggle {
+  appearance: none;
+  border: 1px solid rgba(90, 63, 41, 0.14);
+  background: rgba(255, 252, 247, 0.88);
+  color: var(--muted);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+.playlist-inline-action { padding: 7px 11px; }
+.playlist-toggle { width: 34px; height: 34px; font-size: 18px; line-height: 1; display: inline-grid; place-items: center; }
+.playlist-inline-action:hover,
+.playlist-toggle:hover { transform: translateY(-1px); background: rgba(247, 240, 233, 0.98); color: var(--ink); border-color: rgba(90, 63, 41, 0.22); }
 .playlist-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
-.playlist-stat { padding: 12px 12px 10px; border-radius: 16px; border: 1px solid rgba(90, 63, 41, 0.1); background: rgba(255, 252, 247, 0.86); }
+.playlist-stat { min-width: 0; padding: 12px 12px 10px; border-radius: 16px; border: 1px solid rgba(90, 63, 41, 0.1); background: rgba(255, 252, 247, 0.86); }
 .playlist-stat-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 11px; letter-spacing: 0.08em; }
 .playlist-stat-value { display: block; font-size: 24px; font-weight: 800; color: var(--ink); }
-.playlist-actions { display: flex; gap: 10px; padding: 14px 18px 14px; }
+.playlist-actions { display: flex; gap: 10px; padding: 14px 18px 10px; }
 .playlist-actions button { flex: 1; }
 .playlist-list { list-style: none; margin: 0; padding: 0 10px 10px; display: flex; flex-direction: column; gap: 10px; max-height: min(46vh, 440px); overflow: auto; }
 .playlist-empty { padding: 2px 18px 18px; color: var(--muted); font-size: 13px; }
+.playlist-danger-zone { display: none; }
+.playlist-pane.is-minimized {
+  width: 72px;
+  height: 72px;
+  right: auto;
+  bottom: auto;
+}
+.playlist-pane.is-minimized .playlist-shell {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  display: none;
+}
+.playlist-miniball {
+  width: 72px;
+  height: 72px;
+  border: 0;
+  border-radius: 999px;
+  background: radial-gradient(circle at 32% 28%, #fff8f0 0%, #efe4d4 46%, #d3b596 100%);
+  color: var(--ink);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: grab;
+  font: inherit;
+  box-shadow: 0 18px 40px rgba(55, 38, 26, 0.18);
+}
+.playlist-miniball strong { font-size: 10px; letter-spacing: 0.16em; color: var(--muted); }
+.playlist-miniball span { font-size: 18px; font-weight: 800; }
+.playlist-pane.is-minimized .playlist-miniball { display: flex; }
 .playlist-item { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 14px; border-radius: 18px; border: 1px solid rgba(90, 63, 41, 0.12); background: rgba(255, 252, 247, 0.9); }
 .playlist-item.is-played { border-color: rgba(88, 104, 74, 0.24); background: rgba(240, 247, 235, 0.9); }
 .playlist-check { width: 22px; height: 22px; margin-top: 3px; accent-color: var(--olive); cursor: pointer; }
@@ -181,12 +233,17 @@ body {
 @media (max-width: 1260px) {
   .library-pane { padding-right: 0; }
   .playlist-pane { position: static; width: auto; padding: 0 22px 22px; }
+  .playlist-pane.is-minimized { width: auto; height: auto; }
+  .playlist-pane.is-minimized .playlist-shell { width: auto; height: auto; border-radius: 24px; display: block; }
+  .playlist-pane.is-minimized .playlist-miniball { display: none !important; }
   .playlist-list { max-height: none; }
 }
 @media (max-width: 920px) {
   .hero-grid, .toolbar, .hero-stats, .playlist-stats { grid-template-columns: 1fr; }
   .card-head { flex-direction: column; }
   .field, .field-wide, .field-compact { grid-column: span 12; }
+  .playlist-head-row { flex-direction: column; }
+  .playlist-head-tools { width: 100%; justify-content: flex-end; }
 }
 @media (max-width: 640px) {
   .page { padding: 10px; }
@@ -2492,25 +2549,749 @@ body {
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.放置元素会让硬核 SLG 玩家觉得不够硬；2.只有 iPhone 版本，覆盖面受限；3.产品刚上线不久，活动和内容深度还要继续看；4.目前更偏轻量化的大盘策略，不是最重的 MMO 4X</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
+</article>
+
+<article class="game-card" data-game-id="game-8d02aa0b0a" data-category="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Gangland: Syndicate Rise</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">UMICHAT</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-8d02aa0b0a')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.umi.gts" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.umi.gts<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">黑帮题材 SLG，地盘经营，成员养成，联盟对抗，城市资源争夺</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.黑帮题材在近期测试产品里出现频率较高；2.适合与 Mafia Mobile、Mafia City 等产品做横向观察；3.Google Play 条目已可访问；4.题材方向明确，适合作为市场情报样本长期跟踪</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.公开信息仍然有限；2.黑帮题材赛道竞争已经比较拥挤；3.后续是否改名或换包仍需跟踪；4.长期差异化尚不清晰</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-cd4a4ef8b6" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Z War:Survival</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Beacon Games</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-cd4a4ef8b6')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.and.zws.in" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.and.zws.in<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日生存 SLG，基地建设，外层轻玩法，塔防展示，联盟对抗</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列出的 SLG；2.混合了 minigame、塔防和 Last War 式流程；3.作者提到已经测试多版；4.值得继续跟踪版本变化</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属尚未确认；2.玩法混合度高，最终定位可能继续变化；3.测试周期较长说明产品仍在打磨；4.不排除继续改名换包</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-3b9a5d7ab9" data-category="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Trigger &amp; Truck</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">StarWish</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中 / SLG候选</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">卡通末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3b9a5d7ab9')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.trigger.truck" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.trigger.truck<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">肉鸽割草外层 + SLG 候选结构，车辆推进，战斗成长，后续待确认是否接入城建或联盟玩法</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中放在 SLG 段落里；2.外层表现完成度不错；3.适合观察是否会由轻战斗外层转成 SLG；4.测试样本价值高</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.当前更像 SLG 候选而非纯 SLG；2.后续是否加入城建和联盟玩法尚不明确；3.产品定位可能继续调整；4.需要后续版本再确认</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-ea1c16b2b2" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Dreamio Rush</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-ea1c16b2b2')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.arcanerealms.android" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.arcanerealms.android<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻捉宠向 SLG，主城经营，宠物与队伍养成，地图推进，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中放在 SLG 段落中单列；2.捉宠 like 方向近年测试产品较多；3.与同开发商的其他产品可对照；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.题材方向容易撞同类；2.作者提到同名系产品很多，辨识度要继续看；3.玩法成熟度尚未确认；4.后续可能继续分化成多个版本</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-d07f735f30" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Dragon's Finale</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d07f735f30')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.dragonsfinale.android" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.dragonsfinale.android<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻龙题材 SLG 候选，主城经营，队伍养成，like 结构，联盟玩法待确认</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.与 Dreamio Rush 同开发商，适合做矩阵观察；2.龙题材在买量层面有明确吸引力；3.文中指出 like 很多；4.可作为奇幻测试样本入库</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.具体 SLG 深度还需继续确认；2.同赛道 like 产品较多；3.后续命名和版本路线可能变化；4.市场辨识度还不稳定</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-d8bc8217cc" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Frozen Island</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Linkify Limited</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">风格化冰原风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d8bc8217cc')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=leyi.frozenislandpro" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=leyi.frozenislandpro<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">冰雪题材 SLG，基地经营，资源建设，队伍养成，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确放在 SLG 段落；2.冰雪题材仍是近两年 SLG 热门方向；3.作者特别提到美术风格不错；4.作为测试产品有跟踪价值</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属尚未确认；2.冰雪生存赛道竞争很强；3.若内核创新不足容易同质化；4.测试阶段信息仍有限</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-e04780dda4" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Catch &amp; Build: Land of Pals</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Joy Nice Games</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e04780dda4')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.sgclglo.google" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.sgclglo.google<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">建造经营向 SLG，地图扩张，队伍养成，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中列入 SLG 段落；2.轻建造与社交扩张方向适合做市场观察；3.Google Play 条目明确；4.适合作为 4399 系观察候选</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.玩法公开信息有限；3.测试阶段版本可能继续变化；4.产品辨识度还需要继续观察</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-f5bd4ed473" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Titan Rush</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">RATING GAME</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-f5bd4ed473')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.ratinghope.gplay" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.ratinghope.gplay<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">泰坦题材 SLG，主城经营，队伍成长，地图推进，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.题材一直围绕泰坦不变，方向稳定；2.迭代两年多后完成度更高；3.适合做长测产品样本；4.Google Play 条目可访问</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.测试周期很长；2.研发归属未确认；3.多轮改版后最终定位仍需继续观察；4.题材虽固定但玩法差异还需确认</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-96f5699d46" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Lost Waters</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Warrior Cabera</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">风格化航海风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-96f5699d46')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.games.ts" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.games.ts<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">航海题材 SLG，基地经营，资源建设，外层 minigame，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.账号更换频繁，说明仍在持续测试；2.前段动画有新增；3.适合作为 FunPlus like 航海样本观察；4.minigame 外层与 SLG 内核结合值得继续看</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.主体玩法改动不大；3.外层 minigame 仍较强；4.后续是否改名换包需要继续跟踪</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-9d1b16b417" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Mad Asylum(CBT)</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Etolies Game</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">CBT</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-9d1b16b417')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.rastargames.madwarseacbt" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.rastargames.madwarseacbt<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地建设，僵尸治疗设定，章节推进，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列为新样本；2.“末日治疗僵尸”的设定有辨识度；3.作者认为底子像监狱玩法换皮；4.CBT 阶段适合持续跟踪</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.前期引导和升级前摇偏长；2.核心 SLG 乐趣进入较慢；3.研发归属未确认；4.换皮感是否会影响长期留存还需观察</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-f9c166b0bd" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Endless Zombies</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Vividiy</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中 / SLG候选</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-f9c166b0bd')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.nextlevel.zh.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.nextlevel.zh.gp<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG 候选，小队战斗外层，割草与推图结合，后续预计接入 SLG 内核</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.角色立绘表现被作者特别提到；2.把小队模式与割草推图结合；3.作为“后面必然还是接 slg”方向样本很有观察价值；4.Google Play 条目可访问</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.当前更接近 SLG 候选样本；2.商店图与游戏内表现差异较大；3.研发归属未确认；4.后续版本结构仍可能继续变化</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-3fcf79fbf1" data-category="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Wingstrike</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">MOONTECH PTE LTD</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代军事风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3fcf79fbf1')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.LCYD.StarFire" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.LCYD.StarFire<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">空战题材 SLG，基地经营，飞行射击外层，数字门展示，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中唯一明确列出的 SLG；2.空战题材在近阶段测试样本里相对少见；3.飞行射击外层与 SLG 结合有观察价值；4.Google Play 条目明确，便于后续继续跟踪</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.目前看更像大厂在测试题材和 minigame 组合；3.数字门外层可能会继续变化；4.内核差异化还需要后续版本确认</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-daf0e7cac4" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Last Outbreak</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">LumoraTech</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-daf0e7cac4')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.outbreakcounty.slg" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.outbreakcounty.slg<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，直升机射击外层，资源建设，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.直升机射击外层是近期多个产品都在测试的方向；3.Google Play 条目明确；4.适合做 FunPlus like 末日样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.直升机射击外层是否真正有效仍需后续观察；3.内核差异化还未完全显现；4.测试阶段版本可能继续变化</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-1a8daec90b" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>MistCrush Survival</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Skystone Games Pte. Ltd.</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-1a8daec90b')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.oasis.dome" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.oasis.dome<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，队伍成长，资源采集，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列出的 SLG；2.作者认为其背后可能是大厂产品储备；3.Google Play 条目可访问；4.适合做沐瞳系候选样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.公开玩法细节还不够完整；3.测试期产品后续可能改名或换包；4.具体差异化卖点还需要继续验证</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-05f168e4f4" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>last survival</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">HKNovaGame</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-05f168e4f4')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.survival.sea.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.survival.sea.gp<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，资源建设，队伍推进，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中列入 SLG 段落；2.作者直接提到广州诺瓦互娱的可能性；3.Google Play 条目明确；4.适合作为国内团队出海 SLG 测试样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属仍未最终确认；2.题材本身竞争非常激烈；3.玩法信息公开还有限；4.测试阶段后续结构可能继续变化</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-082f082da5" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Monster Survival:Palkie Empire</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">UMICHAT</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-082f082da5')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.umi.palkie" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.umi.palkie<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">宠物题材 SLG，主城经营，队伍养成，地图推进，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.宠物类 SLG 方向近年测试频率较高；3.Google Play 条目明确；4.适合作为 UMICHAT 新样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未进一步确认；2.题材撞同类风险较高；3.具体 SLG 深度还需继续看；4.测试阶段版本可能继续变化</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-bbdc3ffc8f" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>MarmotShot</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Rhinos</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通动物风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-bbdc3ffc8f')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.tbs2cbt.google" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.tbs2cbt.google<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">土拨鼠题材 SLG like，外层射击展示，基地经营与联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.土拨鼠题材辨识度很高；2.和 Marmot Shelter 一起看更适合做矩阵观察；3.属于作者点名的土拨鼠题材 like 样本；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.更像测试中的 like 产品；2.研发归属未确认；3.最终是否定型为标准 SLG 仍待看；4.题材猎奇是否真能吸量还需要数据验证</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-3206d9f330" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Marmot Shelter</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Rhinos</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通动物风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3206d9f330')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.ustbscbt.google" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.ustbscbt.google<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">土拨鼠题材 SLG，基地经营，资源建设，外层 like 玩法，联盟功能待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.和 MarmotShot 形成土拨鼠题材产品矩阵；2.题材足够猎奇，市场观察价值高；3.Google Play 条目明确；4.适合持续跟踪是否真的测出吸量</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.题材虽然吸睛但长线留存未知；3.玩法细节公开有限；4.后续可能继续改版</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-7fc97f17e0" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Siege of Lava</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Madfun Game</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-7fc97f17e0')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.madfun.dxtw.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.madfun.dxtw.gp<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻题材 SLG，主城经营，地图推进，龙元素演出，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者提到游戏之前就测过；2.中间水晶龙的演出辨识度强；3.可作为 Madfun 长期测试产品观察；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.明显有 like 痕迹；2.研发归属未确认；3.旧产品再测说明可能仍在找定位；4.玩法创新度有待继续观察</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-1a72986bf0" data-category="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Heroic Era</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Arclight Studio</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-1a72986bf0')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.ziipin.card" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.ziipin.card<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">Last War like SLG，数字门外层，基地经营，资源成长，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者直接判断为阿拉伯世界的数字门 Last War like；2.整体调校被评价为还行；3.适合做地区化 like 样本观察；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.风格偏典型 like；2.差异化有限；3.测试阶段后续还可能继续调整；4.长线竞争力还需继续看</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-a250d7441d" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Z War：Survival Game</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">FUNY FISH TECHNOLOGY CO., LTD.</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a250d7441d')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.funyfish.zwar.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.funyfish.zwar.gp<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，黑洞 minigame 外层，基地经营，资源建设，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者明确把它和之前测试过的 Hole Survival Z 关联；2.黑洞 minigame + SLG 是当前明确的测试方向；3.Google Play 条目明确；4.适合作为中国团队末日 SLG 外层测试样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.同方向已有相似测试产品；2.研发归属未最终确认；3.minigame 外层是否有效仍需继续看；4.后续可能继续改版换包</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-2968f2d1a1" data-category="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Zoink! Bounce Brigade</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Oblivion land</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中 / SLG候选</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">风格化卡通风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-2968f2d1a1')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.and.ballmrg" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.and.ballmrg<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">BALL x PIT like 外层，可玩 demo，后续是否接入 SLG 内核待确认</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者认为产品有个性和另类气质；2.属于值得先关注的早期 demo；3.可作为 BALL x PIT like 向 SLG 延展的候选样本；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.当前更像 demo；2.作者明确提到后面应该还没有 SLG；3.这个方向加 SLG 的难度较高；4.需要后续版本再确认</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-5df9d0a321" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Darkout Survival</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-5df9d0a321')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.darkoutsurvival.android" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.darkoutsurvival.android<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，Kingshot like 外层，资源成长，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.作者直接提到 Kingshot like 方向；3.Google Play 条目明确；4.适合作为 SkyRise 末日样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.like 痕迹明显；3.后续版本可能继续调整；4.差异化还需继续验证</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-a8c7f2e144" data-category="科幻/方块" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Mine Cosmos</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Peachcat Online Co., Limited</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">科幻/方块</span><span class="badge">像素方块风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a8c7f2e144')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.aksgs.wdsjomgoogle" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.aksgs.wdsjomgoogle<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">方块题材 SLG，宇宙建设，资源经营，地图推进，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.方块宇宙题材辨识度较高；2.属于“我的世界改我的宇宙”方向样本；3.Google Play 条目明确；4.适合作为题材可行性观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.方块风格在 SLG 中未必容易跑出；2.研发归属存在多种猜测；3.玩法公开信息有限；4.后续是否改版还需继续跟踪</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-d3b6a90f27" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Z-Fortress</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Happy Loong Limited</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d3b6a90f27')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.hlg.mowingslg" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.hlg.mowingslg<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，割草 minigame 外层，资源建设，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者明确点出“砍树”换成“割草”的外层；2.割草题材在展示层仍有吸引力；3.Google Play 条目明确；4.适合作为天龙系候选样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.外层 minigame 是否能真正出圈仍未知；2.研发归属未确认；3.玩法底层可能仍偏传统；4.后续版本可能继续变化</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-ef27c9b811" data-category="深海生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Deepsea Survival</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Lunova Game</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">深海生存</span><span class="badge">深海科幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-ef27c9b811')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.deepsea.survival" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.deepsea.survival<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">深海题材 SLG，基地经营，塔防展示外层，资源建设，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.深海题材在 SLG 中相对少见；2.作者提到之前已有同题材产品，适合做赛道对比；3.塔防展示是当前常见外层测试方向；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.题材虽新但不一定易吸量；2.研发归属未确认；3.塔防外层可能只是展示包装；4.后续差异化仍需继续验证</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-6120ae7c55" data-category="沙海/生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Sea of Sand</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">ACT10 Games</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">沙海/生存</span><span class="badge">风格化沙海风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-6120ae7c55')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.origingames.seasand.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.origingames.seasand.gp<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">沙海题材 SLG，基地经营，塔防展示外层，资源成长，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.沙海题材有一定差异化；2.作者明确提到同样用塔防展示做基础；3.Google Play 条目明确；4.适合作为题材化 SLG 外层测试样本观察</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.塔防展示是否能持续吸量未知；3.玩法信息仍有限；4.后续版本可能继续改动</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-c1a4e86fd2" data-category="奇幻/掠夺" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>BlitzLoot</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Rhinos</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/掠夺</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-c1a4e86fd2')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.cbdzzuscbt.google" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.cbdzzuscbt.google<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">SLG like 测试样本，掠夺成长外层，基地经营与联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.可作为 Rhinos 新样本持续观察；3.Google Play 条目明确；4.适合补足同厂测试矩阵</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.玩法公开信息有限；2.研发归属未确认；3.是否会继续调整内核未知；4.当前仍偏测试样本而非成熟产品</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-74d8fe2b10" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Doomlord: Pixel Haven</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Mighty Technology Limited</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">复古像素风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-74d8fe2b10')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.mighty.st99" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.mighty.st99<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">像素风末日 SLG，英雄小队，打僵尸外层，基地经营与联盟成长待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.像素风在当前 SLG 中差异化明显；3.英雄小队打僵尸方向易做展示；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.题材竞争依然激烈；3.外层玩法是否能持续吸量未知；4.后续版本可能继续调整</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-b6329d1ea4" data-category="科幻战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Lightbreak</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Galaxy Play Technology Limited</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">科幻战争</span><span class="badge">未来科幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-b6329d1ea4')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.elex.sprintgames" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.elex.sprintgames<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">科幻题材 SLG，基地经营，资源扩张，战斗外层待跟踪，联盟玩法待确认</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.作者提到智明星通储备较多，适合持续观察；3.科幻包装在近期产品里仍有空间；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.玩法细节公开信息有限；2.研发归属未确认；3.差异化点尚不够清晰；4.后续可能还有塔防方向版本并行测试</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-19e0c4fa76" data-category="末日生存" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><span>Silent Shield: Survival</span><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Larks Holding Limited</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-19e0c4fa76')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.larks.bw2.googleplay" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.larks.bw2.googleplay<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，数字门外层，基地经营，资源成长，联盟玩法待跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列入 SLG 段落；2.数字门外层仍是有效吸量包装；3.题材选择相对稳；4.Google Play 条目明确</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.外层展示套路较常见；2.研发归属未确认；3.内核差异化还需继续观察；4.后续版本可能持续迭代</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
 </article></main></div>
       <aside class="playlist-pane">
         <div class="playlist-shell">
           <div class="playlist-head">
             <div class="playlist-kicker">PLAYLIST BOARD</div>
+            <div class="playlist-head-row">
             <h2 class="playlist-title">游玩清单</h2>
             <p class="playlist-note">点左侧卡片的“加入游玩清单”即可收藏。勾选后，主库里的游戏名旁边也会出现已玩标记。</p>
+            <div class="playlist-head-tools">
+              <button class="playlist-inline-action" type="button" onclick="clearPlayed()">娓呯┖宸茬帺</button>
+              <button class="playlist-toggle" id="playlistToggle" type="button" aria-label="鏈€灏忓寲娓哥帺娓呭崟" onclick="togglePlaylistMinimized()">−</button>
+            </div>
             <div class="playlist-stats">
               <div class="playlist-stat"><span class="playlist-stat-label">清单总数</span><span class="playlist-stat-value" id="playlistCount">0</span></div>
               <div class="playlist-stat"><span class="playlist-stat-label">已完成</span><span class="playlist-stat-value" id="playedCount">0</span></div>
             </div>
           </div>
           <div class="playlist-actions">
-            <button class="button ghost" type="button" onclick="clearPlayed()">清空已玩标记</button>
             <button class="button ghost" type="button" onclick="clearPlaylist()">清空清单</button>
           </div>
           <div id="playlistEmpty" class="playlist-empty">清单还是空的，可以先从主库挑几款进去。</div>
           <ul id="playlistList" class="playlist-list"></ul>
+          <div class="playlist-danger-zone">
+            <button class="button ghost playlist-danger-button" type="button" onclick="clearPlayed()">清空已玩标记</button>
+          </div>
         </div>
+          <button class="playlist-miniball" id="playlistMiniball" type="button">
+            <strong>PLAY</strong>
+            <span id="playlistMiniballCount">0</span>
+          </button>
       </aside>
     </section>
 
@@ -2529,11 +3310,13 @@ const GAME_INDEX = Array.from(document.querySelectorAll('.game-card'))
   }))
   .filter(item => item.id);
 const GAME_MAP = new Map(GAME_INDEX.map(item => [item.id, item]));
-const STORAGE_KEYS = { playlist: 'game-info-playlist', played: 'game-info-played' };
+const STORAGE_KEYS = { playlist: 'game-info-playlist', played: 'game-info-played', playlistMinimized: 'game-info-playlist-minimized', playlistPosition: 'game-info-playlist-position' };
 let currentCategory = '';
 let currentSortMode = 'newest';
 let playlist = loadArray(STORAGE_KEYS.playlist);
 let playedSet = new Set(loadArray(STORAGE_KEYS.played));
+let playlistMinimized = loadBoolean(STORAGE_KEYS.playlistMinimized, false);
+let playlistDragState = null;
 function loadArray(key) {
   try {
     const raw = localStorage.getItem(key);
@@ -2543,9 +3326,167 @@ function loadArray(key) {
     return [];
   }
 }
+function loadBoolean(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw === null) return fallback;
+    return raw === 'true';
+  } catch (error) {
+    return fallback;
+  }
+}
+function loadObject(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
 function saveState() {
   localStorage.setItem(STORAGE_KEYS.playlist, JSON.stringify(playlist));
   localStorage.setItem(STORAGE_KEYS.played, JSON.stringify(Array.from(playedSet)));
+}
+function savePlaylistUiState() {
+  localStorage.setItem(STORAGE_KEYS.playlistMinimized, String(playlistMinimized));
+}
+function isDesktopPlaylistMode() {
+  return window.innerWidth > 1260;
+}
+function clampPlaylistPosition(position) {
+  const width = 72;
+  const height = 72;
+  return {
+    left: Math.min(Math.max(12, Number(position?.left) || (window.innerWidth - width - 18)), Math.max(12, window.innerWidth - width - 12)),
+    top: Math.min(Math.max(12, Number(position?.top) || (window.innerHeight - height - 18)), Math.max(12, window.innerHeight - height - 12))
+  };
+}
+function savePlaylistPosition(position) {
+  localStorage.setItem(STORAGE_KEYS.playlistPosition, JSON.stringify(clampPlaylistPosition(position)));
+}
+function syncPlaylistChrome() {
+  const tools = document.querySelector('.playlist-head-tools');
+  if (tools) {
+    tools.innerHTML = '<button class="playlist-inline-action" type="button" onclick="clearPlayed()">清空已玩</button><button class="playlist-toggle" id="playlistToggle" type="button" onclick="togglePlaylistMinimized()">-</button>';
+  }
+  const mini = document.getElementById('playlistMiniball');
+  if (mini) {
+    mini.setAttribute('aria-label', '打开游玩清单');
+  }
+}
+function rebuildPlaylistPane() {
+  const pane = document.querySelector('.playlist-pane');
+  if (!pane) return;
+  pane.id = 'playlistPane';
+  pane.innerHTML = `
+    <div class="playlist-shell">
+      <div class="playlist-head">
+        <div class="playlist-kicker">PLAYLIST BOARD</div>
+        <div class="playlist-head-row">
+          <div class="playlist-heading">
+            <h2 class="playlist-title">游玩清单</h2>
+            <p class="playlist-note">点左侧卡片的“加入游玩清单”即可收藏。勾选后，主库里的游戏名旁边也会出现已玩标记。</p>
+          </div>
+          <div class="playlist-head-tools" id="playlistHeadTools">
+            <button class="playlist-inline-action" type="button" onclick="clearPlayed()">清空已玩</button>
+            <button class="playlist-toggle" id="playlistToggle" type="button" onclick="togglePlaylistMinimized()">-</button>
+          </div>
+        </div>
+        <div class="playlist-stats">
+          <div class="playlist-stat"><span class="playlist-stat-label">清单总数</span><span class="playlist-stat-value" id="playlistCount">0</span></div>
+          <div class="playlist-stat"><span class="playlist-stat-label">已完成</span><span class="playlist-stat-value" id="playedCount">0</span></div>
+        </div>
+      </div>
+      <div class="playlist-actions">
+        <button class="button ghost" type="button" onclick="clearPlaylist()">清空清单</button>
+      </div>
+      <div id="playlistEmpty" class="playlist-empty">清单还是空的，可以先从主库挑几款进去。</div>
+      <ul id="playlistList" class="playlist-list"></ul>
+    </div>
+    <button class="playlist-miniball" id="playlistMiniball" type="button" aria-label="打开游玩清单">
+      <strong>PLAY</strong>
+      <span id="playlistMiniballCount">0</span>
+    </button>
+  `;
+}
+function applyPlaylistUiState() {
+  const pane = document.querySelector('.playlist-pane');
+  const toggle = document.getElementById('playlistToggle');
+  if (!pane) return;
+  const useMini = playlistMinimized && isDesktopPlaylistMode();
+  pane.classList.toggle('is-minimized', useMini);
+  if (useMini) {
+    const saved = loadObject(STORAGE_KEYS.playlistPosition, null);
+    const pos = clampPlaylistPosition(saved);
+    pane.style.left = `${pos.left}px`;
+    pane.style.top = `${pos.top}px`;
+    pane.style.right = 'auto';
+    pane.style.bottom = 'auto';
+  } else {
+    pane.style.left = '';
+    pane.style.top = '';
+    pane.style.right = '';
+    pane.style.bottom = '';
+  }
+  if (toggle) {
+    toggle.textContent = useMini ? '+' : '-';
+    toggle.setAttribute('aria-label', useMini ? '打开游玩清单' : '最小化游玩清单');
+  }
+}
+function togglePlaylistMinimized(forceState) {
+  if (!isDesktopPlaylistMode() && forceState !== false) return;
+  playlistMinimized = typeof forceState === 'boolean' ? forceState : !playlistMinimized;
+  savePlaylistUiState();
+  applyPlaylistUiState();
+}
+function initPlaylistDrag() {
+  const pane = document.querySelector('.playlist-pane');
+  const mini = document.getElementById('playlistMiniball');
+  if (!pane || !mini) return;
+  const beginDrag = event => {
+    if (!pane.classList.contains('is-minimized') || !isDesktopPlaylistMode()) return;
+    const point = event.touches ? event.touches[0] : event;
+    const rect = pane.getBoundingClientRect();
+    playlistDragState = { offsetX: point.clientX - rect.left, offsetY: point.clientY - rect.top, startX: point.clientX, startY: point.clientY, moved: false };
+    event.preventDefault();
+  };
+  const moveDrag = event => {
+    if (!playlistDragState || !pane.classList.contains('is-minimized')) return;
+    const point = event.touches ? event.touches[0] : event;
+    const pos = clampPlaylistPosition({ left: point.clientX - playlistDragState.offsetX, top: point.clientY - playlistDragState.offsetY });
+    pane.style.left = `${pos.left}px`;
+    pane.style.top = `${pos.top}px`;
+    pane.style.right = 'auto';
+    pane.style.bottom = 'auto';
+    if (Math.abs(point.clientX - playlistDragState.startX) > 4 || Math.abs(point.clientY - playlistDragState.startY) > 4) {
+      playlistDragState.moved = true;
+    }
+  };
+  const endDrag = () => {
+    if (!playlistDragState || !pane.classList.contains('is-minimized')) return;
+    savePlaylistPosition({ left: parseFloat(pane.style.left), top: parseFloat(pane.style.top) });
+    window.setTimeout(() => { playlistDragState = null; }, 0);
+  };
+  mini.addEventListener('mousedown', beginDrag);
+  mini.addEventListener('touchstart', beginDrag, { passive: false });
+  window.addEventListener('mousemove', moveDrag);
+  window.addEventListener('touchmove', moveDrag, { passive: false });
+  window.addEventListener('mouseup', endDrag);
+  window.addEventListener('touchend', endDrag);
+  mini.addEventListener('click', event => {
+    if (!isDesktopPlaylistMode()) {
+      event.preventDefault();
+      return;
+    }
+    if (playlistDragState?.moved) {
+      event.preventDefault();
+      return;
+    }
+    togglePlaylistMinimized(false);
+  });
+  window.addEventListener('resize', () => applyPlaylistUiState());
 }
 function parseReleaseDate(value) {
   if (!value) return Number.NaN;
@@ -2584,6 +3525,13 @@ function filterNow() {
     if (show) visible += 1;
   });
   document.getElementById('visibleCount').textContent = String(visible);
+}
+function syncOverviewCounts() {
+  const total = document.querySelectorAll('.game-card').length;
+  const gameCount = document.getElementById('gameCount');
+  const visibleCount = document.getElementById('visibleCount');
+  if (gameCount) gameCount.textContent = String(total);
+  if (visibleCount && !document.querySelector('.game-card.hidden')) visibleCount.textContent = String(total);
 }
 function filterByCategory(category, button) {
   document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
@@ -2698,6 +3646,8 @@ function renderPlaylist() {
   empty.classList.toggle('hidden', playlist.length > 0);
   document.getElementById('playlistCount').textContent = String(playlist.length);
   document.getElementById('playedCount').textContent = String(playlist.filter(id => playedSet.has(id)).length);
+  const miniCount = document.getElementById('playlistMiniballCount');
+  if (miniCount) miniCount.textContent = String(playlist.length);
   syncPlayedFlags();
   syncLibraryActionLabels();
 }
@@ -2709,8 +3659,12 @@ function toggleSortOrder() {
 }
 applySortMode();
 updateSortButtonLabel();
+rebuildPlaylistPane();
 bindLibraryCardActions();
+initPlaylistDrag();
+applyPlaylistUiState();
 renderPlaylist();
+syncOverviewCounts();
 filterNow();
 document.getElementById('searchInput').addEventListener('input', filterNow);
 document.getElementById('searchInput').addEventListener('keydown', event => {
