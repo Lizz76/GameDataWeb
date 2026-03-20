@@ -75,6 +75,17 @@ body {
 .chip-label { margin-right: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--muted); }
 .chip { border: 1px solid rgba(90, 63, 41, 0.14); border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; cursor: pointer; background: rgba(255, 252, 247, 0.84); color: var(--ink); }
 .chip.is-active, .chip:hover { background: var(--ink); color: #f7efe7; border-color: var(--ink); }
+.chip[data-category="已游玩"] {
+  color: var(--olive);
+  background: rgba(88, 104, 74, 0.1);
+  border-color: rgba(88, 104, 74, 0.2);
+}
+.chip[data-category="已游玩"].is-active,
+.chip[data-category="已游玩"]:hover {
+  color: #f4fbef;
+  background: var(--olive);
+  border-color: var(--olive);
+}
 .summary { display: flex; justify-content: space-between; gap: 12px; padding: 12px 22px 14px; background: rgba(239, 229, 215, 0.56); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .summary strong { color: var(--ink); letter-spacing: normal; text-transform: none; }
 .workspace { position: relative; }
@@ -94,24 +105,9 @@ body {
 .card-badges { display: flex; flex-wrap: wrap; gap: 8px; }
 .badge { display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 7px; background: rgba(255, 248, 240, 0.86); border: 1px solid rgba(90, 63, 41, 0.12); font-size: 12px; font-weight: 700; }
 .badge-primary, .playlist-tag { background: rgba(141, 67, 49, 0.1); color: var(--accent-deep); }
-.card-actions { position: relative; z-index: 30; margin-bottom: 14px; }
-.mini-action {
-  position: relative;
-  z-index: 30;
-  border: 1px solid rgba(90, 63, 41, 0.14);
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: rgba(255, 252, 247, 0.86);
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.mini-action.is-in-playlist {
-  background: rgba(88, 104, 74, 0.12);
-  border-color: rgba(88, 104, 74, 0.18);
-  color: var(--olive);
-}
+.badge-testing { background: rgba(88, 104, 74, 0.14); color: var(--olive); }
+.card-actions { margin-bottom: 14px; }
+.mini-action { border: 1px solid rgba(90, 63, 41, 0.14); border-radius: 999px; padding: 8px 12px; background: rgba(255, 252, 247, 0.86); color: var(--ink); font-size: 12px; font-weight: 700; cursor: pointer; }
 .field-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
 .field { grid-column: span 4; padding: 14px 15px; border-radius: 18px; background: rgba(255, 252, 247, 0.82); border: 1px solid rgba(90, 63, 41, 0.11); }
 .field-wide { grid-column: span 6; }
@@ -131,13 +127,13 @@ body {
   z-index: 20;
 }
 .playlist-shell { border: 1px solid rgba(90, 63, 41, 0.14); border-radius: 24px; background: rgba(253, 249, 242, 0.98); box-shadow: var(--shadow-soft); overflow: hidden; }
-.playlist-head { padding: 18px 18px 14px; border-bottom: 1px solid rgba(90, 63, 41, 0.1); background: linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(246, 239, 229, 0.92)); }
+.playlist-head { position: relative; padding: 18px 18px 14px; border-bottom: 1px solid rgba(90, 63, 41, 0.1); background: linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(246, 239, 229, 0.92)); }
 .playlist-kicker { margin-bottom: 10px; font-size: 11px; letter-spacing: 0.18em; color: var(--muted); }
-.playlist-head-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
-.playlist-heading { min-width: 0; flex: 1; }
+.playlist-head-row { display: block; min-height: 76px; }
+.playlist-heading { min-width: 0; padding-right: 118px; }
 .playlist-title { margin: 0; font-family: "STSong", "Songti SC", "Noto Serif SC", serif; font-size: 28px; line-height: 1.05; }
-.playlist-note { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
-.playlist-head-tools { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.playlist-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.playlist-head-tools { position: absolute; top: 16px; right: 18px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
 .playlist-inline-action,
 .playlist-toggle {
   appearance: none;
@@ -163,19 +159,13 @@ body {
 .playlist-actions button { flex: 1; }
 .playlist-list { list-style: none; margin: 0; padding: 0 10px 10px; display: flex; flex-direction: column; gap: 10px; max-height: min(46vh, 440px); overflow: auto; }
 .playlist-empty { padding: 2px 18px 18px; color: var(--muted); font-size: 13px; }
-.playlist-danger-zone { display: none; }
 .playlist-pane.is-minimized {
   width: 72px;
   height: 72px;
   right: auto;
   bottom: auto;
 }
-.playlist-pane.is-minimized .playlist-shell {
-  width: 72px;
-  height: 72px;
-  border-radius: 999px;
-  display: none;
-}
+.playlist-pane.is-minimized .playlist-shell { display: none; }
 .playlist-miniball {
   width: 72px;
   height: 72px;
@@ -199,7 +189,7 @@ body {
 .playlist-item.is-played { border-color: rgba(88, 104, 74, 0.24); background: rgba(240, 247, 235, 0.9); }
 .playlist-check { width: 22px; height: 22px; margin-top: 3px; accent-color: var(--olive); cursor: pointer; }
 .playlist-item-main { min-width: 0; }
-.playlist-item-name { margin: 0; }
+.playlist-item-name { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0; font-size: 15px; font-weight: 800; }
 .playlist-jump {
   display: inline-flex;
   flex-wrap: wrap;
@@ -209,8 +199,7 @@ body {
   border: 0;
   background: transparent;
   color: inherit;
-  font-size: 15px;
-  font-weight: 800;
+  font: inherit;
   text-align: left;
   cursor: pointer;
 }
@@ -219,13 +208,13 @@ body {
 .playlist-tag { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; }
 .playlist-remove { border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; }
 .game-card.is-targeted {
-  outline: 2px solid rgba(141, 67, 49, 0.55);
+  outline: 2px solid rgba(141, 67, 49, 0.5);
   box-shadow: 0 0 0 6px rgba(141, 67, 49, 0.08), var(--shadow);
-  animation: targetPulse 1.4s ease-out 1;
+  animation: cardTargetPulse 1.3s ease-out 1;
 }
-@keyframes targetPulse {
+@keyframes cardTargetPulse {
   0% { transform: translateY(0); }
-  30% { transform: translateY(-2px); }
+  35% { transform: translateY(-2px); }
   100% { transform: translateY(0); }
 }
 .footer { padding: 14px 22px 22px; color: var(--muted); font-size: 12px; text-align: right; letter-spacing: 0.08em; }
@@ -234,7 +223,7 @@ body {
   .library-pane { padding-right: 0; }
   .playlist-pane { position: static; width: auto; padding: 0 22px 22px; }
   .playlist-pane.is-minimized { width: auto; height: auto; }
-  .playlist-pane.is-minimized .playlist-shell { width: auto; height: auto; border-radius: 24px; display: block; }
+  .playlist-pane.is-minimized .playlist-shell { display: block; }
   .playlist-pane.is-minimized .playlist-miniball { display: none !important; }
   .playlist-list { max-height: none; }
 }
@@ -242,8 +231,9 @@ body {
   .hero-grid, .toolbar, .hero-stats, .playlist-stats { grid-template-columns: 1fr; }
   .card-head { flex-direction: column; }
   .field, .field-wide, .field-compact { grid-column: span 12; }
-  .playlist-head-row { flex-direction: column; }
-  .playlist-head-tools { width: 100%; justify-content: flex-end; }
+  .playlist-head-row { min-height: 0; }
+  .playlist-heading { padding-right: 0; }
+  .playlist-head-tools { position: static; margin-top: 12px; width: 100%; justify-content: flex-end; }
 }
 @media (max-width: 640px) {
   .page { padding: 10px; }
@@ -267,9 +257,9 @@ body {
           </div>
         </div>
         <div class="hero-stats">
-          <div class="stat"><span class="stat-label">游戏总数</span><span class="stat-value" id="gameCount">98</span></div>
-          <div class="stat"><span class="stat-label">题材大类</span><span class="stat-value" id="categoryCount">8</span></div>
-          <div class="stat"><span class="stat-label">当前显示</span><span class="stat-value" id="visibleCount">98</span></div>
+          <div class="stat"><span class="stat-label">游戏总数</span><span class="stat-value" id="gameCount">116</span></div>
+          <div class="stat"><span class="stat-label">题材大类</span><span class="stat-value" id="categoryCount">10</span></div>
+          <div class="stat"><span class="stat-label">当前显示</span><span class="stat-value" id="visibleCount">116</span></div>
         </div>
       </div>
     </section>
@@ -283,21 +273,23 @@ body {
       </div>
     </section>
 
-    <button class="chip is-active" type="button" onclick="filterByCategory('', this)">全部</button>
+    <section class="chip-row"><span class="chip-label">题材标签</span><button class="chip is-active" type="button" onclick="filterByCategory('', this)">全部</button>
 <button class="chip" type="button" data-category="三国" onclick="filterByCategory(this.dataset.category, this)">三国</button>
-<button class="chip" type="button" data-category="其他" onclick="filterByCategory(this.dataset.category, this)">其他</button>
+<button class="chip" type="button" data-category="航海" onclick="filterByCategory(this.dataset.category, this)">航海</button>
+<button class="chip" type="button" data-category="监狱/犯罪" onclick="filterByCategory(this.dataset.category, this)">监狱/犯罪</button>
 <button class="chip" type="button" data-category="历史/中世纪" onclick="filterByCategory(this.dataset.category, this)">历史/中世纪</button>
-<button class="chip" type="button" data-category="奇幻/魔幻" onclick="filterByCategory(this.dataset.category, this)">奇幻/魔幻</button>
-<button class="chip" type="button" data-category="末日生存" onclick="filterByCategory(this.dataset.category, this)">末日生存</button>
 <button class="chip" type="button" data-category="现代战争" onclick="filterByCategory(this.dataset.category, this)">现代战争</button>
+<button class="chip" type="button" data-category="末日生存" onclick="filterByCategory(this.dataset.category, this)">末日生存</button>
 <button class="chip" type="button" data-category="科幻" onclick="filterByCategory(this.dataset.category, this)">科幻</button>
-<button class="chip" type="button" data-category="经营模拟" onclick="filterByCategory(this.dataset.category, this)">经营模拟</button>
-    <div class="summary"><span>数据源：<strong>games_data.json</strong></span><span>最后同步：<strong>2026-03-19 18:57:08</strong></span></div>
+<button class="chip" type="button" data-category="奇幻/魔幻" onclick="filterByCategory(this.dataset.category, this)">奇幻/魔幻</button>
+<button class="chip" type="button" data-category="动物/拟人" onclick="filterByCategory(this.dataset.category, this)">动物/拟人</button>
+<button class="chip" type="button" data-category="其他" onclick="filterByCategory(this.dataset.category, this)">其他</button>
+<button class="chip" type="button" data-category="测试中" onclick="filterByCategory(this.dataset.category, this)">测试中</button><button class="chip" type="button" data-category="已游玩" onclick="filterByCategory(this.dataset.category, this)">已游玩</button></section>
+    <div class="summary"><span>数据源：<strong>games_data.json</strong></span><span>最后同步：<strong>2026-03-20 11:01:49</strong></span></div>
 
     <section class="workspace">
       <div class="library-pane"><main class="cards" id="cardsRoot">
-
-<article class="game-card" data-game-id="game-94db617c7f" data-category="三国" data-release-date="2019-09-20">
+<article class="game-card" data-game-id="game-94db617c7f" data-category="三国" data-tags="三国" data-release-date="2019-09-20">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -320,7 +312,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-cd0c883253" data-category="三国" data-release-date="2015-10-22">
+<article class="game-card" data-game-id="game-cd0c883253" data-category="三国" data-tags="三国" data-release-date="2015-10-22">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -343,7 +335,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-797c34099e" data-category="历史/中世纪" data-release-date="2020-09-23">
+<article class="game-card" data-game-id="game-797c34099e" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2020-09-23">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -366,7 +358,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-37eaff37a0" data-category="末日生存" data-release-date="2022-12-18">
+<article class="game-card" data-game-id="game-37eaff37a0" data-category="末日生存" data-tags="末日生存" data-release-date="2022-12-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -389,7 +381,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-a8975b3eb6" data-category="其他" data-release-date="2025-03-15">
+<article class="game-card" data-game-id="game-a8975b3eb6" data-category="监狱/犯罪" data-tags="监狱/犯罪" data-release-date="2025-03-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -400,7 +392,7 @@ body {
         <span class="meta-pill">2025-03-15</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">其他</span><span class="badge">卡通写实风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">监狱/犯罪</span><span class="badge">卡通写实风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a8975b3eb6')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -412,7 +404,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3c9a12d8c0" data-category="奇幻/魔幻" data-release-date="待公布（测试中）">
+<article class="game-card" data-game-id="game-3c9a12d8c0" data-category="末日生存" data-tags="末日生存" data-release-date="待公布（测试中）">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -423,7 +415,7 @@ body {
         <span class="meta-pill">待公布（测试中）</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3c9a12d8c0')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -435,7 +427,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-0ddf5accbd" data-category="末日生存" data-release-date="2023-08-10">
+<article class="game-card" data-game-id="game-0ddf5accbd" data-category="现代战争" data-tags="现代战争" data-release-date="2023-08-10">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -446,7 +438,7 @@ body {
         <span class="meta-pill">2023-08-10</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实现代军事风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代军事风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-0ddf5accbd')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -458,7 +450,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-58cd32e5c0" data-category="末日生存" data-release-date="2020-08-25">
+<article class="game-card" data-game-id="game-58cd32e5c0" data-category="末日生存" data-tags="末日生存" data-release-date="2020-08-25">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -481,7 +473,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-9786528684" data-category="现代战争" data-release-date="2024-06-12">
+<article class="game-card" data-game-id="game-9786528684" data-category="现代战争" data-tags="现代战争" data-release-date="2024-06-12">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -504,7 +496,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-90f17ae6d9" data-category="现代战争" data-release-date="2024-09-15">
+<article class="game-card" data-game-id="game-90f17ae6d9" data-category="现代战争" data-tags="现代战争" data-release-date="2024-09-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -527,7 +519,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-90b9ec2c17" data-category="末日生存" data-release-date="2019-11-14">
+<article class="game-card" data-game-id="game-90b9ec2c17" data-category="末日生存" data-tags="末日生存" data-release-date="2019-11-14">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -550,7 +542,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-c1379cf4b6" data-category="历史/中世纪" data-release-date="2016-05-16">
+<article class="game-card" data-game-id="game-c1379cf4b6" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2016-05-16">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -573,7 +565,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-13bf02f9f8" data-category="现代战争" data-release-date="2019-08-20">
+<article class="game-card" data-game-id="game-13bf02f9f8" data-category="现代战争" data-tags="现代战争" data-release-date="2019-08-20">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -596,7 +588,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-2670c8632a" data-category="科幻" data-release-date="2021-03-15">
+<article class="game-card" data-game-id="game-2670c8632a" data-category="现代战争" data-tags="现代战争" data-release-date="2021-03-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -607,7 +599,7 @@ body {
         <span class="meta-pill">2021-03-15</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">科幻写实风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">科幻写实风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-2670c8632a')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -619,7 +611,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3fd6624aa5" data-category="历史/中世纪" data-release-date="2022-05-17">
+<article class="game-card" data-game-id="game-3fd6624aa5" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2022-05-17">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -642,7 +634,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-bd000b4a5c" data-category="奇幻/魔幻" data-release-date="2021-11-30">
+<article class="game-card" data-game-id="game-bd000b4a5c" data-category="航海" data-tags="航海" data-release-date="2021-11-30">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -653,7 +645,7 @@ body {
         <span class="meta-pill">2021-11-30</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">北欧写实风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">北欧写实风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-bd000b4a5c')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -665,7 +657,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-c2f3ea2940" data-category="历史/中世纪" data-release-date="2020-07-15">
+<article class="game-card" data-game-id="game-c2f3ea2940" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2020-07-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -688,7 +680,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f2a6f46f32" data-category="历史/中世纪" data-release-date="2019-03-28">
+<article class="game-card" data-game-id="game-f2a6f46f32" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2019-03-28">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -711,7 +703,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-d4f10e70dd" data-category="历史/中世纪" data-release-date="2012-04-17">
+<article class="game-card" data-game-id="game-d4f10e70dd" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2012-04-17">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -734,7 +726,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-9851ed118c" data-category="历史/中世纪" data-release-date="2011-08-14">
+<article class="game-card" data-game-id="game-9851ed118c" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2011-08-14">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -757,7 +749,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-fd43fb8ba3" data-category="科幻" data-release-date="2021-08-18">
+<article class="game-card" data-game-id="game-fd43fb8ba3" data-category="航海" data-tags="航海" data-release-date="2021-08-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -768,7 +760,7 @@ body {
         <span class="meta-pill">2021-08-18</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">写实科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-fd43fb8ba3')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -780,7 +772,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f509c2dff4" data-category="历史/中世纪" data-release-date="2016-02-26">
+<article class="game-card" data-game-id="game-f509c2dff4" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2016-02-26">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -803,7 +795,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-bd0405f547" data-category="历史/中世纪" data-release-date="2014-07-01">
+<article class="game-card" data-game-id="game-bd0405f547" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2014-07-01">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -826,7 +818,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-7ef18ebcd7" data-category="历史/中世纪" data-release-date="2021-12-29">
+<article class="game-card" data-game-id="game-7ef18ebcd7" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2021-12-29">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -849,7 +841,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-1d6ed3fdb5" data-category="末日生存" data-release-date="2018-06-12">
+<article class="game-card" data-game-id="game-1d6ed3fdb5" data-category="末日生存" data-tags="末日生存" data-release-date="2018-06-12">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -872,7 +864,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-fcb10cc2e5" data-category="奇幻/魔幻" data-release-date="2012-08-02">
+<article class="game-card" data-game-id="game-fcb10cc2e5" data-category="奇幻/魔幻" data-tags="奇幻/魔幻" data-release-date="2012-08-02">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -895,7 +887,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-c4c15060be" data-category="现代战争" data-release-date="2014-03-26">
+<article class="game-card" data-game-id="game-c4c15060be" data-category="现代战争" data-tags="现代战争" data-release-date="2014-03-26">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -918,7 +910,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-6a7bf57b61" data-category="历史/中世纪" data-release-date="2024-10-15">
+<article class="game-card" data-game-id="game-6a7bf57b61" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2024-10-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -941,7 +933,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-03ece9540b" data-category="历史/中世纪" data-release-date="2020-11-16">
+<article class="game-card" data-game-id="game-03ece9540b" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2020-11-16">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -964,7 +956,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-ddf2ca016a" data-category="历史/中世纪" data-release-date="2016-02-03">
+<article class="game-card" data-game-id="game-ddf2ca016a" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2016-02-03">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -987,7 +979,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-bc203b63ae" data-category="历史/中世纪" data-release-date="2013-07-01">
+<article class="game-card" data-game-id="game-bc203b63ae" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2013-07-01">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1010,7 +1002,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-d4d2b0415f" data-category="现代战争" data-release-date="2015-11-05">
+<article class="game-card" data-game-id="game-d4d2b0415f" data-category="现代战争" data-tags="现代战争" data-release-date="2015-11-05">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1033,7 +1025,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-31871e1380" data-category="历史/中世纪" data-release-date="2017-03-15">
+<article class="game-card" data-game-id="game-31871e1380" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2017-03-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1056,7 +1048,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-4d8b9a164c" data-category="末日生存" data-release-date="2020-01-15">
+<article class="game-card" data-game-id="game-4d8b9a164c" data-category="现代战争" data-tags="现代战争" data-release-date="2020-01-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1067,7 +1059,7 @@ body {
         <span class="meta-pill">2020-01-15</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实昆虫风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实昆虫风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-4d8b9a164c')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1079,7 +1071,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-e38de8bd4c" data-category="奇幻/魔幻" data-release-date="2023-03-25">
+<article class="game-card" data-game-id="game-e38de8bd4c" data-category="现代战争" data-tags="现代战争" data-release-date="2023-03-25">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1090,7 +1082,7 @@ body {
         <span class="meta-pill">2023-03-25</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">3D 卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">3D 卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e38de8bd4c')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1102,7 +1094,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-d292a88d96" data-category="科幻" data-release-date="2018-11-29">
+<article class="game-card" data-game-id="game-d292a88d96" data-category="航海" data-tags="航海" data-release-date="2018-11-29">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1113,7 +1105,7 @@ body {
         <span class="meta-pill">2018-11-29</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实现代科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">写实现代科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d292a88d96')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1125,7 +1117,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-bd07451dd5" data-category="历史/中世纪" data-release-date="2020-03-15">
+<article class="game-card" data-game-id="game-bd07451dd5" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2020-03-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1148,7 +1140,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-791d39b835" data-category="奇幻/魔幻" data-release-date="2021-04-15">
+<article class="game-card" data-game-id="game-791d39b835" data-category="现代战争" data-tags="现代战争" data-release-date="2021-04-15">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1159,7 +1151,7 @@ body {
         <span class="meta-pill">2021-04-15</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通猴子风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">卡通猴子风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-791d39b835')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1171,7 +1163,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-c41ac7cb1e" data-category="末日生存" data-release-date="2019-09-12 (PC), 2021-08-24 (Android)">
+<article class="game-card" data-game-id="game-c41ac7cb1e" data-category="奇幻/魔幻" data-tags="奇幻/魔幻" data-release-date="2019-09-12 (PC), 2021-08-24 (Android)">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1182,7 +1174,7 @@ body {
         <span class="meta-pill">2019-09-12 (PC), 2021-08-24 (Android)</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">卡通北欧风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通北欧风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-c41ac7cb1e')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1194,7 +1186,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-9031c015ee" data-category="现代战争" data-release-date="2018-12-06">
+<article class="game-card" data-game-id="game-9031c015ee" data-category="现代战争" data-tags="现代战争" data-release-date="2018-12-06">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1217,7 +1209,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-5be97f4f24" data-category="科幻" data-release-date="2025-10-21">
+<article class="game-card" data-game-id="game-5be97f4f24" data-category="航海" data-tags="航海" data-release-date="2025-10-21">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1228,7 +1220,7 @@ body {
         <span class="meta-pill">2025-10-21</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">写实科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-5be97f4f24')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1240,7 +1232,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-41d3941f78" data-category="历史/中世纪" data-release-date="2016-08-23 (iOS), 2018-12-19 (Android)">
+<article class="game-card" data-game-id="game-41d3941f78" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2016-08-23 (iOS), 2018-12-19 (Android)">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1263,7 +1255,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-30c0ce1398" data-category="历史/中世纪" data-release-date="2025 (持续更新)">
+<article class="game-card" data-game-id="game-30c0ce1398" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2025 (持续更新)">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1286,7 +1278,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-985c6c7044" data-category="历史/中世纪" data-release-date="2025">
+<article class="game-card" data-game-id="game-985c6c7044" data-category="航海" data-tags="航海" data-release-date="2025">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1297,7 +1289,7 @@ body {
         <span class="meta-pill">2025</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">科幻写实风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">科幻写实风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-985c6c7044')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1309,7 +1301,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-0b239ac85a" data-category="历史/中世纪" data-release-date="2025">
+<article class="game-card" data-game-id="game-0b239ac85a" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2025">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1332,7 +1324,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-ab85c9a7be" data-category="历史/中世纪" data-release-date="2016-04-05">
+<article class="game-card" data-game-id="game-ab85c9a7be" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2016-04-05">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1355,7 +1347,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-a41ef28dd4" data-category="现代战争" data-release-date="2017-05-16">
+<article class="game-card" data-game-id="game-a41ef28dd4" data-category="监狱/犯罪" data-tags="监狱/犯罪" data-release-date="2017-05-16">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1366,7 +1358,7 @@ body {
         <span class="meta-pill">2017-05-16</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">监狱/犯罪</span><span class="badge">写实现代风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a41ef28dd4')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1378,7 +1370,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f699d4ef9f" data-category="末日生存" data-release-date="2021-04-12">
+<article class="game-card" data-game-id="game-f699d4ef9f" data-category="末日生存" data-tags="末日生存" data-release-date="2021-04-12">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1401,7 +1393,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-e2772e8549" data-category="末日生存" data-release-date="2022-05-06">
+<article class="game-card" data-game-id="game-e2772e8549" data-category="现代战争" data-tags="现代战争" data-release-date="2022-05-06">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1412,7 +1404,7 @@ body {
         <span class="meta-pill">2022-05-06</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实昆虫风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实昆虫风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e2772e8549')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1424,7 +1416,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-8320df13b3" data-category="奇幻/魔幻" data-release-date="2024-01-02">
+<article class="game-card" data-game-id="game-8320df13b3" data-category="航海" data-tags="航海" data-release-date="2024-01-02">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1435,7 +1427,7 @@ body {
         <span class="meta-pill">2024-01-02</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">风格化写实风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">风格化写实风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-8320df13b3')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1447,7 +1439,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-21f9302d7e" data-category="科幻" data-release-date="2023-09-19">
+<article class="game-card" data-game-id="game-21f9302d7e" data-category="现代战争" data-tags="现代战争" data-release-date="2023-09-19">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1458,7 +1450,7 @@ body {
         <span class="meta-pill">2023-09-19</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实现代科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-21f9302d7e')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1470,7 +1462,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-edc4b6ce92" data-category="现代战争" data-release-date="2019-09-27">
+<article class="game-card" data-game-id="game-edc4b6ce92" data-category="现代战争" data-tags="现代战争" data-release-date="2019-09-27">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1493,7 +1485,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-a356a21f37" data-category="历史/中世纪" data-release-date="2016-08-05">
+<article class="game-card" data-game-id="game-a356a21f37" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2016-08-05">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1516,7 +1508,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-0a2cbfb827" data-category="现代战争" data-release-date="2014-12-07">
+<article class="game-card" data-game-id="game-0a2cbfb827" data-category="现代战争" data-tags="现代战争" data-release-date="2014-12-07">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1539,7 +1531,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f043fc26a7" data-category="奇幻/魔幻" data-release-date="2025-02-27">
+<article class="game-card" data-game-id="game-f043fc26a7" data-category="现代战争" data-tags="现代战争" data-release-date="2025-02-27">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1550,7 +1542,7 @@ body {
         <span class="meta-pill">2025-02-27</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-f043fc26a7')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1562,7 +1554,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-243c473263" data-category="奇幻/魔幻" data-release-date="2025-03-18">
+<article class="game-card" data-game-id="game-243c473263" data-category="现代战争" data-tags="现代战争" data-release-date="2025-03-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1573,7 +1565,7 @@ body {
         <span class="meta-pill">2025-03-18</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">美式动画风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">美式动画风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-243c473263')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1585,7 +1577,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-97d01558d8" data-category="三国" data-release-date="2025-04-17">
+<article class="game-card" data-game-id="game-97d01558d8" data-category="三国" data-tags="三国" data-release-date="2025-04-17">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1608,7 +1600,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-7608e868c9" data-category="历史/中世纪" data-release-date="2025-05-03">
+<article class="game-card" data-game-id="game-7608e868c9" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2025-05-03">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1631,7 +1623,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-b1aae191db" data-category="奇幻/魔幻" data-release-date="2025-06-26">
+<article class="game-card" data-game-id="game-b1aae191db" data-category="现代战争" data-tags="现代战争" data-release-date="2025-06-26">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1642,7 +1634,7 @@ body {
         <span class="meta-pill">2025-06-26</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">3D奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">3D奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-b1aae191db')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1654,7 +1646,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-ccadbd22bd" data-category="末日生存" data-release-date="2025-08-05">
+<article class="game-card" data-game-id="game-ccadbd22bd" data-category="奇幻/魔幻" data-tags="奇幻/魔幻" data-release-date="2025-08-05">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1665,7 +1657,7 @@ body {
         <span class="meta-pill">2025-08-05</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">写实奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-ccadbd22bd')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1677,7 +1669,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-4c042f681c" data-category="三国" data-release-date="2025-10-11">
+<article class="game-card" data-game-id="game-4c042f681c" data-category="三国" data-tags="三国" data-release-date="2025-10-11">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1700,7 +1692,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f4ae9a9d5d" data-category="三国" data-release-date="2025-12-18">
+<article class="game-card" data-game-id="game-f4ae9a9d5d" data-category="三国" data-tags="三国" data-release-date="2025-12-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1723,7 +1715,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-e0880ec4e3" data-category="三国" data-release-date="2026-01-25">
+<article class="game-card" data-game-id="game-e0880ec4e3" data-category="三国" data-tags="三国" data-release-date="2026-01-25">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1746,7 +1738,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3dd196863a" data-category="三国" data-release-date="2026-04-16">
+<article class="game-card" data-game-id="game-3dd196863a" data-category="三国" data-tags="三国" data-release-date="2026-04-16">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1769,7 +1761,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3a54f321ca" data-category="末日生存" data-release-date="2025-03-18">
+<article class="game-card" data-game-id="game-3a54f321ca" data-category="末日生存" data-tags="末日生存" data-release-date="2025-03-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1792,7 +1784,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-badc6f958c" data-category="奇幻/魔幻" data-release-date="2025-07-24">
+<article class="game-card" data-game-id="game-badc6f958c" data-category="现代战争" data-tags="测试中|现代战争" data-release-date="2025-07-24">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1803,7 +1795,7 @@ body {
         <span class="meta-pill">2025-07-24</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">美式卡通风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge badge-testing">测试中</span><span class="badge">美式卡通风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-badc6f958c')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1815,7 +1807,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-354cb9dea0" data-category="历史/中世纪" data-release-date="2025-07-14">
+<article class="game-card" data-game-id="game-354cb9dea0" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2025-07-14">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1838,7 +1830,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-186bfb2e69" data-category="历史/中世纪" data-release-date="2025-06-18">
+<article class="game-card" data-game-id="game-186bfb2e69" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2025-06-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1861,7 +1853,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-5abc1a7061" data-category="现代战争" data-release-date="2025-08-01">
+<article class="game-card" data-game-id="game-5abc1a7061" data-category="现代战争" data-tags="测试中|现代战争" data-release-date="2025-08-01">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1872,7 +1864,7 @@ body {
         <span class="meta-pill">2025-08-01</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代军事风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge badge-testing">测试中</span><span class="badge">写实现代军事风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-5abc1a7061')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1884,7 +1876,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-6a20202625" data-category="历史/中世纪" data-release-date="2024-12-23">
+<article class="game-card" data-game-id="game-6a20202625" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="2024-12-23">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1907,7 +1899,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-5a5bc9685e" data-category="科幻" data-release-date="2025-12-06">
+<article class="game-card" data-game-id="game-5a5bc9685e" data-category="航海" data-tags="测试中|航海" data-release-date="2025-12-06">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1918,7 +1910,7 @@ body {
         <span class="meta-pill">2025-12-06</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实现代科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge badge-testing">测试中</span><span class="badge">写实现代科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-5a5bc9685e')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -1930,7 +1922,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-65497967b7" data-category="科幻" data-release-date="2025-02-25">
+<article class="game-card" data-game-id="game-65497967b7" data-category="科幻" data-tags="科幻" data-release-date="2025-02-25">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1953,7 +1945,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-cad2f965d4" data-category="末日生存" data-release-date="2025-11-18">
+<article class="game-card" data-game-id="game-cad2f965d4" data-category="末日生存" data-tags="末日生存" data-release-date="2025-11-18">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -1976,76 +1968,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3f3587a770" data-category="末日生存" data-release-date="2025-07-23">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Lava Survival</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">Game Legends Establishment For Information Technology</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2025-07-23</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3f3587a770')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/lava-survival/id6748965384" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/lava-survival/id6748965384<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">生存基地建设 SLG，资源经营，兵种训练，联盟战争，实时掠夺</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.题材切口新：从冰雪生存转向火山熔岩环境，视觉记忆点强；2.主循环清晰：建基地、产资源、练兵、打联盟战，一条线很直；3.官方描述明确强调 RTS + 生存 + 联盟战争，SLG 内核比较实；4.2025 年上线，时效性足够新</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.题材相对小众：火山生存是否足够吸量还要观察；2.内容深度仍待验证：新游长期留存和活动节奏还没完全跑出来；3.系统表述偏多：策略、生存、RTS 混合后容易出现理解门槛；4.付费结构后续可能继续加重</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-debd1010d6" data-category="末日生存" data-release-date="2025-12-04">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>My War: Frozen Survival</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">EVISTA PTE. LTD.</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2025-12-04</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实冰雪风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-debd1010d6')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/my-war-frozen-survival/id6753156289" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/my-war-frozen-survival/id6753156289<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日生存 SLG，基地经营，幸存者招募，资源管理，联盟协作</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.上线时间新：2025 年末上线，属于很新的样本；2.题材明确：核冬天+丧尸+基地经营，主循环识别度高；3.官方描述直接写明建基地、招募幸存者、打僵尸和竞争者，SLG 味道比较足；4.联盟协作和资源争夺是核心驱动</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.版本较新：长线内容是否充足还要继续看；2.末日生存赛道同质化高：和同类产品比需要靠包装和活动突围；3.资源/防守循环偏传统：玩法创新度不算高；4.数值压力后续可能上来</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-db6b2bd06e" data-category="历史/中世纪" data-release-date="2026-03-06">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Stellar Dominion</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">Enoxys</span>
-        <span class="meta-pill">iOS</span>
-        <span class="meta-pill">2026-03-06</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">科幻极简风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-db6b2bd06e')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/stellar-dominion/id6756269359" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/stellar-dominion/id6756269359<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">星际 4X SLG，殖民扩张，科技研发，外交结盟，舰队对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.2026 年新作，时效性很强；2.星际帝国建设结构完整，从殖民地到银河扩张一条线很清楚；3.外交、联盟、宣战、资源生产这些 4X 元素都齐；4.更偏单机/轻线上风格，适合放进科幻 SLG 观察样本</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.iPhone 独占：平台覆盖面比较窄；2.独立开发体量有限：后续内容和运营能力待验证；3.当前还没到大规模验证阶段：平衡性和长线留存未知；4.更偏 4X 而不是传统大地图 MMO SLG</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-927f899d78" data-category="末日生存" data-release-date="2025-07-03">
+<article class="game-card" data-game-id="game-927f899d78" data-category="其他" data-tags="其他" data-release-date="2025-07-03">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2056,7 +1979,7 @@ body {
         <span class="meta-pill">2025-07-03</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">风格化卡通风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">其他</span><span class="badge">风格化卡通风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-927f899d78')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2068,7 +1991,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-e5489f6c90" data-category="末日生存" data-release-date="2025-10-21">
+<article class="game-card" data-game-id="game-e5489f6c90" data-category="末日生存" data-tags="末日生存" data-release-date="2025-10-21">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2091,7 +2014,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-86daa992be" data-category="现代战争" data-release-date="2025-09-17">
+<article class="game-card" data-game-id="game-86daa992be" data-category="监狱/犯罪" data-tags="监狱/犯罪" data-release-date="2025-09-17">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2102,7 +2025,7 @@ body {
         <span class="meta-pill">2025-09-17</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">监狱/犯罪</span><span class="badge">写实现代风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-86daa992be')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2114,7 +2037,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-df6e8fc3ea" data-category="科幻" data-release-date="2024-09-26">
+<article class="game-card" data-game-id="game-df6e8fc3ea" data-category="航海" data-tags="航海" data-release-date="2024-09-26">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2125,7 +2048,7 @@ body {
         <span class="meta-pill">2024-09-26</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实现代科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">写实现代科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-df6e8fc3ea')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2137,7 +2060,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-e63af2fa25" data-category="现代战争" data-release-date="2025-03-13">
+<article class="game-card" data-game-id="game-e63af2fa25" data-category="现代战争" data-tags="现代战争" data-release-date="2025-03-13">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2160,7 +2083,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-81671d4762" data-category="末日生存" data-release-date="2025-01-09">
+<article class="game-card" data-game-id="game-81671d4762" data-category="航海" data-tags="航海" data-release-date="2025-01-09">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2171,7 +2094,7 @@ body {
         <span class="meta-pill">2025-01-09</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">卡通航海风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">卡通航海风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-81671d4762')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2183,7 +2106,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-11a22c688b" data-category="末日生存" data-release-date="2024-09-11">
+<article class="game-card" data-game-id="game-11a22c688b" data-category="末日生存" data-tags="末日生存" data-release-date="2024-09-11">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2206,7 +2129,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-df9dd13a7d" data-category="现代战争" data-release-date="2025-01-03">
+<article class="game-card" data-game-id="game-df9dd13a7d" data-category="监狱/犯罪" data-tags="监狱/犯罪" data-release-date="2025-01-03">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2217,7 +2140,7 @@ body {
         <span class="meta-pill">2025-01-03</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">监狱/犯罪</span><span class="badge">写实现代风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-df9dd13a7d')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2229,7 +2152,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-7fbb28856e" data-category="经营模拟" data-release-date="2024-12-11">
+<article class="game-card" data-game-id="game-7fbb28856e" data-category="航海" data-tags="航海" data-release-date="2024-12-11">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2240,7 +2163,7 @@ body {
         <span class="meta-pill">2024-12-11</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">经营模拟</span><span class="badge">风格化航海风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">风格化航海风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-7fbb28856e')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2252,7 +2175,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-8a227d6488" data-category="科幻" data-release-date="2024-01-10">
+<article class="game-card" data-game-id="game-8a227d6488" data-category="末日生存" data-tags="末日生存" data-release-date="2024-01-10">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2263,7 +2186,7 @@ body {
         <span class="meta-pill">2024-01-10</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">写实科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实科幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-8a227d6488')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2275,7 +2198,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-81444e2707" data-category="末日生存" data-release-date="2025-04-09">
+<article class="game-card" data-game-id="game-81444e2707" data-category="末日生存" data-tags="末日生存" data-release-date="2025-04-09">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2298,260 +2221,30 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-c60c9d0dd0" data-category="奇幻/魔幻" data-release-date="2025-06-15">
+<article class="game-card" data-game-id="game-a259a61f95" data-category="历史/中世纪" data-tags="测试中|历史/中世纪" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Cell Survivor（不服来通关）</span><span class="title-check">✓</span></h2>
+      <h2><span>1900: War Evolution</span><span class="title-check">✓</span></h2>
       <div class="card-subline">
-        <span class="meta-pill">长沙游品科技</span>
-        <span class="meta-pill">iOS/Android/微信小游戏</span>
-        <span class="meta-pill">2025-06-15</span>
+        <span class="meta-pill">Zero Heart Game HK</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通微观生物风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge badge-testing">测试中</span><span class="badge">写实战争风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-c60c9d0dd0')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a259a61f95')">加入游玩清单</button></div>
   <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/cell-survivor/id6738469826" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/cell-survivor/id6738469826<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">Roguelike+ 塔防+SLG 融合，免疫细胞对抗病毒，DPS 数值检测，局外养成</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.买量素材立项：源于&#x27;打龙&#x27;副玩法素材，5 秒理解法则降低学习成本；2.混合变现成功：全球 IAP 月流水超 7000 万元；3.日本市场爆发：iOS 畅销榜 Top25，免费榜 Top10；4.题材差异化：微观世界战争设定，全人类共通共鸣话题</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.玩法深度有限：核心为 DPS 检测，策略性较弱；2.长期内容待验证：运营时间短，玩法重复性风险；3.依赖买量：流量成本上升可能影响 ROI；4.用户规模有限：休闲玩家与 SLG 玩家重叠度待观察</div></div>
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.u1game.popwar" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.u1game.popwar<span>↗</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">战争题材 SLG，基地经营，部队养成，地图扩张，联盟对抗</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.来自近期测试产品汇总文章中明确点名的 SLG；2.当前处于测试观察阶段，适合做新品监控；3.资源包装有一定熟悉感，值得后续跟踪研发归属与版本变化；4.Google Play 条目已可访问，便于后续复核</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.目前公开信息有限；2.发行日期和研发归属仍需继续确认；3.测试阶段版本变动可能较大；4.不排除后续改名或换包继续测试</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-dd340b1e40" data-category="其他" data-release-date="2022-08-10">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Gossip Harbor</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">柠檬微趣</span>
-        <span class="meta-pill">iOS/Android/微信小游戏</span>
-        <span class="meta-pill">2022-08-10</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">其他</span><span class="badge">卡通写实风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-dd340b1e40')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/gossip-harbor/id1610440" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/gossip-harbor/id1610440<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">合并+SLG 融合，叙事进程，实时运营活动，赛季通行证</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.2026 年中国出海手游冠军：月流水超 10 亿元；2.实时运营前置：从新手期就引入活动节奏，塑造长期期望；3.并行活动设计：同时满足竞争、收集、进度推进等多重动机；4.赛季通行证稳定层：在动态活动环境中提供一致性</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.UI 复杂度瓶颈：活动密度超出屏幕容量，认知负荷高；2.合并玩法深度较浅：核心玩家可能觉得不够硬核；3.交叉推广过早：玩家尚未获得足够价值就展示其他产品；4.权限请求时机争议：早期权限请求可能影响用户信任</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-84591fb839" data-category="历史/中世纪" data-release-date="2015-04-01">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>DomiNations</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">SecretNewCo, Inc.</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2015-04-01</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">卡通写实文明风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-84591fb839')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/dominations/id922558758" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/dominations/id922558758<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">帝国建设 SLG，时代演进，基地经营，联盟战争，PVP 对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.时代跨度很大：从石器时代一路推进到现代/太空时代，成长感强；2.城建与战争结合紧密：建设、科研、出征形成完整循环；3.联盟战规模大：50v50 联盟战争带来强社交驱动；4.历史文明包装成熟：文明选择和奇观系统辨识度高</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.养成周期较长：时代推进和科技研究需要投入大量时间；2.资源与付费压力明显：后期升级成本高；3.前期节奏偏慢：新手成长阶段不够快；4.后期重复度上升：日常循环较容易固定化</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-beacce8782" data-category="末日生存" data-release-date="2015-12-04">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Last Empire – War Z: Strategy</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">Interesting Game Network Limited</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2015-12-04</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-beacce8782')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/last-empire-war-z-strategy/id1040083067" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/last-empire-war-z-strategy/id1040083067<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日生存 SLG，基地建设，资源采集，联盟协作，世界地图争夺</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.题材识别度高：丧尸末日+基地战争，包装很直给；2.世界地图与联盟活动明确：有持续的争夺和协作目标；3.老牌策略循环完整：建造、养成、出兵、扩张一条线清晰；4.内容运营成熟：活动和联盟玩法能支撑长期留存</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.产品年头较长：整体框架偏传统，创新感不强；2.付费压力较重：加速成长往往离不开投入；3.界面信息密度高：系统多时会显得杂；4.新鲜感不足：老玩家容易进入重复循环</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-79a9f24b7f" data-category="现代战争" data-release-date="2016-10-01">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Soldiers Inc: Mobile Warfare</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">Plarium Global Ltd</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2016-10-01</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代军事风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-79a9f24b7f')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/soldiers-inc-mobile-warfare/id1088291369" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/soldiers-inc-mobile-warfare/id1088291369<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">现代战争 SLG，基地建设，兵种训练，联盟对抗，资源争夺</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.现代军事题材明确：坦克、无人机、前线据点都有强烈战争感；2.基地经营和出兵并重：主循环就是建造、训练、掠夺；3.联盟协作感强：多人协同和对抗是核心内容；4.传统 MMO SLG 框架完整：适合做泛 SLG 库的基准样本</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.老产品框架偏硬：对新玩家不算轻松；2.养成门槛高：成长速度很依赖资源投入；3.玩法相对传统：没有太多形式上的创新；4.中后期竞争压力大：联盟战和资源战会放大差距</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-17175f2f66" data-category="历史/中世纪" data-release-date="2018-12-18">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Total Battle: Strategy Games</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">SCOREWARRIOR LIMITED</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2018-12-18</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">奇幻写实风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-17175f2f66')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/ug/app/total-battle-strategy-games/id1274132545" target="_blank" rel="noopener noreferrer">https://apps.apple.com/ug/app/total-battle-strategy-games/id1274132545<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">4X 战争 SLG，城堡建设，领地扩张，联盟战争，战术对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.4X/战争策略结构清晰：建城、扩张、打仗的主线非常明确；2.城堡防御与战术对抗并存：攻防两端都有内容；3.长期运营稳定：内容节奏偏成熟；4.策略包装完整：适合放在主 SLG 库中做宽口径补充</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.数值成长压力高：后期资源和战力堆叠明显；2.日常活动负担重：容易被运营节奏牵着走；3.前期节奏偏慢：铺城和养成需要耐心；4.商业化较重：付费点较多，纯休闲玩家容易疲劳</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-75930b6118" data-category="奇幻/魔幻" data-release-date="2021-01-13">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Infinity Kingdom</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">YOOZOO (SINGAPORE) PTE. LTD.</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2021-01-13</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-75930b6118')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/infinity-kingdom/id1487451427" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/infinity-kingdom/id1487451427<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻 SLG，城市重建，部队训练，元素巨龙，联盟对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.奇幻包装鲜明：巨龙、名将和元素体系辨识度高；2.城市重建与兵种养成结合：有比较典型的 SLG 成长结构；3.联盟与跨服驱动明确：对抗目标清晰；4.视觉表现讨喜：更偏轻松明亮的策略风格</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.MMO 属性较强：硬核 4X 感没有那么重；2.后期偏数值：长期竞争主要看养成推进；3.日常活动密度高：节奏会比较忙；4.题材接受度看口味：更偏二次元/幻想向</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-451cd8bcbf" data-category="科幻" data-release-date="2025-06-19">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Alien Apocalypse: Survival</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">SPIDERFLY GAMES - FZCO</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2025-06-19</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻</span><span class="badge">科幻末日风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-451cd8bcbf')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/alien-apocalypse-survival/id6739420672" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/alien-apocalypse-survival/id6739420672<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">生存基地建设 SLG，基地防御，联盟协作，资源管理，实时对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.2025 年新上的科幻末日样本，题材辨识度高；2.官方明确写了 base building 和 alliances，SLG 内核清晰；3.把外星入侵和生存经营结合起来，视觉和设定都比较有记忆点；4.从版本更新看，6 月中旬后内容迭代很快</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.内容还比较新，长线留存和活动深度待观察；2.目前评分和反馈量不高，产品成熟度还在验证；3.题材偏科幻小众，用户池可能不如末日丧尸大；4.如果后续更偏动作/战斗，SLG 深度需要继续盯</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-09b2b9e370" data-category="末日生存" data-release-date="2025-08-07">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Apocalypse City Builder</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">OctoSharko Games</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2025-08-07</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实废土风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-09b2b9e370')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/apocalypse-city-builder/id6738279770" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/apocalypse-city-builder/id6738279770<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">后末日城建 SLG，资源管理，基地扩张，联盟协作，PvP 对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.2025 年 8 月的新条目，时间上足够新；2.商店页直接强调 strategic base building 和 multiplayer alliances，SLG 属性明确；3.废土城建题材辨识度不错，和常规丧尸/冰雪路线区分明显；4.玩法结构适合做生存城建类 SLG 的补充样本</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.商店分类是 Casual，说明它带有一定轻量化包装；2.题材和系统还没有跑到特别成熟的阶段；3.如果后续社交和战争比重不够，可能会偏生存建造而不是硬 SLG；4.整体内容密度需要继续观察</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-2a6d02d0e2" data-category="历史/中世纪" data-release-date="2025-12-17">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>War of Colony</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">GAME KNIGHT NETWORK TECHNOLOGY LIMITED</span>
-        <span class="meta-pill">iOS/Android</span>
-        <span class="meta-pill">2025-12-17</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">写实历史战争风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-2a6d02d0e2')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/war-of-colony/id1241625625" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/war-of-colony/id1241625625<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">殖民时代 SLG，基地建设，军队指挥，全球征服，联盟活动</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.2025 年末出现的版本更新时间很新，适合跟踪新运营节奏；2.官方 App Store 页面对 base building、army command、global conquest 的描述非常明确；3.殖民时代包装和传统战争 SLG 的结构结合得比较完整；4.联盟活动和领土争夺是核心驱动，不是单纯的轻策略外壳</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.题材比较传统，和同类战争 SLG 容易撞脸；2.老产品底层框架较重，界面和系统复杂度高；3.数值和养成压力会比较明显；4.如果只看新鲜感，它不算最激进的创新产品</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-9af77f0db8" data-category="历史/中世纪" data-release-date="2025-12-27">
-  <div class="card-head">
-    <div class="card-title-wrap">
-      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Kingdoms Crown</span><span class="title-check">✓</span></h2>
-      <div class="card-subline">
-        <span class="meta-pill">MANSOUR MOHAMMAD EBRAHIMI</span>
-        <span class="meta-pill">iPhone</span>
-        <span class="meta-pill">2025-12-27</span>
-      </div>
-    </div>
-    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">奇幻写实风</span></div>
-  </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-9af77f0db8')">加入游玩清单</button></div>
-  <div class="field-grid">
-    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/kingdoms-crown/id6751150185" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/kingdoms-crown/id6751150185<span>↗</span></a></div></div>
-    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">放置策略 SLG，帝国建设，军队训练，联盟战争，资源掠夺</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.2025 年底上线，属于当前最新的样本之一；2.核心卖点直接围绕 build, raid, survive, alliance, war，SLG 结构很直白；3.把放置成长和实时策略战斗合在一起，比较符合近年的移动端 SLG 走向；4.全球排行榜和联盟战争驱动强，适合观察新产品的长线竞争方式</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.放置元素会让硬核 SLG 玩家觉得不够硬；2.只有 iPhone 版本，覆盖面受限；3.产品刚上线不久，活动和内容深度还要继续看；4.目前更偏轻量化的大盘策略，不是最重的 MMO 4X</div></div>
-    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
-  </div>
-</article>
-
-<article class="game-card" data-game-id="game-8d02aa0b0a" data-category="现代战争" data-release-date="">
+<article class="game-card" data-game-id="game-8d02aa0b0a" data-category="监狱/犯罪" data-tags="测试中|监狱/犯罪" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2562,19 +2255,19 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">监狱/犯罪</span><span class="badge badge-testing">测试中</span><span class="badge">写实现代风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-8d02aa0b0a')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.umi.gts" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.umi.gts<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">黑帮题材 SLG，地盘经营，成员养成，联盟对抗，城市资源争夺</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.黑帮题材在近期测试产品里出现频率较高；2.适合与 Mafia Mobile、Mafia City 等产品做横向观察；3.Google Play 条目已可访问；4.题材方向明确，适合作为市场情报样本长期跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.黑帮题材在近期测试产品里出现频率较高；2.适合与 Mafia Mobile、Mafia City 等产品做横向观察；3.Google Play 条目已可访问；4.题材方向明确，属于标准市场情报样本</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.公开信息仍然有限；2.黑帮题材赛道竞争已经比较拥挤；3.后续是否改名或换包仍需跟踪；4.长期差异化尚不清晰</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-cd4a4ef8b6" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-cd4a4ef8b6" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2585,19 +2278,19 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-cd4a4ef8b6')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.and.zws.in" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.and.zws.in<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日生存 SLG，基地建设，外层轻玩法，塔防展示，联盟对抗</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列出的 SLG；2.混合了 minigame、塔防和 Last War 式流程；3.作者提到已经测试多版；4.值得继续跟踪版本变化</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中明确列出的 SLG；2.混合了 minigame、塔防和 Last War 式流程，适合观察融合方向；3.作者提到已经测试多版；4.值得继续跟踪版本变化</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属尚未确认；2.玩法混合度高，最终定位可能继续变化；3.测试周期较长说明产品仍在打磨；4.不排除继续改名换包</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3b9a5d7ab9" data-category="现代战争" data-release-date="">
+<article class="game-card" data-game-id="game-3b9a5d7ab9" data-category="现代战争" data-tags="测试中|现代战争" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2605,10 +2298,10 @@ body {
       <div class="card-subline">
         <span class="meta-pill">StarWish</span>
         <span class="meta-pill">Android</span>
-        <span class="meta-pill">测试中 / SLG候选</span>
+        <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">卡通末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge badge-testing">测试中</span><span class="badge">卡通末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3b9a5d7ab9')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2620,7 +2313,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-ea1c16b2b2" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-ea1c16b2b2" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2631,42 +2324,42 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-ea1c16b2b2')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.arcanerealms.android" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.arcanerealms.android<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻捉宠向 SLG，主城经营，宠物与队伍养成，地图推进，联盟玩法待跟踪</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中放在 SLG 段落中单列；2.捉宠 like 方向近年测试产品较多；3.与同开发商的其他产品可对照；4.Google Play 条目明确</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.文中放在 SLG 段落中单列；2.捉宠 like 方向近年测试产品较多，适合做市场观察；3.与同开发商的其他产品可对照；4.Google Play 条目明确</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.题材方向容易撞同类；2.作者提到同名系产品很多，辨识度要继续看；3.玩法成熟度尚未确认；4.后续可能继续分化成多个版本</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-d07f735f30" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-d07f735f30" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dragon's Finale</span><span class="title-check">✓</span></h2>
+      <h2><span>Dragon&#x27;s Finale</span><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
         <span class="meta-pill">Android</span>
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d07f735f30')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.dragonsfinale.android" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.dragonsfinale.android<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻龙题材 SLG 候选，主城经营，队伍养成，like 结构，联盟玩法待确认</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.与 Dreamio Rush 同开发商，适合做矩阵观察；2.龙题材在买量层面有明确吸引力；3.文中指出 like 很多；4.可作为奇幻测试样本入库</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.与 Dreamio Rush 同开发商，适合做矩阵观察；2.龙题材在买量层面有明确吸引力；3.文中指出 like 很多，说明这是值得跟踪的方向；4.可作为奇幻测试样本入库</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.具体 SLG 深度还需继续确认；2.同赛道 like 产品较多；3.后续命名和版本路线可能变化；4.市场辨识度还不稳定</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-d8bc8217cc" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-d8bc8217cc" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2677,7 +2370,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">风格化冰原风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">风格化冰原风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d8bc8217cc')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2689,7 +2382,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-e04780dda4" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-e04780dda4" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2700,7 +2393,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e04780dda4')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2712,7 +2405,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f5bd4ed473" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-f5bd4ed473" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2723,19 +2416,19 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-f5bd4ed473')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.ratinghope.gplay" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.ratinghope.gplay<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">泰坦题材 SLG，主城经营，队伍成长，地图推进，联盟玩法待跟踪</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.题材一直围绕泰坦不变，方向稳定；2.迭代两年多后完成度更高；3.适合做长测产品样本；4.Google Play 条目可访问</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者提到题材一直围绕泰坦不变，说明方向稳定；2.已经迭代两年多，完成度提升明显；3.适合做长测产品样本；4.Google Play 条目可访问</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.测试周期很长；2.研发归属未确认；3.多轮改版后最终定位仍需继续观察；4.题材虽固定但玩法差异还需确认</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-96f5699d46" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-96f5699d46" data-category="航海" data-tags="测试中|航海" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2746,19 +2439,19 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">风格化航海风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge badge-testing">测试中</span><span class="badge">风格化航海风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-96f5699d46')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.games.ts" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.games.ts<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">航海题材 SLG，基地经营，资源建设，外层 minigame，联盟玩法待跟踪</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.账号更换频繁，说明仍在持续测试；2.前段动画有新增；3.适合作为 FunPlus like 航海样本观察；4.minigame 外层与 SLG 内核结合值得继续看</div></div>
-    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.主体玩法改动不大；3.外层 minigame 仍较强；4.后续是否改名换包需要继续跟踪</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者提到账号更换频繁，说明仍在持续测试；2.前段动画有新增；3.适合作为 FunPlus like 航海样本观察；4.minigame 外层与 SLG 内核结合值得继续看</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.研发归属未确认；2.主体玩法改动不大；3.外层 minigame 仍较强，纯 SLG 浓度待确认；4.后续是否改名换包需要继续跟踪</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-9d1b16b417" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-9d1b16b417" data-category="监狱/犯罪" data-tags="测试中|监狱/犯罪" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2769,7 +2462,7 @@ body {
         <span class="meta-pill">CBT</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">监狱/犯罪</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-9d1b16b417')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2781,7 +2474,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-f9c166b0bd" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-f9c166b0bd" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2789,10 +2482,10 @@ body {
       <div class="card-subline">
         <span class="meta-pill">Vividiy</span>
         <span class="meta-pill">Android</span>
-        <span class="meta-pill">测试中 / SLG候选</span>
+        <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-f9c166b0bd')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2804,7 +2497,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3fcf79fbf1" data-category="现代战争" data-release-date="">
+<article class="game-card" data-game-id="game-3fcf79fbf1" data-category="现代战争" data-tags="测试中|现代战争" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2815,7 +2508,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代军事风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge badge-testing">测试中</span><span class="badge">写实现代军事风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3fcf79fbf1')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2827,7 +2520,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-daf0e7cac4" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-daf0e7cac4" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2838,7 +2531,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-daf0e7cac4')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2850,7 +2543,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-1a8daec90b" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-1a8daec90b" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2861,7 +2554,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-1a8daec90b')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2873,7 +2566,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-05f168e4f4" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-05f168e4f4" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2884,7 +2577,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-05f168e4f4')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2896,7 +2589,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-082f082da5" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-082f082da5" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2907,7 +2600,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-082f082da5')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2919,7 +2612,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-bbdc3ffc8f" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-bbdc3ffc8f" data-category="动物/拟人" data-tags="测试中|动物/拟人" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2930,7 +2623,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通动物风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">动物/拟人</span><span class="badge badge-testing">测试中</span><span class="badge">卡通动物风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-bbdc3ffc8f')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2942,7 +2635,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-3206d9f330" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-3206d9f330" data-category="动物/拟人" data-tags="测试中|动物/拟人" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2953,7 +2646,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通动物风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">动物/拟人</span><span class="badge badge-testing">测试中</span><span class="badge">卡通动物风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-3206d9f330')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2965,7 +2658,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-7fc97f17e0" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-7fc97f17e0" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2976,7 +2669,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-7fc97f17e0')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -2988,7 +2681,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-1a72986bf0" data-category="现代战争" data-release-date="">
+<article class="game-card" data-game-id="game-1a72986bf0" data-category="现代战争" data-tags="测试中|现代战争" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -2999,7 +2692,7 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">写实现代风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge badge-testing">测试中</span><span class="badge">写实现代风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-1a72986bf0')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -3011,7 +2704,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-a250d7441d" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-2d62de7f88" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3022,19 +2715,19 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a250d7441d')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-2d62de7f88')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.funyfish.zwar.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.funyfish.zwar.gp<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，黑洞 minigame 外层，基地经营，资源建设，联盟玩法待跟踪</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者明确把它和之前测试过的 Hole Survival Z 关联；2.黑洞 minigame + SLG 是当前明确的测试方向；3.Google Play 条目明确；4.适合作为中国团队末日 SLG 外层测试样本观察</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.作者明确把它和之前 37 测过的 Hole Survival Z 关联；2.黑洞 minigame + SLG 是当前明确的测试方向；3.Google Play 条目明确；4.适合作为中国团队末日 SLG 外层测试样本观察</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.同方向已有相似测试产品；2.研发归属未最终确认；3.minigame 外层是否有效仍需继续看；4.后续可能继续改版换包</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-2968f2d1a1" data-category="奇幻/魔幻" data-release-date="">
+<article class="game-card" data-game-id="game-2968f2d1a1" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3045,7 +2738,7 @@ body {
         <span class="meta-pill">测试中 / SLG候选</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">风格化卡通风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">风格化卡通风</span></div>
   </div>
   <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-2968f2d1a1')">加入游玩清单</button></div>
   <div class="field-grid">
@@ -3057,7 +2750,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-5df9d0a321" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-e11905906d" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3068,9 +2761,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-5df9d0a321')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e11905906d')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.darkoutsurvival.android" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.darkoutsurvival.android<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，Kingshot like 外层，资源成长，联盟玩法待跟踪</div></div>
@@ -3080,7 +2773,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-a8c7f2e144" data-category="科幻/方块" data-release-date="">
+<article class="game-card" data-game-id="game-fa646b0738" data-category="历史/中世纪" data-tags="测试中|历史/中世纪" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3091,19 +2784,19 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻/方块</span><span class="badge">像素方块风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge badge-testing">测试中</span><span class="badge">像素方块风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-a8c7f2e144')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-fa646b0738')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.aksgs.wdsjomgoogle" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.aksgs.wdsjomgoogle<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">方块题材 SLG，宇宙建设，资源经营，地图推进，联盟玩法待跟踪</div></div>
-    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.方块宇宙题材辨识度较高；2.属于“我的世界改我的宇宙”方向样本；3.Google Play 条目明确；4.适合作为题材可行性观察</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1.方块宇宙题材辨识度较高；2.属于“我的世界改我的宇宙”方向样本；3.Google Play 条目明确；4.适合做题材可行性观察</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1.方块风格在 SLG 中未必容易跑出；2.研发归属存在多种猜测；3.玩法公开信息有限；4.后续是否改版还需继续跟踪</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-d3b6a90f27" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-331ac24367" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3114,9 +2807,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-d3b6a90f27')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-331ac24367')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.hlg.mowingslg" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.hlg.mowingslg<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，基地经营，割草 minigame 外层，资源建设，联盟玩法待跟踪</div></div>
@@ -3126,7 +2819,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-ef27c9b811" data-category="深海生存" data-release-date="">
+<article class="game-card" data-game-id="game-4578df9f64" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3137,9 +2830,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">深海生存</span><span class="badge">深海科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">深海科幻风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-ef27c9b811')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-4578df9f64')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.deepsea.survival" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.deepsea.survival<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">深海题材 SLG，基地经营，塔防展示外层，资源建设，联盟玩法待跟踪</div></div>
@@ -3149,7 +2842,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-6120ae7c55" data-category="沙海/生存" data-release-date="">
+<article class="game-card" data-game-id="game-806e40881e" data-category="其他" data-tags="测试中|其他" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3160,9 +2853,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">沙海/生存</span><span class="badge">风格化沙海风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">其他</span><span class="badge badge-testing">测试中</span><span class="badge">风格化沙海风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-6120ae7c55')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-806e40881e')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.origingames.seasand.gp" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.origingames.seasand.gp<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">沙海题材 SLG，基地经营，塔防展示外层，资源成长，联盟玩法待跟踪</div></div>
@@ -3172,7 +2865,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-c1a4e86fd2" data-category="奇幻/掠夺" data-release-date="">
+<article class="game-card" data-game-id="game-c26782973a" data-category="奇幻/魔幻" data-tags="测试中|奇幻/魔幻" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3183,9 +2876,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">奇幻/掠夺</span><span class="badge">卡通奇幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge badge-testing">测试中</span><span class="badge">卡通奇幻风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-c1a4e86fd2')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-c26782973a')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.cbdzzuscbt.google" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.cbdzzuscbt.google<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">SLG like 测试样本，掠夺成长外层，基地经营与联盟玩法待跟踪</div></div>
@@ -3195,7 +2888,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-74d8fe2b10" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-0cd58275e0" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3206,9 +2899,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">复古像素风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">复古像素风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-74d8fe2b10')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-0cd58275e0')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.mighty.st99" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.mighty.st99<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">像素风末日 SLG，英雄小队，打僵尸外层，基地经营与联盟成长待跟踪</div></div>
@@ -3218,7 +2911,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-b6329d1ea4" data-category="科幻战争" data-release-date="">
+<article class="game-card" data-game-id="game-0a73d03f32" data-category="现代战争" data-tags="测试中|现代战争" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3229,9 +2922,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">科幻战争</span><span class="badge">未来科幻风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge badge-testing">测试中</span><span class="badge">未来科幻风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-b6329d1ea4')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-0a73d03f32')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.elex.sprintgames" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.elex.sprintgames<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">科幻题材 SLG，基地经营，资源扩张，战斗外层待跟踪，联盟玩法待确认</div></div>
@@ -3241,7 +2934,7 @@ body {
   </div>
 </article>
 
-<article class="game-card" data-game-id="game-19e0c4fa76" data-category="末日生存" data-release-date="">
+<article class="game-card" data-game-id="game-e4d51f4f07" data-category="末日生存" data-tags="测试中|末日生存" data-release-date="">
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
@@ -3252,9 +2945,9 @@ body {
         <span class="meta-pill">测试中</span>
       </div>
     </div>
-    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge">写实末日风</span></div>
+    <div class="card-badges"><span class="badge badge-primary">末日生存</span><span class="badge badge-testing">测试中</span><span class="badge">写实末日风</span></div>
   </div>
-  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-19e0c4fa76')">加入游玩清单</button></div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e4d51f4f07')">加入游玩清单</button></div>
   <div class="field-grid">
     <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.larks.bw2.googleplay" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.larks.bw2.googleplay<span>↗</span></a></div></div>
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">末日题材 SLG，数字门外层，基地经营，资源成长，联盟玩法待跟踪</div></div>
@@ -3263,16 +2956,19 @@ body {
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article></main></div>
-      <aside class="playlist-pane">
+      <aside class="playlist-pane" id="playlistPane">
         <div class="playlist-shell">
           <div class="playlist-head">
             <div class="playlist-kicker">PLAYLIST BOARD</div>
             <div class="playlist-head-row">
-            <h2 class="playlist-title">游玩清单</h2>
-            <p class="playlist-note">点左侧卡片的“加入游玩清单”即可收藏。勾选后，主库里的游戏名旁边也会出现已玩标记。</p>
-            <div class="playlist-head-tools">
-              <button class="playlist-inline-action" type="button" onclick="clearPlayed()">娓呯┖宸茬帺</button>
-              <button class="playlist-toggle" id="playlistToggle" type="button" aria-label="鏈€灏忓寲娓哥帺娓呭崟" onclick="togglePlaylistMinimized()">−</button>
+              <div class="playlist-heading">
+                <h2 class="playlist-title">游玩清单</h2>
+                <p class="playlist-note">点左侧卡片的“加入游玩清单”即可收藏。勾选后，主库里的游戏名旁边也会出现已玩标记。</p>
+              </div>
+              <div class="playlist-head-tools">
+                <button class="playlist-inline-action" id="clearPlayedButton" type="button" onclick="clearPlayed()">清空已玩</button>
+                <button class="playlist-toggle" id="playlistToggle" type="button" aria-label="最小化游玩清单" onclick="togglePlaylistMinimized()">−</button>
+              </div>
             </div>
             <div class="playlist-stats">
               <div class="playlist-stat"><span class="playlist-stat-label">清单总数</span><span class="playlist-stat-value" id="playlistCount">0</span></div>
@@ -3284,14 +2980,11 @@ body {
           </div>
           <div id="playlistEmpty" class="playlist-empty">清单还是空的，可以先从主库挑几款进去。</div>
           <ul id="playlistList" class="playlist-list"></ul>
-          <div class="playlist-danger-zone">
-            <button class="button ghost playlist-danger-button" type="button" onclick="clearPlayed()">清空已玩标记</button>
-          </div>
         </div>
-          <button class="playlist-miniball" id="playlistMiniball" type="button">
-            <strong>PLAY</strong>
-            <span id="playlistMiniballCount">0</span>
-          </button>
+        <button class="playlist-miniball" id="playlistMiniball" type="button" aria-label="打开游玩清单">
+          <strong>PLAY</strong>
+          <span id="playlistMiniballCount">0</span>
+        </button>
       </aside>
     </section>
 
@@ -3300,17 +2993,14 @@ body {
 </div>
 
 <script>
-const GAME_INDEX = Array.from(document.querySelectorAll('.game-card'))
-  .map(card => ({
-    id: card.dataset.gameId || '',
-    name: card.querySelector('h2 span')?.textContent?.trim() || '',
-    category: card.dataset.category || '',
-    developer: card.querySelector('.card-subline .meta-pill')?.textContent?.trim() || '',
-    releaseDate: card.dataset.releaseDate || ''
-  }))
-  .filter(item => item.id);
+const GAME_INDEX = [{"id": "game-94db617c7f", "name": "三国志·战略版", "category": "三国", "tags": ["三国"], "developer": "广州灵犀互动娱乐有限公司（阿里互娱）", "releaseDate": "2019-09-20", "stage": ""}, {"id": "game-cd0c883253", "name": "率土之滨", "category": "三国", "tags": ["三国"], "developer": "网易游戏", "releaseDate": "2015-10-22", "stage": ""}, {"id": "game-797c34099e", "name": "万国觉醒", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "莉莉丝游戏", "releaseDate": "2020-09-23", "stage": ""}, {"id": "game-37eaff37a0", "name": "Whiteout Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2022-12-18", "stage": ""}, {"id": "game-a8975b3eb6", "name": "可狱不可囚（Lands of Jail）", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "SINGAPORE JUST GAME TECHNOLOGY PTE. LTD.", "releaseDate": "2025-03-15", "stage": ""}, {"id": "game-3c9a12d8c0", "name": "Palmon: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "LILITH TECHNOLOGY HONG KONG LIMITED", "releaseDate": "待公布（测试中）", "stage": ""}, {"id": "game-0ddf5accbd", "name": "Last War: Survival", "category": "现代战争", "tags": ["现代战争"], "developer": "FUNFLY PTE. LTD.", "releaseDate": "2023-08-10", "stage": ""}, {"id": "game-58cd32e5c0", "name": "Puzzles & Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "37GAMES", "releaseDate": "2020-08-25", "stage": ""}, {"id": "game-9786528684", "name": "Top Heroes: Kingdom Saga", "category": "现代战争", "tags": ["现代战争"], "developer": "RiverGame", "releaseDate": "2024-06-12", "stage": ""}, {"id": "game-90f17ae6d9", "name": "Kingshot", "category": "现代战争", "tags": ["现代战争"], "developer": "Century Games", "releaseDate": "2024-09-15", "stage": ""}, {"id": "game-90b9ec2c17", "name": "State of Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "KingsGroup Holdings", "releaseDate": "2019-11-14", "stage": ""}, {"id": "game-c1379cf4b6", "name": "Evony: The King's Return", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "TG Inc.", "releaseDate": "2016-05-16", "stage": ""}, {"id": "game-13bf02f9f8", "name": "Top War: Battle Game", "category": "现代战争", "tags": ["现代战争"], "developer": "River Game", "releaseDate": "2019-08-20", "stage": ""}, {"id": "game-2670c8632a", "name": "Age of Origins", "category": "现代战争", "tags": ["现代战争"], "developer": "CamelStudio", "releaseDate": "2021-03-15", "stage": ""}, {"id": "game-3fd6624aa5", "name": "Kingdoms of Heckfire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Scopely", "releaseDate": "2022-05-17", "stage": ""}, {"id": "game-bd000b4a5c", "name": "Vikingard", "category": "航海", "tags": ["航海"], "developer": "Hero Games", "releaseDate": "2021-11-30", "stage": ""}, {"id": "game-c2f3ea2940", "name": "Rise of Castles: Ice and Fire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Long Tech Network Limited", "releaseDate": "2020-07-15", "stage": ""}, {"id": "game-f2a6f46f32", "name": "Conquerors: Golden Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2019-03-28", "stage": ""}, {"id": "game-d4f10e70dd", "name": "Forge of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames", "releaseDate": "2012-04-17", "stage": ""}, {"id": "game-9851ed118c", "name": "Goodgame Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Goodgame Studios", "releaseDate": "2011-08-14", "stage": ""}, {"id": "game-fd43fb8ba3", "name": "无尽的拉格朗日", "category": "航海", "tags": ["航海"], "developer": "网易游戏", "releaseDate": "2021-08-18", "stage": ""}, {"id": "game-f509c2dff4", "name": "王国纪元", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG", "releaseDate": "2016-02-26", "stage": ""}, {"id": "game-bd0405f547", "name": "列王的纷争", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "智明星通", "releaseDate": "2014-07-01", "stage": ""}, {"id": "game-7ef18ebcd7", "name": "文明与征服", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "广州四三九九信息科技有限公司", "releaseDate": "2021-12-29", "stage": ""}, {"id": "game-1d6ed3fdb5", "name": "Doomsday: Last Survivors", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2018-06-12", "stage": ""}, {"id": "game-fcb10cc2e5", "name": "Clash of Clans", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Supercell", "releaseDate": "2012-08-02", "stage": ""}, {"id": "game-c4c15060be", "name": "Boom Beach", "category": "现代战争", "tags": ["现代战争"], "developer": "Supercell", "releaseDate": "2014-03-26", "stage": ""}, {"id": "game-6a7bf57b61", "name": "Age of Empires Mobile", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Level Infinite", "releaseDate": "2024-10-15", "stage": ""}, {"id": "game-03ece9540b", "name": "Civilization VI", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K Games", "releaseDate": "2020-11-16", "stage": ""}, {"id": "game-ddf2ca016a", "name": "The Battle of Polytopia", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Midjiwan AB", "releaseDate": "2016-02-03", "stage": ""}, {"id": "game-bc203b63ae", "name": "Game of War: Fire Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Machine Zone", "releaseDate": "2013-07-01", "stage": ""}, {"id": "game-d4d2b0415f", "name": "Mobile Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Machine Zone", "releaseDate": "2015-11-05", "stage": ""}, {"id": "game-31871e1380", "name": "Guns of Glory", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2017-03-15", "stage": ""}, {"id": "game-4d8b9a164c", "name": "The Ants: Underground Kingdom", "category": "现代战争", "tags": ["现代战争"], "developer": "StarUnion", "releaseDate": "2020-01-15", "stage": ""}, {"id": "game-e38de8bd4c", "name": "Call of Dragons", "category": "现代战争", "tags": ["现代战争"], "developer": "Farlight Games", "releaseDate": "2023-03-25", "stage": ""}, {"id": "game-d292a88d96", "name": "Star Trek Fleet Command", "category": "航海", "tags": ["航海"], "developer": "Scopely, Inc.", "releaseDate": "2018-11-29", "stage": ""}, {"id": "game-bd07451dd5", "name": "Puzzles & Conquest", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "37GAMES", "releaseDate": "2020-03-15", "stage": ""}, {"id": "game-791d39b835", "name": "Age of Apes", "category": "现代战争", "tags": ["现代战争"], "developer": "Holdfast", "releaseDate": "2021-04-15", "stage": ""}, {"id": "game-c41ac7cb1e", "name": "Northgard", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Shiro Games", "releaseDate": "2019-09-12 (PC), 2021-08-24 (Android)", "stage": ""}, {"id": "game-9031c015ee", "name": "Rebel Inc.", "category": "现代战争", "tags": ["现代战争"], "developer": "Ndemic Creations", "releaseDate": "2018-12-06", "stage": ""}, {"id": "game-5be97f4f24", "name": "Foundation: Galactic Frontier", "category": "航海", "tags": ["航海"], "developer": "FunPlus", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-41d3941f78", "name": "Rome: Total War", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive (原 SEGA)", "releaseDate": "2016-08-23 (iOS), 2018-12-19 (Android)", "stage": ""}, {"id": "game-30c0ce1398", "name": "King of Avalon", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2025 (持续更新)", "stage": ""}, {"id": "game-985c6c7044", "name": "Beyond Astra", "category": "航海", "tags": ["航海"], "developer": "未知", "releaseDate": "2025", "stage": ""}, {"id": "game-0b239ac85a", "name": "Civilization VII", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Firaxis Games", "releaseDate": "2025", "stage": ""}, {"id": "game-ab85c9a7be", "name": "War and Order", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "CamelStudio", "releaseDate": "2016-04-05", "stage": ""}, {"id": "game-a41ef28dd4", "name": "Mafia City: War of Underworld", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2017-05-16", "stage": ""}, {"id": "game-f699d4ef9f", "name": "The Walking Dead: Survivors", "category": "末日生存", "tags": ["末日生存"], "developer": "Galaxy Play Technology Limited", "releaseDate": "2021-04-12", "stage": ""}, {"id": "game-e2772e8549", "name": "Ant Legion: For The Swarm", "category": "现代战争", "tags": ["现代战争"], "developer": "37GAMES", "releaseDate": "2022-05-06", "stage": ""}, {"id": "game-8320df13b3", "name": "Sea of Conquest: Pirate War", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "2024-01-02", "stage": ""}, {"id": "game-21f9302d7e", "name": "Project Entropy", "category": "现代战争", "tags": ["现代战争"], "developer": "FunPlus International AG", "releaseDate": "2023-09-19", "stage": ""}, {"id": "game-edc4b6ce92", "name": "Kiss of War: Dead Blood", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2019-09-27", "stage": ""}, {"id": "game-a356a21f37", "name": "Brutal Age: Horde Invasion", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2016-08-05", "stage": ""}, {"id": "game-0a2cbfb827", "name": "Invasion: Aerial Warfare", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2014-12-07", "stage": ""}, {"id": "game-f043fc26a7", "name": "荒野国度", "category": "现代战争", "tags": ["现代战争"], "developer": "圆桌工作室", "releaseDate": "2025-02-27", "stage": ""}, {"id": "game-243c473263", "name": "Avatar Legends: Realms Collide", "category": "现代战争", "tags": ["现代战争"], "developer": "Tilting Point LLC", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-97d01558d8", "name": "群星纪元", "category": "三国", "tags": ["三国"], "developer": "景秀游戏", "releaseDate": "2025-04-17", "stage": ""}, {"id": "game-7608e868c9", "name": "Game of Thrones: Dragonfire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Warner Bros. Games", "releaseDate": "2025-05-03", "stage": ""}, {"id": "game-b1aae191db", "name": "龙石战争", "category": "现代战争", "tags": ["现代战争"], "developer": "腾讯凯博 / 儒意景秀", "releaseDate": "2025-06-26", "stage": ""}, {"id": "game-ccadbd22bd", "name": "Fate War", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-08-05", "stage": ""}, {"id": "game-4c042f681c", "name": "三国群英传：策定九州", "category": "三国", "tags": ["三国"], "developer": "星辉游戏", "releaseDate": "2025-10-11", "stage": ""}, {"id": "game-f4ae9a9d5d", "name": "九牧之野", "category": "三国", "tags": ["三国"], "developer": "仙峰游戏 / 雷霆游戏", "releaseDate": "2025-12-18", "stage": ""}, {"id": "game-e0880ec4e3", "name": "Three Kingdoms: World Conquest", "category": "三国", "tags": ["三国"], "developer": "Rastar Mobile", "releaseDate": "2026-01-25", "stage": ""}, {"id": "game-3dd196863a", "name": "三国：天下归心", "category": "三国", "tags": ["三国"], "developer": "恺英网络 / 乘风工作室", "releaseDate": "2026-04-16", "stage": ""}, {"id": "game-3a54f321ca", "name": "Frozen War", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-badc6f958c", "name": "Disney Realm Breakers", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "JOYCITY Corp.", "releaseDate": "2025-07-24", "stage": ""}, {"id": "game-354cb9dea0", "name": "Age of Empires: Survival", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Tencent / TiMi Studio Group", "releaseDate": "2025-07-14", "stage": ""}, {"id": "game-186bfb2e69", "name": "Civilization: Eras & Allies 2K", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K, Inc.", "releaseDate": "2025-06-18", "stage": ""}, {"id": "game-5abc1a7061", "name": "Warline: Sniper Strike", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "Farlight Games", "releaseDate": "2025-08-01", "stage": ""}, {"id": "game-6a20202625", "name": "Savage Survival: Jurassic Isle", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2024-12-23", "stage": ""}, {"id": "game-5a5bc9685e", "name": "Xeno Warpath", "category": "航海", "tags": ["测试中", "航海"], "developer": "Wanda Cinemas Games", "releaseDate": "2025-12-06", "stage": ""}, {"id": "game-65497967b7", "name": "Godzilla x Kong: Titan Chasers", "category": "科幻", "tags": ["科幻"], "developer": "Tilting Point LLC", "releaseDate": "2025-02-25", "stage": ""}, {"id": "game-cad2f965d4", "name": "Resident Evil Survival Unit", "category": "末日生存", "tags": ["末日生存"], "developer": "Aniplex Inc. / JOYCITY", "releaseDate": "2025-11-18", "stage": ""}, {"id": "game-927f899d78", "name": "Tiles Survive!", "category": "其他", "tags": ["其他"], "developer": "FunPlus International AG", "releaseDate": "2025-07-03", "stage": ""}, {"id": "game-e5489f6c90", "name": "Dawn Watch: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "STARFORTUNE INTERACTIVE ENTERTAINMENT TECHNOLOGY CO., LIMITED", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-86daa992be", "name": "Mafia Mobile", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-09-17", "stage": ""}, {"id": "game-df6e8fc3ea", "name": "EVE Galaxy Conquest", "category": "航海", "tags": ["航海"], "developer": "CCP ehf.", "releaseDate": "2024-09-26", "stage": ""}, {"id": "game-e63af2fa25", "name": "DC: Dark Legion", "category": "现代战争", "tags": ["现代战争"], "developer": "FunPlus International AG", "releaseDate": "2025-03-13", "stage": ""}, {"id": "game-81671d4762", "name": "High Seas Hero: Dig & Build", "category": "航海", "tags": ["航海"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2025-01-09", "stage": ""}, {"id": "game-11a22c688b", "name": "Dark War:Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "Florere Game Limited", "releaseDate": "2024-09-11", "stage": ""}, {"id": "game-df9dd13a7d", "name": "Grand Gangster War", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "WGAME TECHNOLOGY LIMITED", "releaseDate": "2025-01-03", "stage": ""}, {"id": "game-7fbb28856e", "name": "Age Of Sails", "category": "航海", "tags": ["航海"], "developer": "Estoty LLC", "releaseDate": "2024-12-11", "stage": ""}, {"id": "game-8a227d6488", "name": "Marsaction 2: Space Homestead", "category": "末日生存", "tags": ["末日生存"], "developer": "LEXIANGCO.,LIMITED", "releaseDate": "2024-01-10", "stage": ""}, {"id": "game-81444e2707", "name": "Final War: Frozen Defense", "category": "末日生存", "tags": ["末日生存"], "developer": "HaoPlay Limited", "releaseDate": "2025-04-09", "stage": ""}, {"id": "game-a259a61f95", "name": "1900: War Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Zero Heart Game HK", "releaseDate": "", "stage": "测试中"}, {"id": "game-8d02aa0b0a", "name": "Gangland: Syndicate Rise", "category": "监狱/犯罪", "tags": ["测试中", "监狱/犯罪"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-cd4a4ef8b6", "name": "Z War:Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Beacon Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-3b9a5d7ab9", "name": "Trigger & Truck", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "StarWish", "releaseDate": "", "stage": "测试中"}, {"id": "game-ea1c16b2b2", "name": "Dreamio Rush", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d07f735f30", "name": "Dragon's Finale", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d8bc8217cc", "name": "Frozen Island", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Linkify Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e04780dda4", "name": "Catch & Build: Land of Pals", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Joy Nice Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5bd4ed473", "name": "Titan Rush", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "RATING GAME", "releaseDate": "", "stage": "测试中"}, {"id": "game-96f5699d46", "name": "Lost Waters", "category": "航海", "tags": ["测试中", "航海"], "developer": "Warrior Cabera", "releaseDate": "", "stage": "测试中"}, {"id": "game-9d1b16b417", "name": "Mad Asylum(CBT)", "category": "监狱/犯罪", "tags": ["测试中", "监狱/犯罪"], "developer": "Etolies Game", "releaseDate": "", "stage": "CBT"}, {"id": "game-f9c166b0bd", "name": "Endless Zombies", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Vividiy", "releaseDate": "", "stage": "测试中"}, {"id": "game-3fcf79fbf1", "name": "Wingstrike", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "MOONTECH PTE LTD", "releaseDate": "", "stage": "测试中"}, {"id": "game-daf0e7cac4", "name": "Last Outbreak", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "LumoraTech", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a8daec90b", "name": "MistCrush Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Skystone Games Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-05f168e4f4", "name": "last survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "HKNovaGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-082f082da5", "name": "Monster Survival:Palkie Empire", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-bbdc3ffc8f", "name": "MarmotShot", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-3206d9f330", "name": "Marmot Shelter", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-7fc97f17e0", "name": "Siege of Lava", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Madfun Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a72986bf0", "name": "Heroic Era", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "Arclight Studio", "releaseDate": "", "stage": "测试中"}, {"id": "game-2d62de7f88", "name": "Z War：Survival Game", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FUNY FISH TECHNOLOGY CO., LTD.", "releaseDate": "", "stage": "测试中"}, {"id": "game-2968f2d1a1", "name": "Zoink! Bounce Brigade", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Oblivion land", "releaseDate": "", "stage": "测试中 / SLG候选"}, {"id": "game-e11905906d", "name": "Darkout Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-fa646b0738", "name": "Mine Cosmos", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Peachcat Online Co., Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-331ac24367", "name": "Z-Fortress", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Happy Loong Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-4578df9f64", "name": "Deepsea Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Lunova Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-806e40881e", "name": "Sea of Sand", "category": "其他", "tags": ["测试中", "其他"], "developer": "ACT10 Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-c26782973a", "name": "BlitzLoot", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-0cd58275e0", "name": "Doomlord: Pixel Haven", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Mighty Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-0a73d03f32", "name": "Lightbreak", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "Galaxy Play Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e4d51f4f07", "name": "Silent Shield: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Larks Holding Limited", "releaseDate": "", "stage": "测试中"}];
 const GAME_MAP = new Map(GAME_INDEX.map(item => [item.id, item]));
-const STORAGE_KEYS = { playlist: 'game-info-playlist', played: 'game-info-played', playlistMinimized: 'game-info-playlist-minimized', playlistPosition: 'game-info-playlist-position' };
+const STORAGE_KEYS = {
+  playlist: 'game-info-playlist',
+  played: 'game-info-played',
+  playlistMinimized: 'game-info-playlist-minimized',
+  playlistPosition: 'game-info-playlist-position'
+};
 let currentCategory = '';
 let currentSortMode = 'newest';
 let playlist = loadArray(STORAGE_KEYS.playlist);
@@ -3352,142 +3042,6 @@ function saveState() {
 function savePlaylistUiState() {
   localStorage.setItem(STORAGE_KEYS.playlistMinimized, String(playlistMinimized));
 }
-function isDesktopPlaylistMode() {
-  return window.innerWidth > 1260;
-}
-function clampPlaylistPosition(position) {
-  const width = 72;
-  const height = 72;
-  return {
-    left: Math.min(Math.max(12, Number(position?.left) || (window.innerWidth - width - 18)), Math.max(12, window.innerWidth - width - 12)),
-    top: Math.min(Math.max(12, Number(position?.top) || (window.innerHeight - height - 18)), Math.max(12, window.innerHeight - height - 12))
-  };
-}
-function savePlaylistPosition(position) {
-  localStorage.setItem(STORAGE_KEYS.playlistPosition, JSON.stringify(clampPlaylistPosition(position)));
-}
-function syncPlaylistChrome() {
-  const tools = document.querySelector('.playlist-head-tools');
-  if (tools) {
-    tools.innerHTML = '<button class="playlist-inline-action" type="button" onclick="clearPlayed()">清空已玩</button><button class="playlist-toggle" id="playlistToggle" type="button" onclick="togglePlaylistMinimized()">-</button>';
-  }
-  const mini = document.getElementById('playlistMiniball');
-  if (mini) {
-    mini.setAttribute('aria-label', '打开游玩清单');
-  }
-}
-function rebuildPlaylistPane() {
-  const pane = document.querySelector('.playlist-pane');
-  if (!pane) return;
-  pane.id = 'playlistPane';
-  pane.innerHTML = `
-    <div class="playlist-shell">
-      <div class="playlist-head">
-        <div class="playlist-kicker">PLAYLIST BOARD</div>
-        <div class="playlist-head-row">
-          <div class="playlist-heading">
-            <h2 class="playlist-title">游玩清单</h2>
-            <p class="playlist-note">点左侧卡片的“加入游玩清单”即可收藏。勾选后，主库里的游戏名旁边也会出现已玩标记。</p>
-          </div>
-          <div class="playlist-head-tools" id="playlistHeadTools">
-            <button class="playlist-inline-action" type="button" onclick="clearPlayed()">清空已玩</button>
-            <button class="playlist-toggle" id="playlistToggle" type="button" onclick="togglePlaylistMinimized()">-</button>
-          </div>
-        </div>
-        <div class="playlist-stats">
-          <div class="playlist-stat"><span class="playlist-stat-label">清单总数</span><span class="playlist-stat-value" id="playlistCount">0</span></div>
-          <div class="playlist-stat"><span class="playlist-stat-label">已完成</span><span class="playlist-stat-value" id="playedCount">0</span></div>
-        </div>
-      </div>
-      <div class="playlist-actions">
-        <button class="button ghost" type="button" onclick="clearPlaylist()">清空清单</button>
-      </div>
-      <div id="playlistEmpty" class="playlist-empty">清单还是空的，可以先从主库挑几款进去。</div>
-      <ul id="playlistList" class="playlist-list"></ul>
-    </div>
-    <button class="playlist-miniball" id="playlistMiniball" type="button" aria-label="打开游玩清单">
-      <strong>PLAY</strong>
-      <span id="playlistMiniballCount">0</span>
-    </button>
-  `;
-}
-function applyPlaylistUiState() {
-  const pane = document.querySelector('.playlist-pane');
-  const toggle = document.getElementById('playlistToggle');
-  if (!pane) return;
-  const useMini = playlistMinimized && isDesktopPlaylistMode();
-  pane.classList.toggle('is-minimized', useMini);
-  if (useMini) {
-    const saved = loadObject(STORAGE_KEYS.playlistPosition, null);
-    const pos = clampPlaylistPosition(saved);
-    pane.style.left = `${pos.left}px`;
-    pane.style.top = `${pos.top}px`;
-    pane.style.right = 'auto';
-    pane.style.bottom = 'auto';
-  } else {
-    pane.style.left = '';
-    pane.style.top = '';
-    pane.style.right = '';
-    pane.style.bottom = '';
-  }
-  if (toggle) {
-    toggle.textContent = useMini ? '+' : '-';
-    toggle.setAttribute('aria-label', useMini ? '打开游玩清单' : '最小化游玩清单');
-  }
-}
-function togglePlaylistMinimized(forceState) {
-  if (!isDesktopPlaylistMode() && forceState !== false) return;
-  playlistMinimized = typeof forceState === 'boolean' ? forceState : !playlistMinimized;
-  savePlaylistUiState();
-  applyPlaylistUiState();
-}
-function initPlaylistDrag() {
-  const pane = document.querySelector('.playlist-pane');
-  const mini = document.getElementById('playlistMiniball');
-  if (!pane || !mini) return;
-  const beginDrag = event => {
-    if (!pane.classList.contains('is-minimized') || !isDesktopPlaylistMode()) return;
-    const point = event.touches ? event.touches[0] : event;
-    const rect = pane.getBoundingClientRect();
-    playlistDragState = { offsetX: point.clientX - rect.left, offsetY: point.clientY - rect.top, startX: point.clientX, startY: point.clientY, moved: false };
-    event.preventDefault();
-  };
-  const moveDrag = event => {
-    if (!playlistDragState || !pane.classList.contains('is-minimized')) return;
-    const point = event.touches ? event.touches[0] : event;
-    const pos = clampPlaylistPosition({ left: point.clientX - playlistDragState.offsetX, top: point.clientY - playlistDragState.offsetY });
-    pane.style.left = `${pos.left}px`;
-    pane.style.top = `${pos.top}px`;
-    pane.style.right = 'auto';
-    pane.style.bottom = 'auto';
-    if (Math.abs(point.clientX - playlistDragState.startX) > 4 || Math.abs(point.clientY - playlistDragState.startY) > 4) {
-      playlistDragState.moved = true;
-    }
-  };
-  const endDrag = () => {
-    if (!playlistDragState || !pane.classList.contains('is-minimized')) return;
-    savePlaylistPosition({ left: parseFloat(pane.style.left), top: parseFloat(pane.style.top) });
-    window.setTimeout(() => { playlistDragState = null; }, 0);
-  };
-  mini.addEventListener('mousedown', beginDrag);
-  mini.addEventListener('touchstart', beginDrag, { passive: false });
-  window.addEventListener('mousemove', moveDrag);
-  window.addEventListener('touchmove', moveDrag, { passive: false });
-  window.addEventListener('mouseup', endDrag);
-  window.addEventListener('touchend', endDrag);
-  mini.addEventListener('click', event => {
-    if (!isDesktopPlaylistMode()) {
-      event.preventDefault();
-      return;
-    }
-    if (playlistDragState?.moved) {
-      event.preventDefault();
-      return;
-    }
-    togglePlaylistMinimized(false);
-  });
-  window.addEventListener('resize', () => applyPlaylistUiState());
-}
 function parseReleaseDate(value) {
   if (!value) return Number.NaN;
   const timestamp = Date.parse(value);
@@ -3517,21 +3071,15 @@ function filterNow() {
   const cards = document.querySelectorAll('.game-card');
   let visible = 0;
   cards.forEach(card => {
-    const category = (card.dataset.category || '').toLowerCase();
-    const matchesCategory = !currentCategory || category === currentCategory.toLowerCase();
+    const tags = (card.dataset.tags || '').split('|').map(item => item.trim()).filter(Boolean);
+    const matchesPlayed = currentCategory === '已游玩' ? playedSet.has(card.dataset.gameId) : true;
+    const matchesCategory = !currentCategory || currentCategory === '已游玩' ? true : tags.includes(currentCategory);
     const matchesQuery = !query || card.textContent.toLowerCase().includes(query);
-    const show = matchesCategory && matchesQuery;
+    const show = matchesCategory && matchesPlayed && matchesQuery;
     card.classList.toggle('hidden', !show);
     if (show) visible += 1;
   });
   document.getElementById('visibleCount').textContent = String(visible);
-}
-function syncOverviewCounts() {
-  const total = document.querySelectorAll('.game-card').length;
-  const gameCount = document.getElementById('gameCount');
-  const visibleCount = document.getElementById('visibleCount');
-  if (gameCount) gameCount.textContent = String(total);
-  if (visibleCount && !document.querySelector('.game-card.hidden')) visibleCount.textContent = String(total);
 }
 function filterByCategory(category, button) {
   document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
@@ -3545,7 +3093,7 @@ function resetAll() {
   currentCategory = '';
   currentSortMode = 'newest';
   updateSortButtonLabel();
-  const firstChip = document.querySelector('.chip');
+  const firstChip = Array.from(document.querySelectorAll('.chip')).find(item => (item.dataset.category || '') === '');
   document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
   if (firstChip) firstChip.classList.add('is-active');
   applySortMode();
@@ -3558,40 +3106,6 @@ function addCardToPlaylist(gameId) {
     saveState();
     renderPlaylist();
   }
-}
-function bindLibraryCardActions() {
-  const cardsRoot = document.getElementById('cardsRoot');
-  if (!cardsRoot || cardsRoot.dataset.boundActions === 'true') return;
-  cardsRoot.dataset.boundActions = 'true';
-  cardsRoot.addEventListener('click', event => {
-    const button = event.target.closest('.mini-action');
-    if (!button || !cardsRoot.contains(button)) return;
-    const card = button.closest('.game-card');
-    const gameId = card?.dataset.gameId;
-    if (!gameId) return;
-    addCardToPlaylist(gameId);
-  });
-}
-function clearFiltersForJump() {
-  const input = document.getElementById('searchInput');
-  if (input && input.value) input.value = '';
-  if (currentCategory) {
-    currentCategory = '';
-    document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
-    const firstChip = document.querySelector('.chip');
-    if (firstChip) firstChip.classList.add('is-active');
-  }
-  filterNow();
-}
-function scrollToGameCard(gameId) {
-  const card = document.querySelector(`.game-card[data-game-id="${gameId}"]`);
-  if (!card) return;
-  if (card.classList.contains('hidden')) {
-    clearFiltersForJump();
-  }
-  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  card.classList.add('is-targeted');
-  window.setTimeout(() => card.classList.remove('is-targeted'), 1400);
 }
 function removeFromPlaylist(gameId) {
   playlist = playlist.filter(item => item !== gameId);
@@ -3611,15 +3125,129 @@ function syncPlayedFlags() {
     card.classList.toggle('is-played', playedSet.has(card.dataset.gameId));
   });
 }
-function syncLibraryActionLabels() {
-  document.querySelectorAll('.game-card').forEach(card => {
-    const gameId = card.dataset.gameId;
-    const button = card.querySelector('.mini-action');
-    if (!button) return;
-    const inPlaylist = playlist.includes(gameId);
-    button.textContent = inPlaylist ? '已在游玩清单' : '加入游玩清单';
-    button.classList.toggle('is-in-playlist', inPlaylist);
-    button.setAttribute('aria-pressed', inPlaylist ? 'true' : 'false');
+function jumpToGameCard(gameId) {
+  const card = document.querySelector(`.game-card[data-game-id="${CSS.escape(gameId)}"]`);
+  if (!card) return;
+  card.classList.remove('is-targeted');
+  window.requestAnimationFrame(() => {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.add('is-targeted');
+    window.setTimeout(() => card.classList.remove('is-targeted'), 1600);
+  });
+}
+function isDesktopPlaylistMode() {
+  return window.innerWidth > 1260;
+}
+function clampPlaylistPosition(position) {
+  const width = 72;
+  const height = 72;
+  return {
+    left: Math.min(Math.max(12, Number(position?.left) || (window.innerWidth - width - 18)), Math.max(12, window.innerWidth - width - 12)),
+    top: Math.min(Math.max(12, Number(position?.top) || (window.innerHeight - height - 18)), Math.max(12, window.innerHeight - height - 12))
+  };
+}
+function savePlaylistPosition(position) {
+  localStorage.setItem(STORAGE_KEYS.playlistPosition, JSON.stringify(clampPlaylistPosition(position)));
+}
+function applyPlaylistPosition(position) {
+  const pane = document.getElementById('playlistPane');
+  if (!pane || !pane.classList.contains('is-minimized')) return;
+  const next = clampPlaylistPosition(position);
+  pane.style.left = `${next.left}px`;
+  pane.style.top = `${next.top}px`;
+  pane.style.right = 'auto';
+  pane.style.bottom = 'auto';
+}
+function syncPlaylistToggleButton() {
+  const button = document.getElementById('playlistToggle');
+  if (!button) return;
+  if (!isDesktopPlaylistMode()) {
+    button.disabled = true;
+    button.textContent = '−';
+    button.title = '移动端保持展开';
+  } else {
+    button.disabled = false;
+    button.textContent = playlistMinimized ? '+' : '−';
+    button.title = playlistMinimized ? '展开游玩清单' : '最小化游玩清单';
+  }
+}
+function applyPlaylistUi() {
+  const pane = document.getElementById('playlistPane');
+  const mini = document.getElementById('playlistMiniball');
+  if (!pane || !mini) return;
+  if (!isDesktopPlaylistMode()) {
+    playlistMinimized = false;
+    pane.classList.remove('is-minimized');
+    pane.style.left = '';
+    pane.style.top = '';
+    pane.style.right = '';
+    pane.style.bottom = '';
+    savePlaylistUiState();
+    syncPlaylistToggleButton();
+    return;
+  }
+  pane.classList.toggle('is-minimized', playlistMinimized);
+  if (playlistMinimized) {
+    applyPlaylistPosition(loadObject(STORAGE_KEYS.playlistPosition, null));
+  } else {
+    pane.style.left = '';
+    pane.style.top = '';
+    pane.style.right = '';
+    pane.style.bottom = '';
+  }
+  syncPlaylistToggleButton();
+}
+function togglePlaylistMinimized(force) {
+  if (!isDesktopPlaylistMode()) return;
+  playlistMinimized = typeof force === 'boolean' ? force : !playlistMinimized;
+  savePlaylistUiState();
+  applyPlaylistUi();
+}
+function bindPlaylistMiniball() {
+  const mini = document.getElementById('playlistMiniball');
+  if (!mini) return;
+  let drag = null;
+  mini.addEventListener('pointerdown', event => {
+    if (!isDesktopPlaylistMode()) return;
+    drag = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      moved: false
+    };
+    mini.setPointerCapture(event.pointerId);
+    playlistDragState = drag;
+  });
+  mini.addEventListener('pointermove', event => {
+    if (!drag || drag.pointerId !== event.pointerId || !playlistMinimized) return;
+    const dx = event.clientX - drag.startX;
+    const dy = event.clientY - drag.startY;
+    if (!drag.moved && Math.hypot(dx, dy) > 8) drag.moved = true;
+    if (!drag.moved) return;
+    applyPlaylistPosition({
+      left: event.clientX - 36,
+      top: event.clientY - 36
+    });
+  });
+  const finishDrag = event => {
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    mini.releasePointerCapture(event.pointerId);
+    if (drag.moved) {
+      savePlaylistPosition({
+        left: event.clientX - 36,
+        top: event.clientY - 36
+      });
+    } else {
+      togglePlaylistMinimized(false);
+    }
+    drag = null;
+    playlistDragState = null;
+  };
+  mini.addEventListener('pointerup', finishDrag);
+  mini.addEventListener('pointercancel', event => {
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    drag = null;
+    playlistDragState = null;
   });
 }
 function escapeHtml(value) {
@@ -3635,21 +3263,19 @@ function renderPlaylist() {
     const item = document.createElement('li');
     item.className = 'playlist-item';
     if (playedSet.has(gameId)) item.classList.add('is-played');
-    item.innerHTML = `<input class="playlist-check" type="checkbox" ${playedSet.has(gameId) ? 'checked' : ''}><div class="playlist-item-main"><p class="playlist-item-name"><button class="playlist-jump" type="button"><span>${escapeHtml(game.name)}</span><span class="playlist-tag">${escapeHtml(game.category || '其他')}</span></button></p><div class="playlist-item-meta"><span>${escapeHtml(game.developer || '暂无')}</span><span>${escapeHtml(game.releaseDate || '暂无日期')}</span></div></div><button class="playlist-remove" type="button">×</button>`;
-    item.querySelector('.playlist-check').setAttribute('aria-label', `标记已玩 ${game.name}`);
-    item.querySelector('.playlist-jump').setAttribute('aria-label', `跳到 ${game.name} 在资讯库中的位置`);
+    item.innerHTML = `<input class="playlist-check" type="checkbox" ${playedSet.has(gameId) ? 'checked' : ''} aria-label="标记已玩 ${game.name}"><div class="playlist-item-main"><p class="playlist-item-name"><button class="playlist-jump" type="button"><span>${escapeHtml(game.name)}</span><span class="playlist-tag">${escapeHtml(game.category || '其他')}</span></button></p><div class="playlist-item-meta"><span>${escapeHtml(game.developer || '暂无')}</span><span>${escapeHtml(game.releaseDate || game.stage || '暂无日期')}</span></div></div><button class="playlist-remove" type="button">×</button>`;
     item.querySelector('.playlist-check').addEventListener('change', event => togglePlayed(gameId, event.target.checked));
-    item.querySelector('.playlist-jump').addEventListener('click', () => scrollToGameCard(gameId));
+    item.querySelector('.playlist-jump').addEventListener('click', () => jumpToGameCard(gameId));
     item.querySelector('.playlist-remove').addEventListener('click', () => removeFromPlaylist(gameId));
     list.appendChild(item);
   });
   empty.classList.toggle('hidden', playlist.length > 0);
+  const playedCount = playlist.filter(id => playedSet.has(id)).length;
   document.getElementById('playlistCount').textContent = String(playlist.length);
-  document.getElementById('playedCount').textContent = String(playlist.filter(id => playedSet.has(id)).length);
+  document.getElementById('playedCount').textContent = String(playedCount);
   const miniCount = document.getElementById('playlistMiniballCount');
   if (miniCount) miniCount.textContent = String(playlist.length);
   syncPlayedFlags();
-  syncLibraryActionLabels();
 }
 function toggleSortOrder() {
   currentSortMode = currentSortMode === 'newest' ? 'oldest' : 'newest';
@@ -3657,14 +3283,11 @@ function toggleSortOrder() {
   applySortMode();
   filterNow();
 }
+bindPlaylistMiniball();
 applySortMode();
 updateSortButtonLabel();
-rebuildPlaylistPane();
-bindLibraryCardActions();
-initPlaylistDrag();
-applyPlaylistUiState();
+applyPlaylistUi();
 renderPlaylist();
-syncOverviewCounts();
 filterNow();
 document.getElementById('searchInput').addEventListener('input', filterNow);
 document.getElementById('searchInput').addEventListener('keydown', event => {
@@ -3673,6 +3296,7 @@ document.getElementById('searchInput').addEventListener('keydown', event => {
     filterNow();
   }
 });
+window.addEventListener('resize', applyPlaylistUi);
 </script>
 </body>
 </html>
