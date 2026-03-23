@@ -99,6 +99,9 @@ body {
 .played-flag { display: none; align-items: center; padding: 6px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #f4fbef; background: var(--olive); }
 .game-card.is-played .played-flag, .game-card.is-played .title-check { display: inline-flex; }
 .card-title-wrap h2 { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-family: "STSong", "Songti SC", "Noto Serif SC", serif; font-size: clamp(24px, 2.1vw, 30px); line-height: 1.06; }
+.card-title-link { color: inherit; text-decoration: none; border-bottom: 1px dashed transparent; transition: color 180ms ease, border-color 180ms ease, opacity 180ms ease; }
+.card-title-link:hover { color: var(--accent-deep); border-color: rgba(93, 40, 29, 0.35); }
+.card-title-link:focus-visible { outline: 2px solid rgba(141, 67, 49, 0.35); outline-offset: 4px; border-radius: 4px; }
 .title-check { display: none; width: 30px; height: 30px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(88, 104, 74, 0.14); color: var(--olive); font-size: 16px; font-weight: 800; }
 .card-subline, .playlist-item-meta { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 12px; }
 .meta-pill { display: inline-flex; align-items: center; padding: 7px 11px; border-radius: 999px; background: rgba(255, 252, 247, 0.92); border: 1px solid rgba(90, 63, 41, 0.12); }
@@ -257,9 +260,9 @@ body {
           </div>
         </div>
         <div class="hero-stats">
-          <div class="stat"><span class="stat-label">游戏总数</span><span class="stat-value" id="gameCount">173</span></div>
+          <div class="stat"><span class="stat-label">游戏总数</span><span class="stat-value" id="gameCount">183</span></div>
           <div class="stat"><span class="stat-label">题材大类</span><span class="stat-value" id="categoryCount">12</span></div>
-          <div class="stat"><span class="stat-label">当前显示</span><span class="stat-value" id="visibleCount">173</span></div>
+          <div class="stat"><span class="stat-label">当前显示</span><span class="stat-value" id="visibleCount">183</span></div>
         </div>
       </div>
     </section>
@@ -287,7 +290,7 @@ body {
 <button class="chip" type="button" data-category="恐龙/原始" onclick="filterByCategory(this.dataset.category, this)">恐龙/原始</button>
 <button class="chip" type="button" data-category="其他" onclick="filterByCategory(this.dataset.category, this)">其他</button>
 <button class="chip" type="button" data-category="测试中" onclick="filterByCategory(this.dataset.category, this)">测试中</button><button class="chip" type="button" data-category="已游玩" onclick="filterByCategory(this.dataset.category, this)">已游玩</button></section>
-    <div class="summary"><span>数据源：<strong>games_data.json</strong></span><span>最后同步：<strong>2026-03-20 19:28:20</strong></span></div>
+    <div class="summary"><span>数据源：<strong>games_data.json</strong></span><span>最后同步：<strong>2026-03-23 10:43:02</strong></span></div>
 
     <section class="workspace">
       <div class="library-pane"><main class="cards" id="cardsRoot">
@@ -295,7 +298,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>三国志·战略版</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E4%B8%89%E5%9B%BD%E5%BF%97%C2%B7%E6%88%98%E7%95%A5%E7%89%88" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>三国志·战略版</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">广州灵犀互动娱乐有限公司（阿里互娱）</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -318,7 +321,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>率土之滨</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E7%8E%87%E5%9C%9F%E4%B9%8B%E6%BB%A8" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>率土之滨</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">网易游戏</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -341,7 +344,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>万国觉醒</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E4%B8%87%E5%9B%BD%E8%A7%89%E9%86%92" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>万国觉醒</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">莉莉丝游戏</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -364,7 +367,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>无尽冬日</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%97%A0%E5%B0%BD%E5%86%AC%E6%97%A5" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>无尽冬日</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Century Games Pte. Ltd.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -387,7 +390,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>可狱不可囚（Lands of Jail）</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E5%8F%AF%E7%8B%B1%E4%B8%8D%E5%8F%AF%E5%9B%9A%EF%BC%88Lands+of+Jail%EF%BC%89" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>可狱不可囚（Lands of Jail）</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">SINGAPORE JUST GAME TECHNOLOGY PTE. LTD.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -410,7 +413,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Palmon: Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Palmon%3A+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Palmon: Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">LILITH TECHNOLOGY HONG KONG LIMITED</span>
         <span class="meta-pill">iOS/Android</span>
@@ -433,7 +436,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Last War: Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Last+War%3A+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Last War: Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FUNFLY PTE. LTD.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -456,7 +459,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Puzzles &amp; Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Puzzles+%26+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Puzzles &amp; Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">37GAMES</span>
         <span class="meta-pill">iOS/Android</span>
@@ -479,7 +482,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Top Heroes: Kingdom Saga</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Top+Heroes%3A+Kingdom+Saga" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Top Heroes: Kingdom Saga</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">RiverGame</span>
         <span class="meta-pill">iOS/Android</span>
@@ -502,7 +505,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Kingshot</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Kingshot" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Kingshot</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Century Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -525,7 +528,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>State of Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=State+of+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>State of Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">KingsGroup Holdings</span>
         <span class="meta-pill">iOS/Android</span>
@@ -548,7 +551,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Evony: The King&#x27;s Return</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Evony%3A+The+King%27s+Return" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Evony: The King&#x27;s Return</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">TG Inc.</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -571,7 +574,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>口袋奇兵</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E5%8F%A3%E8%A2%8B%E5%A5%87%E5%85%B5" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>口袋奇兵</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">River Game</span>
         <span class="meta-pill">iOS/Android</span>
@@ -594,7 +597,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>旭日之城</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%97%AD%E6%97%A5%E4%B9%8B%E5%9F%8E" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>旭日之城</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">CamelStudio</span>
         <span class="meta-pill">iOS/Android</span>
@@ -617,7 +620,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Kingdoms of Heckfire</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Kingdoms+of+Heckfire" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Kingdoms of Heckfire</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Scopely</span>
         <span class="meta-pill">iOS/Android</span>
@@ -640,7 +643,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Vikingard</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Vikingard" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Vikingard</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Hero Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -663,7 +666,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Rise of Castles: Ice and Fire</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Rise+of+Castles%3A+Ice+and+Fire" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Rise of Castles: Ice and Fire</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Long Tech Network Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -686,7 +689,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Conquerors: Golden Age</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Conquerors%3A+Golden+Age" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Conquerors: Golden Age</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -709,7 +712,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Forge of Empires</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Forge+of+Empires" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Forge of Empires</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">InnoGames</span>
         <span class="meta-pill">iOS/Android/PC/Browser</span>
@@ -732,7 +735,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Goodgame Empire</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Goodgame+Empire" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Goodgame Empire</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Goodgame Studios</span>
         <span class="meta-pill">iOS/Android/PC/Browser</span>
@@ -755,7 +758,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>无尽的拉格朗日</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%97%A0%E5%B0%BD%E7%9A%84%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>无尽的拉格朗日</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">网易游戏</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -778,7 +781,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>王国纪元</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E7%8E%8B%E5%9B%BD%E7%BA%AA%E5%85%83" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>王国纪元</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">IGG</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -801,7 +804,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>列王的纷争</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E5%88%97%E7%8E%8B%E7%9A%84%E7%BA%B7%E4%BA%89" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>列王的纷争</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">智明星通</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -824,7 +827,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>文明与征服</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%96%87%E6%98%8E%E4%B8%8E%E5%BE%81%E6%9C%8D" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>文明与征服</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">广州四三九九信息科技有限公司</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -847,7 +850,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Doomsday: Last Survivors</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Doomsday%3A+Last+Survivors" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Doomsday: Last Survivors</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -870,7 +873,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>部落冲突</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E9%83%A8%E8%90%BD%E5%86%B2%E7%AA%81" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>部落冲突</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Supercell</span>
         <span class="meta-pill">iOS/Android</span>
@@ -893,7 +896,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>海岛奇兵</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%B5%B7%E5%B2%9B%E5%A5%87%E5%85%B5" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>海岛奇兵</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Supercell</span>
         <span class="meta-pill">iOS/Android</span>
@@ -916,7 +919,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Age of Empires Mobile</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Age+of+Empires+Mobile" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Age of Empires Mobile</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Level Infinite</span>
         <span class="meta-pill">iOS/Android</span>
@@ -939,7 +942,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Game of War: Fire Age</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Game+of+War%3A+Fire+Age" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Game of War: Fire Age</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Machine Zone</span>
         <span class="meta-pill">iOS/Android</span>
@@ -962,7 +965,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Mobile Strike</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Mobile+Strike" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Mobile Strike</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Machine Zone</span>
         <span class="meta-pill">iOS/Android</span>
@@ -985,7 +988,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>火枪纪元</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E7%81%AB%E6%9E%AA%E7%BA%AA%E5%85%83" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>火枪纪元</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Century Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1008,7 +1011,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>小小蚁国</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E5%B0%8F%E5%B0%8F%E8%9A%81%E5%9B%BD" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>小小蚁国</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">StarUnion</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1031,7 +1034,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>万龙觉醒</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E4%B8%87%E9%BE%99%E8%A7%89%E9%86%92" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>万龙觉醒</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Farlight Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1054,7 +1057,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Star Trek Fleet Command</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Star+Trek+Fleet+Command" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Star Trek Fleet Command</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Scopely, Inc.</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -1077,7 +1080,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Puzzles &amp; Conquest</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Puzzles+%26+Conquest" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Puzzles &amp; Conquest</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">37GAMES</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1100,7 +1103,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>猿族时代</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E7%8C%BF%E6%97%8F%E6%97%B6%E4%BB%A3" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>猿族时代</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Holdfast</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1123,7 +1126,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Foundation: Galactic Frontier</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Foundation%3A+Galactic+Frontier" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Foundation: Galactic Frontier</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FunPlus</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1146,7 +1149,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>阿瓦隆之王</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E9%98%BF%E7%93%A6%E9%9A%86%E4%B9%8B%E7%8E%8B" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>阿瓦隆之王</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Century Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1169,7 +1172,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Beyond Astra</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Beyond+Astra" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Beyond Astra</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">未知</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -1192,7 +1195,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>战火与秩序</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%88%98%E7%81%AB%E4%B8%8E%E7%A7%A9%E5%BA%8F" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>战火与秩序</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">CamelStudio</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1215,7 +1218,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>黑道风云</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E9%BB%91%E9%81%93%E9%A3%8E%E4%BA%91" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>黑道风云</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">VoyagerOne Pte. Ltd.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1238,7 +1241,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>行尸走肉：幸存者</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89%EF%BC%9A%E5%B9%B8%E5%AD%98%E8%80%85" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>行尸走肉：幸存者</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Galaxy Play Technology Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1261,7 +1264,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Ant Legion: For The Swarm</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Ant+Legion%3A+For+The+Swarm" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Ant Legion: For The Swarm</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">37GAMES</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1284,7 +1287,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Sea of Conquest: Pirate War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Sea+of+Conquest%3A+Pirate+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Sea of Conquest: Pirate War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FunPlus International AG</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1307,7 +1310,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Project Entropy</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Project+Entropy" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Project Entropy</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FunPlus International AG</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1330,7 +1333,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>胜利之吻</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E8%83%9C%E5%88%A9%E4%B9%8B%E5%90%BB" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>胜利之吻</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tap4fun (Hong Kong) Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1353,7 +1356,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>野蛮时代</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E9%87%8E%E8%9B%AE%E6%97%B6%E4%BB%A3" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>野蛮时代</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tap4fun (Hong Kong) Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1376,7 +1379,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Invasion: Aerial Warfare</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Invasion%3A+Aerial+Warfare" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Invasion: Aerial Warfare</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tap4fun (Hong Kong) Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1399,7 +1402,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>荒野国度</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E8%8D%92%E9%87%8E%E5%9B%BD%E5%BA%A6" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>荒野国度</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">圆桌工作室</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1422,7 +1425,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Avatar Legends: Realms Collide</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Avatar+Legends%3A+Realms+Collide" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Avatar Legends: Realms Collide</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tilting Point LLC</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1445,7 +1448,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>群星纪元</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E7%BE%A4%E6%98%9F%E7%BA%AA%E5%85%83" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>群星纪元</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">景秀游戏</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1468,7 +1471,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Game of Thrones: Dragonfire</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Game+of+Thrones%3A+Dragonfire" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Game of Thrones: Dragonfire</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Warner Bros. Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1491,7 +1494,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>龙石战争</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E9%BE%99%E7%9F%B3%E6%88%98%E4%BA%89" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>龙石战争</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">腾讯凯博 / 儒意景秀</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1514,7 +1517,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Fate War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Fate+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Fate War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -1537,7 +1540,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>三国群英传：策定九州</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E4%B8%89%E5%9B%BD%E7%BE%A4%E8%8B%B1%E4%BC%A0%EF%BC%9A%E7%AD%96%E5%AE%9A%E4%B9%9D%E5%B7%9E" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>三国群英传：策定九州</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">星辉游戏</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1560,7 +1563,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>九牧之野</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E4%B9%9D%E7%89%A7%E4%B9%8B%E9%87%8E" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>九牧之野</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">仙峰游戏 / 雷霆游戏</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1583,7 +1586,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Three Kingdoms: World Conquest</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Three+Kingdoms%3A+World+Conquest" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Three Kingdoms: World Conquest</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Rastar Mobile</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1606,7 +1609,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>三国：天下归心</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E4%B8%89%E5%9B%BD%EF%BC%9A%E5%A4%A9%E4%B8%8B%E5%BD%92%E5%BF%83" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>三国：天下归心</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">恺英网络 / 乘风工作室</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1629,7 +1632,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Frozen War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Frozen+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Frozen War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1652,7 +1655,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Disney Realm Breakers</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Disney+Realm+Breakers" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Disney Realm Breakers</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">JOYCITY Corp.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1675,7 +1678,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Age of Empires: Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Age+of+Empires%3A+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Age of Empires: Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tencent / TiMi Studio Group</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1698,7 +1701,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Civilization: Eras &amp; Allies 2K</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Civilization%3A+Eras+%26+Allies+2K" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Civilization: Eras &amp; Allies 2K</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">2K, Inc.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1721,7 +1724,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Warline: Sniper Strike</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Warline%3A+Sniper+Strike" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Warline: Sniper Strike</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Farlight Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1744,7 +1747,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Savage Survival: Jurassic Isle</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Savage+Survival%3A+Jurassic+Isle" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Savage Survival: Jurassic Isle</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">VoyagerOne Pte. Ltd.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1767,7 +1770,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Xeno Warpath</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Xeno+Warpath" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Xeno Warpath</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Wanda Cinemas Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1790,7 +1793,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Godzilla x Kong: Titan Chasers</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Godzilla+x+Kong%3A+Titan+Chasers" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Godzilla x Kong: Titan Chasers</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tilting Point LLC</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1813,7 +1816,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Resident Evil Survival Unit</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Resident+Evil+Survival+Unit" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Resident Evil Survival Unit</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Aniplex Inc. / JOYCITY</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1836,7 +1839,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dawn Watch: Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dawn+Watch%3A+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dawn Watch: Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">STARFORTUNE INTERACTIVE ENTERTAINMENT TECHNOLOGY CO., LIMITED</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1859,7 +1862,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Mafia Mobile</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Mafia+Mobile" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Mafia Mobile</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1882,7 +1885,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>EVE Galaxy Conquest</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=EVE+Galaxy+Conquest" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>EVE Galaxy Conquest</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">CCP ehf.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1905,7 +1908,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>DC: Dark Legion</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=DC%3A+Dark+Legion" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>DC: Dark Legion</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FunPlus International AG</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1928,7 +1931,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>High Seas Hero: Dig &amp; Build</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=High+Seas+Hero%3A+Dig+%26+Build" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>High Seas Hero: Dig &amp; Build</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Century Games Pte. Ltd.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1951,7 +1954,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dark War:Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dark+War%3ASurvival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dark War:Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Florere Game Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1974,7 +1977,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Grand Gangster War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Grand+Gangster+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Grand Gangster War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">WGAME TECHNOLOGY LIMITED</span>
         <span class="meta-pill">iOS/Android</span>
@@ -1997,7 +2000,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Age Of Sails</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Age+Of+Sails" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Age Of Sails</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Estoty LLC</span>
         <span class="meta-pill">iOS/Android</span>
@@ -2020,7 +2023,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Marsaction 2: Space Homestead</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Marsaction+2%3A+Space+Homestead" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Marsaction 2: Space Homestead</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">LEXIANGCO.,LIMITED</span>
         <span class="meta-pill">iOS/Android</span>
@@ -2043,7 +2046,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Final War: Frozen Defense</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Final+War%3A+Frozen+Defense" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Final War: Frozen Defense</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">HaoPlay Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -2066,7 +2069,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>1900: War Evolution</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=1900%3A+War+Evolution" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>1900: War Evolution</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Zero Heart Game HK</span>
         <span class="meta-pill">Android</span>
@@ -2089,7 +2092,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Gangland: Syndicate Rise</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Gangland%3A+Syndicate+Rise" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Gangland: Syndicate Rise</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">UMICHAT</span>
         <span class="meta-pill">Android</span>
@@ -2112,7 +2115,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Z War:Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Z+War%3ASurvival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Z War:Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Beacon Games</span>
         <span class="meta-pill">Android</span>
@@ -2135,7 +2138,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Trigger &amp; Truck</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Trigger+%26+Truck" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Trigger &amp; Truck</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">StarWish</span>
         <span class="meta-pill">Android</span>
@@ -2158,7 +2161,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dreamio Rush</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dreamio+Rush" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dreamio Rush</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
         <span class="meta-pill">Android</span>
@@ -2181,7 +2184,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dragon&#x27;s Finale</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dragon%27s+Finale" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dragon&#x27;s Finale</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
         <span class="meta-pill">Android</span>
@@ -2204,7 +2207,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Frozen Island</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Frozen+Island" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Frozen Island</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Linkify Limited</span>
         <span class="meta-pill">Android</span>
@@ -2227,7 +2230,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Catch &amp; Build: Land of Pals</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Catch+%26+Build%3A+Land+of+Pals" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Catch &amp; Build: Land of Pals</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Joy Nice Games</span>
         <span class="meta-pill">Android</span>
@@ -2250,7 +2253,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Titan Rush</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Titan+Rush" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Titan Rush</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">RATING GAME</span>
         <span class="meta-pill">Android</span>
@@ -2273,7 +2276,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Lost Waters</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Lost+Waters" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Lost Waters</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Warrior Cabera</span>
         <span class="meta-pill">Android</span>
@@ -2296,7 +2299,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Mad Asylum(CBT)</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Mad+Asylum%28CBT%29" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Mad Asylum(CBT)</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Etolies Game</span>
         <span class="meta-pill">Android</span>
@@ -2319,7 +2322,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Endless Zombies</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Endless+Zombies" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Endless Zombies</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Vividiy</span>
         <span class="meta-pill">Android</span>
@@ -2342,7 +2345,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Wingstrike</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Wingstrike" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Wingstrike</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">MOONTECH PTE LTD</span>
         <span class="meta-pill">Android</span>
@@ -2365,7 +2368,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Last Outbreak</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Last+Outbreak" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Last Outbreak</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">LumoraTech</span>
         <span class="meta-pill">Android</span>
@@ -2388,7 +2391,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>MistCrush Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=MistCrush+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>MistCrush Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Skystone Games Pte. Ltd.</span>
         <span class="meta-pill">Android</span>
@@ -2411,7 +2414,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>last survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=last+survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>last survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">HKNovaGame</span>
         <span class="meta-pill">Android</span>
@@ -2434,7 +2437,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Monster Survival:Palkie Empire</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Monster+Survival%3APalkie+Empire" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Monster Survival:Palkie Empire</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">UMICHAT</span>
         <span class="meta-pill">Android</span>
@@ -2457,7 +2460,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>MarmotShot</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=MarmotShot" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>MarmotShot</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Rhinos</span>
         <span class="meta-pill">Android</span>
@@ -2480,7 +2483,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Marmot Shelter</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Marmot+Shelter" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Marmot Shelter</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Rhinos</span>
         <span class="meta-pill">Android</span>
@@ -2503,7 +2506,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Siege of Lava</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Siege+of+Lava" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Siege of Lava</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Madfun Game</span>
         <span class="meta-pill">Android</span>
@@ -2526,7 +2529,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Heroic Era</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Heroic+Era" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Heroic Era</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Arclight Studio</span>
         <span class="meta-pill">Android</span>
@@ -2549,7 +2552,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Z War：Survival Game</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Z+War%EF%BC%9ASurvival+Game" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Z War：Survival Game</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FUNY FISH TECHNOLOGY CO., LTD.</span>
         <span class="meta-pill">Android</span>
@@ -2572,7 +2575,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Zoink! Bounce Brigade</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Zoink%21+Bounce+Brigade" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Zoink! Bounce Brigade</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Oblivion land</span>
         <span class="meta-pill">Android</span>
@@ -2595,7 +2598,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Darkout Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Darkout+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Darkout Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
         <span class="meta-pill">Android</span>
@@ -2618,7 +2621,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Mine Cosmos</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Mine+Cosmos" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Mine Cosmos</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Peachcat Online Co., Limited</span>
         <span class="meta-pill">Android</span>
@@ -2641,7 +2644,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Z-Fortress</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Z-Fortress" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Z-Fortress</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Happy Loong Limited</span>
         <span class="meta-pill">Android</span>
@@ -2664,7 +2667,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Deepsea Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Deepsea+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Deepsea Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Lunova Game</span>
         <span class="meta-pill">Android</span>
@@ -2687,7 +2690,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Sea of Sand</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Sea+of+Sand" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Sea of Sand</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">ACT10 Games</span>
         <span class="meta-pill">Android</span>
@@ -2710,7 +2713,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>BlitzLoot</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=BlitzLoot" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>BlitzLoot</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Rhinos</span>
         <span class="meta-pill">Android</span>
@@ -2733,7 +2736,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Doomlord: Pixel Haven</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Doomlord%3A+Pixel+Haven" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Doomlord: Pixel Haven</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Mighty Technology Limited</span>
         <span class="meta-pill">Android</span>
@@ -2756,7 +2759,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Lightbreak</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Lightbreak" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Lightbreak</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Galaxy Play Technology Limited</span>
         <span class="meta-pill">Android</span>
@@ -2779,7 +2782,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Silent Shield: Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Silent+Shield%3A+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Silent Shield: Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Larks Holding Limited</span>
         <span class="meta-pill">Android</span>
@@ -2802,7 +2805,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>City of Wars: Powered by Yakuza</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=City+of+Wars%3A+Powered+by+Yakuza" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>City of Wars: Powered by Yakuza</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">HKBBGL</span>
         <span class="meta-pill">iOS/Android</span>
@@ -2825,7 +2828,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dark Shot Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dark+Shot+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dark Shot Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">待核</span>
         <span class="meta-pill">Android</span>
@@ -2848,7 +2851,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Three Kingdoms: Grand Strategy</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Three+Kingdoms%3A+Grand+Strategy" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Three Kingdoms: Grand Strategy</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">KONG SOFTWARE JOINT STOCK COMPANY</span>
         <span class="meta-pill">iOS</span>
@@ -2871,7 +2874,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Supremacy: Warhammer 40,000</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Supremacy%3A+Warhammer+40%2C000" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Supremacy: Warhammer 40,000</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Stillfront Supremacy GmbH</span>
         <span class="meta-pill">iOS/Android</span>
@@ -2894,7 +2897,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Last Home</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Last+Home" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Last Home</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">待核</span>
         <span class="meta-pill">Android</span>
@@ -2917,7 +2920,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Fading Earth</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Fading+Earth" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Fading Earth</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FunPlus International AG</span>
         <span class="meta-pill">Android</span>
@@ -2940,7 +2943,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Guardians of Elderon</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Guardians+of+Elderon" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Guardians of Elderon</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">BoomBit</span>
         <span class="meta-pill">iOS</span>
@@ -2963,7 +2966,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Mad Rocket: Fog of War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Mad+Rocket%3A+Fog+of+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Mad Rocket: Fog of War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Ratatat Studios / Four Thirty Three</span>
         <span class="meta-pill">iOS/Android</span>
@@ -2986,7 +2989,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Heroes of History: Epic Empire</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Heroes+of+History%3A+Epic+Empire" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Heroes of History: Epic Empire</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">InnoGames GmbH</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3009,7 +3012,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Crown of Bones</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Crown+of+Bones" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Crown of Bones</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Bravo Games Limited</span>
         <span class="meta-pill">Android</span>
@@ -3032,7 +3035,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Civilization VI</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Civilization+VI" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Civilization VI</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">2K Games</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -3055,7 +3058,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>The Battle of Polytopia</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=The+Battle+of+Polytopia" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>The Battle of Polytopia</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Midjiwan AB</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -3078,7 +3081,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Northgard</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Northgard" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Northgard</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Shiro Games</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -3101,7 +3104,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Rome: Total War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Rome%3A+Total+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Rome: Total War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Feral Interactive (原 SEGA)</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -3124,7 +3127,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Civilization VII</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Civilization+VII" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Civilization VII</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Firaxis Games</span>
         <span class="meta-pill">iOS/Android/PC/Switch</span>
@@ -3147,7 +3150,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Rebel Inc.</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Rebel+Inc." target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Rebel Inc.</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Ndemic Creations</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -3170,7 +3173,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Tiles Survive!</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Tiles+Survive%21" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Tiles Survive!</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">FunPlus International AG</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3193,7 +3196,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Path to Glory</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Path+to+Glory" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Path to Glory</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Ludigames / Gameloft</span>
         <span class="meta-pill">Android</span>
@@ -3216,7 +3219,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Final Outpost: Definitive Edition</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Final+Outpost%3A+Definitive+Edition" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Final Outpost: Definitive Edition</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Exabyte Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3239,7 +3242,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Thronefall</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Thronefall" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Thronefall</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Doghowl Games Ltd.</span>
         <span class="meta-pill">iOS</span>
@@ -3262,7 +3265,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Total War: NAPOLEON</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Total+War%3A+NAPOLEON" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Total War: NAPOLEON</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Feral Interactive Ltd</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3285,7 +3288,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dawnmaker</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dawnmaker" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dawnmaker</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Arpentor Studio / Acram Digital</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3308,7 +3311,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Reiner Knizia&#x27;s My City</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Reiner+Knizia%27s+My+City" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Reiner Knizia&#x27;s My City</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">My City Digital</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3331,7 +3334,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>As Far As The Eye</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=As+Far+As+The+Eye" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>As Far As The Eye</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">GoblinzPublishing</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3354,7 +3357,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Happy Citizens - Mayor Sim</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Happy+Citizens+-+Mayor+Sim" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Happy Citizens - Mayor Sim</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">LifeSim</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3377,7 +3380,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Empire Heroes: Strategy Game</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Empire+Heroes%3A+Strategy+Game" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Empire Heroes: Strategy Game</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Nature Games</span>
         <span class="meta-pill">iOS</span>
@@ -3400,7 +3403,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Trimo Heroes: Pixel Offense</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Trimo+Heroes%3A+Pixel+Offense" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Trimo Heroes: Pixel Offense</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">EOAG Games Co.,Ltd</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3423,7 +3426,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Project Z: 72H Siege Conquest</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Project+Z%3A+72H+Siege+Conquest" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Project Z: 72H Siege Conquest</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">WD Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3446,7 +3449,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dino Cataclysm: Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dino+Cataclysm%3A+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dino Cataclysm: Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Nox Joy</span>
         <span class="meta-pill">Android</span>
@@ -3469,7 +3472,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Jurassic War Survival</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Jurassic+War+Survival" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Jurassic War Survival</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Funter</span>
         <span class="meta-pill">Android</span>
@@ -3492,7 +3495,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Stormborn Era</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Stormborn+Era" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Stormborn Era</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Leniu Games</span>
         <span class="meta-pill">Android</span>
@@ -3515,7 +3518,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Heroes of Mavia</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Heroes+of+Mavia" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Heroes of Mavia</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Skrice Studios</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3538,7 +3541,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Songs of Conquest Mobile</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Songs+of+Conquest+Mobile" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Songs of Conquest Mobile</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Coffee Stain / Lavapotion</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3561,7 +3564,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Game of Legends: Dragons Rise</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Game+of+Legends%3A+Dragons+Rise" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Game of Legends: Dragons Rise</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">TGame</span>
         <span class="meta-pill">Android</span>
@@ -3584,7 +3587,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Age of Evolution</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Age+of+Evolution" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Age of Evolution</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Wuhan Xin Chi Technology Co., Ltd.</span>
         <span class="meta-pill">Android</span>
@@ -3607,7 +3610,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Art of Conquest 2</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Art+of+Conquest+2" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Art of Conquest 2</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Lilith Games</span>
         <span class="meta-pill">Android</span>
@@ -3630,7 +3633,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Rise of Stars</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Rise+of+Stars" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Rise of Stars</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Wemade Max / LightCON</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3653,7 +3656,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Rise of Cultures</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Rise+of+Cultures" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Rise of Cultures</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">InnoGames GmbH</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3676,7 +3679,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Inkvasion</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Inkvasion" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Inkvasion</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Lioncode Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3699,7 +3702,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Grunt Rush</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Grunt+Rush" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Grunt Rush</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Room8 Group / Top App Games Ltd</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3722,7 +3725,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Future Warfare: Mercenaries</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Future+Warfare%3A+Mercenaries" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Future Warfare: Mercenaries</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Capetown Games</span>
         <span class="meta-pill">Android</span>
@@ -3745,7 +3748,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Freeciv</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Freeciv" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Freeciv</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">The Freeciv Project</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -3768,7 +3771,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Pocket Tales: Survival Game</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Pocket+Tales%3A+Survival+Game" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Pocket Tales: Survival Game</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Azur Interactive Games Limited</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3791,7 +3794,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Amazing Cultivation Simulator</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Amazing+Cultivation+Simulator" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Amazing Cultivation Simulator</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">GSQ Games</span>
         <span class="meta-pill">Android</span>
@@ -3814,7 +3817,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Domination Dynasty</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Domination+Dynasty" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Domination Dynasty</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">DFW Games</span>
         <span class="meta-pill">Android</span>
@@ -3837,7 +3840,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Super Citycon</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Super+Citycon" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Super Citycon</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">SkyRise Digital Pte. Ltd.</span>
         <span class="meta-pill">Android</span>
@@ -3860,7 +3863,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>王于兴师</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E7%8E%8B%E4%BA%8E%E5%85%B4%E5%B8%88" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>王于兴师</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Crazy Panda FZCO</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3883,7 +3886,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Command &amp; Conquer: Legions</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Command+%26+Conquer%3A+Legions" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Command &amp; Conquer: Legions</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Level Infinite</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3906,7 +3909,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>World War: Machines Conquest</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=World+War%3A+Machines+Conquest" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>World War: Machines Conquest</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">BY Aliens L.L.C-FZ</span>
         <span class="meta-pill">iOS</span>
@@ -3929,7 +3932,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>War and Magic: Kingdom Reborn</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=War+and+Magic%3A+Kingdom+Reborn" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>War and Magic: Kingdom Reborn</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">GOAT Games</span>
         <span class="meta-pill">iOS</span>
@@ -3952,7 +3955,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Dawn of Ages</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Dawn+of+Ages" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Dawn of Ages</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Stratosphere Games GmbH</span>
         <span class="meta-pill">iOS/Android</span>
@@ -3975,7 +3978,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>LOST in Blue 2: Survival Game</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=LOST+in+Blue+2%3A+Survival+Game" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>LOST in Blue 2: Survival Game</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Volcano Force Technology Co., Limited</span>
         <span class="meta-pill">iOS</span>
@@ -3998,7 +4001,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Deadly Dudes</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Deadly+Dudes" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Deadly Dudes</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">NetEase Games</span>
         <span class="meta-pill">iOS/Android</span>
@@ -4021,7 +4024,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Alliance At War</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Alliance+At+War" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Alliance At War</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Outerdawn Limited</span>
         <span class="meta-pill">iOS</span>
@@ -4044,7 +4047,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>World at Risk</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=World+at+Risk" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>World at Risk</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">LION STUDIO</span>
         <span class="meta-pill">Android</span>
@@ -4067,7 +4070,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Empires &amp; Allies</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Empires+%26+Allies" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Empires &amp; Allies</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Zynga Inc.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -4090,7 +4093,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>战火与永恒</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=%E6%88%98%E7%81%AB%E4%B8%8E%E6%B0%B8%E6%81%92" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>战火与永恒</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">YOOZOO (Singapore) Pte. Ltd.</span>
         <span class="meta-pill">iOS/Android</span>
@@ -4113,7 +4116,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Total Battle: War Strategy</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Total+Battle%3A+War+Strategy" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Total Battle: War Strategy</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Scorewarrior</span>
         <span class="meta-pill">iOS/Android/Web</span>
@@ -4136,7 +4139,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>War Planet Online</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=War+Planet+Online" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>War Planet Online</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Gameloft</span>
         <span class="meta-pill">iOS/Android</span>
@@ -4159,7 +4162,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>March of Empires</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=March+of+Empires" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>March of Empires</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Gameloft</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -4182,7 +4185,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Vikings: War of Clans</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Vikings%3A+War+of+Clans" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Vikings: War of Clans</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Plarium Global Ltd</span>
         <span class="meta-pill">iOS/Android/Web</span>
@@ -4205,7 +4208,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>DomiNations</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=DomiNations" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>DomiNations</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Big Huge Games</span>
         <span class="meta-pill">iOS/Android/Web</span>
@@ -4228,7 +4231,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>Warhammer: Chaos &amp; Conquest</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Warhammer%3A+Chaos+%26+Conquest" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Warhammer: Chaos &amp; Conquest</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">Tilting Point</span>
         <span class="meta-pill">iOS/Android/PC</span>
@@ -4251,7 +4254,7 @@ body {
   <div class="card-head">
     <div class="card-title-wrap">
       <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
-      <h2><span>War Eternal</span><span class="title-check">✓</span></h2>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=War+Eternal" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>War Eternal</span></a><span class="title-check">✓</span></h2>
       <div class="card-subline">
         <span class="meta-pill">ONEMT</span>
         <span class="meta-pill">iOS/Android</span>
@@ -4266,6 +4269,236 @@ body {
     <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻帝国战争 SLG，围绕文明选择、主城经营、兵团作战、联盟征服和跨王国战争推进。</div></div>
     <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 商店页对 kingdom war 与文明差异的战斗表达很明确；2. 战斗、城建、联盟三层关系完整；3. 适合作为传统帝国战争 SLG 对照样本。</div></div>
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 目前可靠公开落地主要还是商店页；2. 传统结构完成度高，但差异化记忆点一般；3. 长期生态容易向强联盟集中。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-eb4a38299d" data-category="奇幻/魔幻" data-tags="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Lords+Mobile%3A+Kingdom+Wars" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Lords Mobile: Kingdom Wars</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">欧美奇幻写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-eb4a38299d')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/lords-mobile-kingdom-wars/id1071976327" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/lords-mobile-kingdom-wars/id1071976327<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">典型的王国战争 SLG，围绕城建、科技升级、练兵、英雄养成、公会协作与跨服领土对抗展开。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 资源生产、兵种训练、英雄成长和联盟战争之间的耦合很成熟，长期目标和短期推进都比较清晰；2. 世界地图争夺与 GvG 让外部竞争持续存在，不容易退化成单城数值经营；3. 适合作为“成熟商业化王国 SLG”的基准样本。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 成长线和付费线叠得很深，系统复杂度很大程度服务于数值拉开，而不完全是决策深度；2. 中后期乐趣高度依赖联盟活跃度和大 R 生态，普通玩家的战略参与感容易被稀释。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-9bb457f4c5" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Mobile+Royale%3A+Kingdom+Defense" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Mobile Royale: Kingdom Defense</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">IGG SINGAPORE PTE. LTD.</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">欧美奇幻 3D 风格</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-9bb457f4c5')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/mobile-royale-kingdom-defense/id1442047697" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/mobile-royale-kingdom-defense/id1442047697<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">奇幻王国题材的全球实时 SLG，围绕城市发展、兵种编成、空舰交易、联盟协作与大地图征战推进。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 空中城堡、部队编成、联盟推进和全球地图扩张之间形成了完整的战略闭环，不只是换皮城建；2. 题材包装和成长结构结合得比较顺，既有王国 SLG 的扩张感，也有奇幻阵营和空战单位的辨识度；3. 从系统策划角度看，它是“奇幻王国 SLG”这一支线里结构比较完整的产品。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 多线养成把注意力大量拉向数值补课，真正决定胜负的策略空间容易被战力阈值覆盖；2. 玩法骨架成熟但创新有限，如果联盟战和赛季目标不够强，后期容易回到例行养成。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-01fade9b10" data-category="航海" data-tags="航海" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Misty+Continent%3A+Cursed+Island" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Misty Continent: Cursed Island</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">FunPlus International AG</span>
+        <span class="meta-pill">Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">航海</span><span class="badge">海盗冒险写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-01fade9b10')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://play.google.com/store/apps/details?id=com.funplus.mc" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=com.funplus.mc<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">海盗与诡秘岛屿题材的 SLG，围绕岛屿基地经营、舰队培养、英雄搭配、联盟合作与海域争夺推进。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 海盗/海域题材和岛屿经营、舰队出征、联盟海上争夺是同一套叙事和系统逻辑，包装与机制匹配度高；2. 航海 SLG 天然比陆地王国战更依赖航线、据点和区域控制，具备做差异化地图策略的空间；3. 对这套库来说，它能补足“航海 SLG”样本密度。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 寻宝、冒险和英雄包装如果占比过高，会削弱大地图经营与联盟战争的主导地位；2. 如果海域控制权不能持续反馈到中长期成长，系统容易滑向主题化运营而不是深度战略。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-097f07487e" data-category="现代战争" data-tags="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Warpath%3A+Ace+Shooter" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Warpath: Ace Shooter</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Lilith Games</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">现代军事写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-097f07487e')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/warpath-ace-shooter/id1529067679" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/warpath-ace-shooter/id1529067679<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">现代军事题材的基地经营与战场控制策略游戏，围绕基地发展、军备升级、地图据点争夺、陆海空兵力协同推进。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 基地发展、兵种升级和战场据点控制之间仍有明确的战争策略骨架，不只是纯动作包装；2. 海陆空协同提供了比常规现代战争 SLG 更强的兵种组合与战场分工空间；3. 适合拿来观察“现代军事题材如何向更强表现层靠拢”这一市场方向。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 射击化包装太强，玩家第一感知未必是战略经营，这会稀释 SLG 核心识别度；2. 如果战场操作反馈压过资源、据点和联盟层的长期决策，它更容易落入战斗驱动产品而不是强 SLG。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-e67ed6e60d" data-category="现代战争" data-tags="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Supremacy%3A+Call+of+War+1942" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Supremacy: Call of War 1942</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Bytro Labs</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">二战军事写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-e67ed6e60d')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://www.callofwar.com/" target="_blank" rel="noopener noreferrer">https://www.callofwar.com/<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">二战大地图战争策略，围绕资源经营、军队调度、科技研究、外交合作与联盟对抗展开长局对弈。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 资源、科技、外交、部队调度和联盟协作共同构成长局战争推演，系统深度更多来自决策结构而不是养成堆叠；2. 二战题材与多国对抗、地图推进的结合非常自然，战略目标感强；3. 很适合当“大战略 SLG”样本看待。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 它的复杂度和节奏更接近长局大战略，对移动端常见的即时成长反馈不够友好；2. 用户门槛较高，很多乐趣建立在持续在线与外交博弈上，不属于大众化王国 SLG 节奏。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-018672fd32" data-category="现代战争" data-tags="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Supremacy%3A+World+War+3" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Supremacy: World War 3</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Bytro Labs</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">现代军事写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-018672fd32')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://www.conflictnations.com/" target="_blank" rel="noopener noreferrer">https://www.conflictnations.com/<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">现代全球战争 SLG，围绕国家发展、资源经营、兵种科技升级、外交结盟与长期国际对抗推进。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 现代全球战争框架下，国家经营、军种科技、外交站队和长期区域控制能形成比传统城建 SLG 更强的国际博弈感；2. WMD 和现代军备升级让中后期目标不只是扩张地盘，而是争夺全球主导权；3. 对现代战争子类来说，这种“大地图+国家战略”方向很有代表性。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 它更偏国家级长局对抗，不是典型的单城成长型 SLG，入库时要明确它属于大战略支线；2. 如果玩家不参与外交和联盟博弈，单看军备生产会显得节奏偏慢、反馈偏稀。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-be344231a6" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Supremacy+1914+-+World+War+1" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Supremacy 1914 - World War 1</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Bytro Labs</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">一战军事写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-be344231a6')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://www.supremacy1914.com/" target="_blank" rel="noopener noreferrer">https://www.supremacy1914.com/<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">一战背景的多国大地图战争策略，围绕省份占领、经济生产、外交谈判、部队移动与长线战争推进展开。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 省份经营、行军调度、外交谈判和长周期战争推进之间关系非常紧密，是真正靠策略结构驱动体验的产品；2. 一战题材天然适合表现补给、战线和扩张节奏，不需要过多外围包装；3. 作为近代战争 SLG 样本，它的系统辨识度很高。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 节奏偏慢，操作门槛也比主流移动 SLG 更高，不一定适合追求高频反馈的玩家；2. 如果库的主轴更强调商业化城建战争手游，它会显得过于偏大战略模拟。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-cad4d48e47" data-category="现代战争" data-tags="现代战争" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=March+of+Nations" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>March of Nations</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Trophym Games</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">现代战争</span><span class="badge">现代军事写实风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-cad4d48e47')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/march-of-nations-global/id6642706879" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/march-of-nations-global/id6642706879<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">在线军事策略模拟游戏，围绕军事基地发展、部队扩张、资源排布、势力联合与全局战线对抗展开。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 现代军事题材与基地、部队、战线扩张这套骨架是匹配的，只要外部冲突层做扎实，就很容易形成稳定的 SLG 循环；2. 相比成熟老产品，它更值得观察的是系统取舍会不会更轻、更快、更偏移动端；3. 作为新样本，它有市场观察价值。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 公开信息还不够丰富，暂时难判断它的深度到底来自长期战略，还是来自常规数值拉升；2. 如果联盟、地图目标和阶段性战争设计不够强，很可能只是标准现代战争模板而缺少结构亮点。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-00ac505982" data-category="奇幻/魔幻" data-tags="奇幻/魔幻" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Infinity+Clan" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Infinity Clan</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">Top Games Inc.</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">奇幻/魔幻</span><span class="badge">卡通奇幻风</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-00ac505982')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/infinity-clan/id1573900528" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/infinity-clan/id1573900528<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">以 clan 发展与全球对战为主轴的轻量化 SLG，围绕家园建筑升级、部队训练、多种 PvP 模式与 clan 合作竞争展开。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 家园建设、练兵、Clan 协作和全球 PvP 仍然构成了清晰的外部竞争框架，不是纯单机经营；2. 它对轻量化用户更友好，适合观察“弱化负担后的社交 SLG”能否成立；3. 从品类研究上看，这种轻 SLG 路线值得留样本。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 轻量化同时也意味着长期目标、资源压迫和战争决策密度可能明显低于传统 SLG；2. 如果 Clan 冲突层没有足够收益驱动，整套系统很容易退化成轻社交加快节奏养成。</div></div>
+    <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
+  </div>
+</article>
+
+<article class="game-card" data-game-id="game-cb4351db53" data-category="历史/中世纪" data-tags="历史/中世纪" data-release-date="">
+  <div class="card-head">
+    <div class="card-title-wrap">
+      <div class="card-topline"><span class="played-flag">✓ 已玩</span></div>
+      <h2><a class="card-title-link" href="https://www.bing.com/search?q=Hexapolis+-+Civilization+game" target="_blank" rel="noopener noreferrer" title="搜索这个游戏"><span>Hexapolis - Civilization game</span></a><span class="title-check">✓</span></h2>
+      <div class="card-subline">
+        <span class="meta-pill">NOXGAMES s.r.o.</span>
+        <span class="meta-pill">iOS/Android</span>
+        <span class="meta-pill">已上线</span>
+      </div>
+    </div>
+    <div class="card-badges"><span class="badge badge-primary">历史/中世纪</span><span class="badge">低模型文明风格</span></div>
+  </div>
+  <div class="card-actions"><button class="mini-action" type="button" onclick="addCardToPlaylist('game-cb4351db53')">加入游玩清单</button></div>
+  <div class="field-grid">
+    <div class="field field-wide"><div class="field-label">官网</div><div class="field-value"><a class="link-pill" href="https://apps.apple.com/us/app/hexapolis-civilization-game/id1559236448" target="_blank" rel="noopener noreferrer">https://apps.apple.com/us/app/hexapolis-civilization-game/id1559236448<span>→</span></a></div></div>
+    <div class="field field-wide"><div class="field-label">核心玩法</div><div class="field-value">轻量文明 4X 策略游戏，围绕扩张领土、科技发展、单位征战与回合制整体布局展开。</div></div>
+    <div class="field field-highlight"><div class="field-label">亮点</div><div class="field-value">1. 扩张、科技、征服这套 4X 骨架非常清晰，战略乐趣主要来自版图规划和节奏取舍，而不是单纯堆数值；2. 作为移动端轻文明策略，它能和库里的 Civilization、Polytopia 形成有价值的横向参照；3. 对研究“轻 4X 是否能承接 SLG 用户”很有意义。</div></div>
+    <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 它更像文明 4X 而不是典型王国战争 SLG，入库时要接受它属于边界样本；2. 如果缺少持续性的外部压力和多局目标变化，长线留存会更多依赖单局解题的新鲜感。</div></div>
     <div class="field field-compact"><div class="field-label">截图</div><div class="field-value">暂无</div></div>
   </div>
 </article></main></div>
@@ -4306,7 +4539,7 @@ body {
 </div>
 
 <script>
-const GAME_INDEX = [{"id": "game-94db617c7f", "name": "三国志·战略版", "category": "三国", "tags": ["三国"], "developer": "广州灵犀互动娱乐有限公司（阿里互娱）", "releaseDate": "2019-09-20", "stage": ""}, {"id": "game-cd0c883253", "name": "率土之滨", "category": "三国", "tags": ["三国"], "developer": "网易游戏", "releaseDate": "2015-10-22", "stage": ""}, {"id": "game-797c34099e", "name": "万国觉醒", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "莉莉丝游戏", "releaseDate": "2020-09-23", "stage": ""}, {"id": "game-8f0f426acd", "name": "无尽冬日", "category": "末日生存", "tags": ["末日生存"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2022-12-18", "stage": ""}, {"id": "game-a8975b3eb6", "name": "可狱不可囚（Lands of Jail）", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "SINGAPORE JUST GAME TECHNOLOGY PTE. LTD.", "releaseDate": "2025-03-15", "stage": ""}, {"id": "game-3c9a12d8c0", "name": "Palmon: Survival", "category": "宠物/驯兽", "tags": ["宠物/驯兽"], "developer": "LILITH TECHNOLOGY HONG KONG LIMITED", "releaseDate": "待公布（测试中）", "stage": ""}, {"id": "game-0ddf5accbd", "name": "Last War: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "FUNFLY PTE. LTD.", "releaseDate": "2023-08-10", "stage": ""}, {"id": "game-58cd32e5c0", "name": "Puzzles & Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "37GAMES", "releaseDate": "2020-08-25", "stage": ""}, {"id": "game-9786528684", "name": "Top Heroes: Kingdom Saga", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "RiverGame", "releaseDate": "2024-06-12", "stage": ""}, {"id": "game-90f17ae6d9", "name": "Kingshot", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2024-09-15", "stage": ""}, {"id": "game-90b9ec2c17", "name": "State of Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "KingsGroup Holdings", "releaseDate": "2019-11-14", "stage": ""}, {"id": "game-c1379cf4b6", "name": "Evony: The King's Return", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "TG Inc.", "releaseDate": "2016-05-16", "stage": ""}, {"id": "game-8b7ed8b7bd", "name": "口袋奇兵", "category": "现代战争", "tags": ["现代战争"], "developer": "River Game", "releaseDate": "2019-08-20", "stage": ""}, {"id": "game-31da4d0b50", "name": "旭日之城", "category": "末日生存", "tags": ["末日生存"], "developer": "CamelStudio", "releaseDate": "2021-03-15", "stage": ""}, {"id": "game-3fd6624aa5", "name": "Kingdoms of Heckfire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Scopely", "releaseDate": "2022-05-17", "stage": ""}, {"id": "game-bd000b4a5c", "name": "Vikingard", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Hero Games", "releaseDate": "2021-11-30", "stage": ""}, {"id": "game-c2f3ea2940", "name": "Rise of Castles: Ice and Fire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Long Tech Network Limited", "releaseDate": "2020-07-15", "stage": ""}, {"id": "game-f2a6f46f32", "name": "Conquerors: Golden Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2019-03-28", "stage": ""}, {"id": "game-d4f10e70dd", "name": "Forge of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames", "releaseDate": "2012-04-17", "stage": ""}, {"id": "game-9851ed118c", "name": "Goodgame Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Goodgame Studios", "releaseDate": "2011-08-14", "stage": ""}, {"id": "game-fd43fb8ba3", "name": "无尽的拉格朗日", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "网易游戏", "releaseDate": "2021-08-18", "stage": "已上线"}, {"id": "game-f509c2dff4", "name": "王国纪元", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG", "releaseDate": "2016-02-26", "stage": ""}, {"id": "game-bd0405f547", "name": "列王的纷争", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "智明星通", "releaseDate": "2014-07-01", "stage": ""}, {"id": "game-7ef18ebcd7", "name": "文明与征服", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "广州四三九九信息科技有限公司", "releaseDate": "2021-12-29", "stage": "已上线"}, {"id": "game-1d6ed3fdb5", "name": "Doomsday: Last Survivors", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2018-06-12", "stage": ""}, {"id": "game-b86f05805f", "name": "部落冲突", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Supercell", "releaseDate": "2012-08-02", "stage": ""}, {"id": "game-24c6e42bc8", "name": "海岛奇兵", "category": "现代战争", "tags": ["现代战争"], "developer": "Supercell", "releaseDate": "2014-03-26", "stage": ""}, {"id": "game-6a7bf57b61", "name": "Age of Empires Mobile", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Level Infinite", "releaseDate": "2024-10-15", "stage": ""}, {"id": "game-bc203b63ae", "name": "Game of War: Fire Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Machine Zone", "releaseDate": "2013-07-01", "stage": ""}, {"id": "game-d4d2b0415f", "name": "Mobile Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Machine Zone", "releaseDate": "2015-11-05", "stage": ""}, {"id": "game-55d16299e1", "name": "火枪纪元", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2017-03-15", "stage": ""}, {"id": "game-844f59700b", "name": "小小蚁国", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "StarUnion", "releaseDate": "2020-01-15", "stage": ""}, {"id": "game-80fa0808e2", "name": "万龙觉醒", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Farlight Games", "releaseDate": "2023-03-25", "stage": ""}, {"id": "game-d292a88d96", "name": "Star Trek Fleet Command", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Scopely, Inc.", "releaseDate": "2018-11-29", "stage": ""}, {"id": "game-bd07451dd5", "name": "Puzzles & Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "37GAMES", "releaseDate": "2020-03-15", "stage": ""}, {"id": "game-c34276d36a", "name": "猿族时代", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Holdfast", "releaseDate": "2021-04-15", "stage": ""}, {"id": "game-5be97f4f24", "name": "Foundation: Galactic Frontier", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "FunPlus", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-433504c4b5", "name": "阿瓦隆之王", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2025 (持续更新)", "stage": ""}, {"id": "game-985c6c7044", "name": "Beyond Astra", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "未知", "releaseDate": "2025", "stage": ""}, {"id": "game-aa180c1347", "name": "战火与秩序", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "CamelStudio", "releaseDate": "2016-04-05", "stage": ""}, {"id": "game-f91d9e7fb4", "name": "黑道风云", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2017-05-16", "stage": ""}, {"id": "game-8824479690", "name": "行尸走肉：幸存者", "category": "末日生存", "tags": ["末日生存"], "developer": "Galaxy Play Technology Limited", "releaseDate": "2021-04-12", "stage": ""}, {"id": "game-e2772e8549", "name": "Ant Legion: For The Swarm", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "37GAMES", "releaseDate": "2022-05-06", "stage": ""}, {"id": "game-8320df13b3", "name": "Sea of Conquest: Pirate War", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "2024-01-02", "stage": ""}, {"id": "game-21f9302d7e", "name": "Project Entropy", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "FunPlus International AG", "releaseDate": "2023-09-19", "stage": ""}, {"id": "game-86212d100c", "name": "胜利之吻", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2019-09-27", "stage": ""}, {"id": "game-0987d45cce", "name": "野蛮时代", "category": "恐龙/原始", "tags": ["恐龙/原始"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2016-08-05", "stage": ""}, {"id": "game-0a2cbfb827", "name": "Invasion: Aerial Warfare", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2014-12-07", "stage": ""}, {"id": "game-f043fc26a7", "name": "荒野国度", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "圆桌工作室", "releaseDate": "2025-02-27", "stage": ""}, {"id": "game-243c473263", "name": "Avatar Legends: Realms Collide", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Tilting Point LLC", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-97d01558d8", "name": "群星纪元", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "景秀游戏", "releaseDate": "2025-04-17", "stage": ""}, {"id": "game-7608e868c9", "name": "Game of Thrones: Dragonfire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Warner Bros. Games", "releaseDate": "2025-05-03", "stage": ""}, {"id": "game-b1aae191db", "name": "龙石战争", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "腾讯凯博 / 儒意景秀", "releaseDate": "2025-06-26", "stage": ""}, {"id": "game-ccadbd22bd", "name": "Fate War", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-08-05", "stage": ""}, {"id": "game-4c042f681c", "name": "三国群英传：策定九州", "category": "三国", "tags": ["三国"], "developer": "星辉游戏", "releaseDate": "2025-10-11", "stage": ""}, {"id": "game-f4ae9a9d5d", "name": "九牧之野", "category": "三国", "tags": ["三国"], "developer": "仙峰游戏 / 雷霆游戏", "releaseDate": "2025-12-18", "stage": ""}, {"id": "game-e0880ec4e3", "name": "Three Kingdoms: World Conquest", "category": "三国", "tags": ["三国"], "developer": "Rastar Mobile", "releaseDate": "2026-01-25", "stage": ""}, {"id": "game-3dd196863a", "name": "三国：天下归心", "category": "三国", "tags": ["三国"], "developer": "恺英网络 / 乘风工作室", "releaseDate": "2026-04-16", "stage": ""}, {"id": "game-3a54f321ca", "name": "Frozen War", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-badc6f958c", "name": "Disney Realm Breakers", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "JOYCITY Corp.", "releaseDate": "2025-07-24", "stage": ""}, {"id": "game-354cb9dea0", "name": "Age of Empires: Survival", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Tencent / TiMi Studio Group", "releaseDate": "2025-07-14", "stage": ""}, {"id": "game-186bfb2e69", "name": "Civilization: Eras & Allies 2K", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K, Inc.", "releaseDate": "2025-06-18", "stage": ""}, {"id": "game-5abc1a7061", "name": "Warline: Sniper Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Farlight Games", "releaseDate": "2025-08-01", "stage": ""}, {"id": "game-6a20202625", "name": "Savage Survival: Jurassic Isle", "category": "恐龙/原始", "tags": ["恐龙/原始"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2024-12-23", "stage": ""}, {"id": "game-5a5bc9685e", "name": "Xeno Warpath", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Wanda Cinemas Games", "releaseDate": "2025-12-06", "stage": ""}, {"id": "game-65497967b7", "name": "Godzilla x Kong: Titan Chasers", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Tilting Point LLC", "releaseDate": "2025-02-25", "stage": ""}, {"id": "game-cad2f965d4", "name": "Resident Evil Survival Unit", "category": "末日生存", "tags": ["末日生存"], "developer": "Aniplex Inc. / JOYCITY", "releaseDate": "2025-11-18", "stage": ""}, {"id": "game-e5489f6c90", "name": "Dawn Watch: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "STARFORTUNE INTERACTIVE ENTERTAINMENT TECHNOLOGY CO., LIMITED", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-86daa992be", "name": "Mafia Mobile", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-09-17", "stage": ""}, {"id": "game-df6e8fc3ea", "name": "EVE Galaxy Conquest", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "CCP ehf.", "releaseDate": "2024-09-26", "stage": ""}, {"id": "game-e63af2fa25", "name": "DC: Dark Legion", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "FunPlus International AG", "releaseDate": "2025-03-13", "stage": ""}, {"id": "game-81671d4762", "name": "High Seas Hero: Dig & Build", "category": "航海", "tags": ["航海"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2025-01-09", "stage": ""}, {"id": "game-11a22c688b", "name": "Dark War:Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "Florere Game Limited", "releaseDate": "2024-09-11", "stage": ""}, {"id": "game-df9dd13a7d", "name": "Grand Gangster War", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "WGAME TECHNOLOGY LIMITED", "releaseDate": "2025-01-03", "stage": ""}, {"id": "game-7fbb28856e", "name": "Age Of Sails", "category": "航海", "tags": ["航海"], "developer": "Estoty LLC", "releaseDate": "2024-12-11", "stage": ""}, {"id": "game-8a227d6488", "name": "Marsaction 2: Space Homestead", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "LEXIANGCO.,LIMITED", "releaseDate": "2024-01-10", "stage": ""}, {"id": "game-81444e2707", "name": "Final War: Frozen Defense", "category": "末日生存", "tags": ["末日生存"], "developer": "HaoPlay Limited", "releaseDate": "2025-04-09", "stage": ""}, {"id": "game-a259a61f95", "name": "1900: War Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Zero Heart Game HK", "releaseDate": "", "stage": "测试中"}, {"id": "game-8d02aa0b0a", "name": "Gangland: Syndicate Rise", "category": "监狱/犯罪", "tags": ["测试中", "监狱/犯罪"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-cd4a4ef8b6", "name": "Z War:Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Beacon Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-3b9a5d7ab9", "name": "Trigger & Truck", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "StarWish", "releaseDate": "", "stage": "测试中"}, {"id": "game-ea1c16b2b2", "name": "Dreamio Rush", "category": "宠物/驯兽", "tags": ["测试中", "宠物/驯兽"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d07f735f30", "name": "Dragon's Finale", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d8bc8217cc", "name": "Frozen Island", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Linkify Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e04780dda4", "name": "Catch & Build: Land of Pals", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Joy Nice Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5bd4ed473", "name": "Titan Rush", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "RATING GAME", "releaseDate": "", "stage": "测试中"}, {"id": "game-96f5699d46", "name": "Lost Waters", "category": "航海", "tags": ["测试中", "航海"], "developer": "Warrior Cabera", "releaseDate": "", "stage": "测试中"}, {"id": "game-9d1b16b417", "name": "Mad Asylum(CBT)", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Etolies Game", "releaseDate": "", "stage": "CBT"}, {"id": "game-f9c166b0bd", "name": "Endless Zombies", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Vividiy", "releaseDate": "", "stage": "测试中"}, {"id": "game-3fcf79fbf1", "name": "Wingstrike", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "MOONTECH PTE LTD", "releaseDate": "", "stage": "测试中"}, {"id": "game-daf0e7cac4", "name": "Last Outbreak", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "LumoraTech", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a8daec90b", "name": "MistCrush Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Skystone Games Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-05f168e4f4", "name": "last survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "HKNovaGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-082f082da5", "name": "Monster Survival:Palkie Empire", "category": "宠物/驯兽", "tags": ["测试中", "宠物/驯兽"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-bbdc3ffc8f", "name": "MarmotShot", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-3206d9f330", "name": "Marmot Shelter", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-7fc97f17e0", "name": "Siege of Lava", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Madfun Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a72986bf0", "name": "Heroic Era", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "Arclight Studio", "releaseDate": "", "stage": "测试中"}, {"id": "game-2d62de7f88", "name": "Z War：Survival Game", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FUNY FISH TECHNOLOGY CO., LTD.", "releaseDate": "", "stage": "测试中"}, {"id": "game-2968f2d1a1", "name": "Zoink! Bounce Brigade", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Oblivion land", "releaseDate": "", "stage": "测试中 / SLG候选"}, {"id": "game-e11905906d", "name": "Darkout Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-fa646b0738", "name": "Mine Cosmos", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Peachcat Online Co., Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-331ac24367", "name": "Z-Fortress", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Happy Loong Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-4578df9f64", "name": "Deepsea Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Lunova Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-806e40881e", "name": "Sea of Sand", "category": "其他", "tags": ["测试中", "其他"], "developer": "ACT10 Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-c26782973a", "name": "BlitzLoot", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-0cd58275e0", "name": "Doomlord: Pixel Haven", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Mighty Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-0a73d03f32", "name": "Lightbreak", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Galaxy Play Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e4d51f4f07", "name": "Silent Shield: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Larks Holding Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-20cdf009be", "name": "City of Wars: Powered by Yakuza", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "HKBBGL", "releaseDate": "", "stage": "区域上线"}, {"id": "game-1424c37b06", "name": "Dark Shot Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "待核", "releaseDate": "2025-09-24", "stage": "测试中"}, {"id": "game-3d7891431b", "name": "Three Kingdoms: Grand Strategy", "category": "三国", "tags": ["三国"], "developer": "KONG SOFTWARE JOINT STOCK COMPANY", "releaseDate": "2025-11-29", "stage": "已上线"}, {"id": "game-8a2b75b367", "name": "Supremacy: Warhammer 40,000", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Stillfront Supremacy GmbH", "releaseDate": "2026-03-31", "stage": "预注册"}, {"id": "game-35563e4574", "name": "Last Home", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "待核", "releaseDate": "", "stage": "测试中"}, {"id": "game-7d65affb27", "name": "Fading Earth", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FunPlus International AG", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5dbed2258", "name": "Guardians of Elderon", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "BoomBit", "releaseDate": "", "stage": "测试中"}, {"id": "game-847e06f63a", "name": "Mad Rocket: Fog of War", "category": "现代战争", "tags": ["现代战争"], "developer": "Ratatat Studios / Four Thirty Three", "releaseDate": "", "stage": "已上线"}, {"id": "game-04b4849bc8", "name": "Heroes of History: Epic Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames GmbH", "releaseDate": "2024-09-23", "stage": "已上线"}, {"id": "game-5f6fe9f332", "name": "Crown of Bones", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Bravo Games Limited", "releaseDate": "2024-11-21", "stage": "测试中"}, {"id": "game-03ece9540b", "name": "Civilization VI", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K Games", "releaseDate": "2020-11-16", "stage": ""}, {"id": "game-ddf2ca016a", "name": "The Battle of Polytopia", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Midjiwan AB", "releaseDate": "2016-02-03", "stage": ""}, {"id": "game-c41ac7cb1e", "name": "Northgard", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Shiro Games", "releaseDate": "2019-09-12 (PC), 2021-08-24 (Android)", "stage": ""}, {"id": "game-41d3941f78", "name": "Rome: Total War", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive (原 SEGA)", "releaseDate": "2016-08-23 (iOS), 2018-12-19 (Android)", "stage": ""}, {"id": "game-0b239ac85a", "name": "Civilization VII", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Firaxis Games", "releaseDate": "2025", "stage": ""}, {"id": "game-9031c015ee", "name": "Rebel Inc.", "category": "现代战争", "tags": ["现代战争"], "developer": "Ndemic Creations", "releaseDate": "2018-12-06", "stage": ""}, {"id": "game-927f899d78", "name": "Tiles Survive!", "category": "其他", "tags": ["其他"], "developer": "FunPlus International AG", "releaseDate": "2025-07-03", "stage": ""}, {"id": "game-cc24c1e947", "name": "Path to Glory", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Ludigames / Gameloft", "releaseDate": "2025-01-14", "stage": "测试中"}, {"id": "game-3a5cc1d461", "name": "Final Outpost: Definitive Edition", "category": "末日生存", "tags": ["末日生存"], "developer": "Exabyte Games", "releaseDate": "2025-06-12", "stage": "已上线"}, {"id": "game-f333a03746", "name": "Thronefall", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Doghowl Games Ltd.", "releaseDate": "2025-05-19", "stage": "已上线"}, {"id": "game-c33b540376", "name": "Total War: NAPOLEON", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive Ltd", "releaseDate": "2025-12-02", "stage": "已上线"}, {"id": "game-83aed76423", "name": "Dawnmaker", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Arpentor Studio / Acram Digital", "releaseDate": "2025-12-18", "stage": "已上线"}, {"id": "game-9648be1501", "name": "Reiner Knizia's My City", "category": "现代战争", "tags": ["现代战争"], "developer": "My City Digital", "releaseDate": "2025-06-30", "stage": "已上线"}, {"id": "game-6b30ed1e77", "name": "As Far As The Eye", "category": "现代战争", "tags": ["现代战争"], "developer": "GoblinzPublishing", "releaseDate": "", "stage": "已上线"}, {"id": "game-912befec43", "name": "Happy Citizens - Mayor Sim", "category": "现代战争", "tags": ["现代战争"], "developer": "LifeSim", "releaseDate": "2025-09-16", "stage": "已上线"}, {"id": "game-2dc56717be", "name": "Empire Heroes: Strategy Game", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Nature Games", "releaseDate": "2025-06-16", "stage": "已上线"}, {"id": "game-b569320aef", "name": "Trimo Heroes: Pixel Offense", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "EOAG Games Co.,Ltd", "releaseDate": "2025-05-31", "stage": "已上线"}, {"id": "game-d7cbd9a18f", "name": "Project Z: 72H Siege Conquest", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "WD Games", "releaseDate": "2025-08-19", "stage": "测试中"}, {"id": "game-a413b8b884", "name": "Dino Cataclysm: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Nox Joy", "releaseDate": "2025-05-09", "stage": "测试中"}, {"id": "game-de3fccafc1", "name": "Jurassic War Survival", "category": "恐龙/原始", "tags": ["测试中", "恐龙/原始"], "developer": "Funter", "releaseDate": "2025-04-29", "stage": "测试中"}, {"id": "game-1d768f3b28", "name": "Stormborn Era", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Leniu Games", "releaseDate": "2025-10-23", "stage": "测试中"}, {"id": "game-41f6440bb0", "name": "Heroes of Mavia", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Skrice Studios", "releaseDate": "2024-01-31", "stage": "已上线"}, {"id": "game-a6017176ca", "name": "Songs of Conquest Mobile", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Coffee Stain / Lavapotion", "releaseDate": "2025-03-13", "stage": "预注册"}, {"id": "game-ff31b60c59", "name": "Game of Legends: Dragons Rise", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "TGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-aa11c01293", "name": "Age of Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Wuhan Xin Chi Technology Co., Ltd.", "releaseDate": "2025-11-06", "stage": "测试中"}, {"id": "game-317b9dae61", "name": "Art of Conquest 2", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Lilith Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-b8ddc638df", "name": "Rise of Stars", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Wemade Max / LightCON", "releaseDate": "2022-02-25", "stage": "已上线"}, {"id": "game-498974a53d", "name": "Rise of Cultures", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames GmbH", "releaseDate": "2021-11-25", "stage": "已上线"}, {"id": "game-5461a00ce9", "name": "Inkvasion", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Lioncode Games", "releaseDate": "2024-11-14", "stage": "已上线"}, {"id": "game-35b7d56d52", "name": "Grunt Rush", "category": "现代战争", "tags": ["现代战争"], "developer": "Room8 Group / Top App Games Ltd", "releaseDate": "2025-01-23", "stage": "已上线"}, {"id": "game-4f9a721b72", "name": "Future Warfare: Mercenaries", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Capetown Games", "releaseDate": "2025-01-16", "stage": "测试中"}, {"id": "game-b1a1f268f9", "name": "Freeciv", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "The Freeciv Project", "releaseDate": "", "stage": "已上线"}, {"id": "game-0f549929c7", "name": "Pocket Tales: Survival Game", "category": "末日生存", "tags": ["末日生存"], "developer": "Azur Interactive Games Limited", "releaseDate": "2025-12-26", "stage": "已上线"}, {"id": "game-36d052bc0a", "name": "Amazing Cultivation Simulator", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "GSQ Games", "releaseDate": "2025-06-03", "stage": "已上线"}, {"id": "game-56a3e98491", "name": "Domination Dynasty", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "DFW Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-3faa6200f2", "name": "Super Citycon", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "2024-11-02", "stage": "测试中"}, {"id": "game-bdee37c659", "name": "王于兴师", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Crazy Panda FZCO", "releaseDate": "2026-03-27", "stage": "已上线"}, {"id": "game-701e9700fc", "name": "Command & Conquer: Legions", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Level Infinite", "releaseDate": "", "stage": "测试中"}, {"id": "game-e02c178736", "name": "World War: Machines Conquest", "category": "现代战争", "tags": ["现代战争"], "developer": "BY Aliens L.L.C-FZ", "releaseDate": "", "stage": "已上线"}, {"id": "game-e18dfa8d98", "name": "War and Magic: Kingdom Reborn", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "GOAT Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-9ace0342f0", "name": "Dawn of Ages", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Stratosphere Games GmbH", "releaseDate": "", "stage": "已上线"}, {"id": "game-8abfb9f87e", "name": "LOST in Blue 2: Survival Game", "category": "末日生存", "tags": ["末日生存"], "developer": "Volcano Force Technology Co., Limited", "releaseDate": "", "stage": "已上线"}, {"id": "game-c2ab3a73b5", "name": "Deadly Dudes", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "NetEase Games", "releaseDate": "2025-07-11", "stage": "测试中"}, {"id": "game-cb8a2071d9", "name": "Alliance At War", "category": "现代战争", "tags": ["现代战争"], "developer": "Outerdawn Limited", "releaseDate": "", "stage": "已上线"}, {"id": "game-55b68ffba2", "name": "World at Risk", "category": "现代战争", "tags": ["现代战争"], "developer": "LION STUDIO", "releaseDate": "2024-07-27", "stage": "已上线"}, {"id": "game-76d3f74274", "name": "Empires & Allies", "category": "现代战争", "tags": ["现代战争"], "developer": "Zynga Inc.", "releaseDate": "2015-03-05", "stage": "已上线"}, {"id": "game-c99c3d7791", "name": "战火与永恒", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "YOOZOO (Singapore) Pte. Ltd.", "releaseDate": "2021-01-28", "stage": "已上线"}, {"id": "game-e5396de2ce", "name": "Total Battle: War Strategy", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Scorewarrior", "releaseDate": "2017-01-01", "stage": "已上线"}, {"id": "game-c44860747a", "name": "War Planet Online", "category": "现代战争", "tags": ["现代战争"], "developer": "Gameloft", "releaseDate": "2017-09-21", "stage": "已上线"}, {"id": "game-bef4ff99a8", "name": "March of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Gameloft", "releaseDate": "2015-09-17", "stage": "已上线"}, {"id": "game-cdc7236034", "name": "Vikings: War of Clans", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Plarium Global Ltd", "releaseDate": "2015-08-05", "stage": "已上线"}, {"id": "game-84591fb839", "name": "DomiNations", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Big Huge Games", "releaseDate": "2015-04-01", "stage": "已上线"}, {"id": "game-fa3ad72dc6", "name": "Warhammer: Chaos & Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Tilting Point", "releaseDate": "2019-10-17", "stage": "已上线"}, {"id": "game-7d58908169", "name": "War Eternal", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "ONEMT", "releaseDate": "2018-09-20", "stage": "已上线"}];
+const GAME_INDEX = [{"id": "game-94db617c7f", "name": "三国志·战略版", "category": "三国", "tags": ["三国"], "developer": "广州灵犀互动娱乐有限公司（阿里互娱）", "releaseDate": "2019-09-20", "stage": ""}, {"id": "game-cd0c883253", "name": "率土之滨", "category": "三国", "tags": ["三国"], "developer": "网易游戏", "releaseDate": "2015-10-22", "stage": ""}, {"id": "game-797c34099e", "name": "万国觉醒", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "莉莉丝游戏", "releaseDate": "2020-09-23", "stage": ""}, {"id": "game-8f0f426acd", "name": "无尽冬日", "category": "末日生存", "tags": ["末日生存"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2022-12-18", "stage": ""}, {"id": "game-a8975b3eb6", "name": "可狱不可囚（Lands of Jail）", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "SINGAPORE JUST GAME TECHNOLOGY PTE. LTD.", "releaseDate": "2025-03-15", "stage": ""}, {"id": "game-3c9a12d8c0", "name": "Palmon: Survival", "category": "宠物/驯兽", "tags": ["宠物/驯兽"], "developer": "LILITH TECHNOLOGY HONG KONG LIMITED", "releaseDate": "待公布（测试中）", "stage": ""}, {"id": "game-0ddf5accbd", "name": "Last War: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "FUNFLY PTE. LTD.", "releaseDate": "2023-08-10", "stage": ""}, {"id": "game-58cd32e5c0", "name": "Puzzles & Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "37GAMES", "releaseDate": "2020-08-25", "stage": ""}, {"id": "game-9786528684", "name": "Top Heroes: Kingdom Saga", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "RiverGame", "releaseDate": "2024-06-12", "stage": ""}, {"id": "game-90f17ae6d9", "name": "Kingshot", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2024-09-15", "stage": ""}, {"id": "game-90b9ec2c17", "name": "State of Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "KingsGroup Holdings", "releaseDate": "2019-11-14", "stage": ""}, {"id": "game-c1379cf4b6", "name": "Evony: The King's Return", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "TG Inc.", "releaseDate": "2016-05-16", "stage": ""}, {"id": "game-8b7ed8b7bd", "name": "口袋奇兵", "category": "现代战争", "tags": ["现代战争"], "developer": "River Game", "releaseDate": "2019-08-20", "stage": ""}, {"id": "game-31da4d0b50", "name": "旭日之城", "category": "末日生存", "tags": ["末日生存"], "developer": "CamelStudio", "releaseDate": "2021-03-15", "stage": ""}, {"id": "game-3fd6624aa5", "name": "Kingdoms of Heckfire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Scopely", "releaseDate": "2022-05-17", "stage": ""}, {"id": "game-bd000b4a5c", "name": "Vikingard", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Hero Games", "releaseDate": "2021-11-30", "stage": ""}, {"id": "game-c2f3ea2940", "name": "Rise of Castles: Ice and Fire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Long Tech Network Limited", "releaseDate": "2020-07-15", "stage": ""}, {"id": "game-f2a6f46f32", "name": "Conquerors: Golden Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2019-03-28", "stage": ""}, {"id": "game-d4f10e70dd", "name": "Forge of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames", "releaseDate": "2012-04-17", "stage": ""}, {"id": "game-9851ed118c", "name": "Goodgame Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Goodgame Studios", "releaseDate": "2011-08-14", "stage": ""}, {"id": "game-fd43fb8ba3", "name": "无尽的拉格朗日", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "网易游戏", "releaseDate": "2021-08-18", "stage": "已上线"}, {"id": "game-f509c2dff4", "name": "王国纪元", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG", "releaseDate": "2016-02-26", "stage": ""}, {"id": "game-bd0405f547", "name": "列王的纷争", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "智明星通", "releaseDate": "2014-07-01", "stage": ""}, {"id": "game-7ef18ebcd7", "name": "文明与征服", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "广州四三九九信息科技有限公司", "releaseDate": "2021-12-29", "stage": "已上线"}, {"id": "game-1d6ed3fdb5", "name": "Doomsday: Last Survivors", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2018-06-12", "stage": ""}, {"id": "game-b86f05805f", "name": "部落冲突", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Supercell", "releaseDate": "2012-08-02", "stage": ""}, {"id": "game-24c6e42bc8", "name": "海岛奇兵", "category": "现代战争", "tags": ["现代战争"], "developer": "Supercell", "releaseDate": "2014-03-26", "stage": ""}, {"id": "game-6a7bf57b61", "name": "Age of Empires Mobile", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Level Infinite", "releaseDate": "2024-10-15", "stage": ""}, {"id": "game-bc203b63ae", "name": "Game of War: Fire Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Machine Zone", "releaseDate": "2013-07-01", "stage": ""}, {"id": "game-d4d2b0415f", "name": "Mobile Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Machine Zone", "releaseDate": "2015-11-05", "stage": ""}, {"id": "game-55d16299e1", "name": "火枪纪元", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2017-03-15", "stage": ""}, {"id": "game-844f59700b", "name": "小小蚁国", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "StarUnion", "releaseDate": "2020-01-15", "stage": ""}, {"id": "game-80fa0808e2", "name": "万龙觉醒", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Farlight Games", "releaseDate": "2023-03-25", "stage": ""}, {"id": "game-d292a88d96", "name": "Star Trek Fleet Command", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Scopely, Inc.", "releaseDate": "2018-11-29", "stage": ""}, {"id": "game-bd07451dd5", "name": "Puzzles & Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "37GAMES", "releaseDate": "2020-03-15", "stage": ""}, {"id": "game-c34276d36a", "name": "猿族时代", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Holdfast", "releaseDate": "2021-04-15", "stage": ""}, {"id": "game-5be97f4f24", "name": "Foundation: Galactic Frontier", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "FunPlus", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-433504c4b5", "name": "阿瓦隆之王", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2025 (持续更新)", "stage": ""}, {"id": "game-985c6c7044", "name": "Beyond Astra", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "未知", "releaseDate": "2025", "stage": ""}, {"id": "game-aa180c1347", "name": "战火与秩序", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "CamelStudio", "releaseDate": "2016-04-05", "stage": ""}, {"id": "game-f91d9e7fb4", "name": "黑道风云", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2017-05-16", "stage": ""}, {"id": "game-8824479690", "name": "行尸走肉：幸存者", "category": "末日生存", "tags": ["末日生存"], "developer": "Galaxy Play Technology Limited", "releaseDate": "2021-04-12", "stage": ""}, {"id": "game-e2772e8549", "name": "Ant Legion: For The Swarm", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "37GAMES", "releaseDate": "2022-05-06", "stage": ""}, {"id": "game-8320df13b3", "name": "Sea of Conquest: Pirate War", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "2024-01-02", "stage": ""}, {"id": "game-21f9302d7e", "name": "Project Entropy", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "FunPlus International AG", "releaseDate": "2023-09-19", "stage": ""}, {"id": "game-86212d100c", "name": "胜利之吻", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2019-09-27", "stage": ""}, {"id": "game-0987d45cce", "name": "野蛮时代", "category": "恐龙/原始", "tags": ["恐龙/原始"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2016-08-05", "stage": ""}, {"id": "game-0a2cbfb827", "name": "Invasion: Aerial Warfare", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2014-12-07", "stage": ""}, {"id": "game-f043fc26a7", "name": "荒野国度", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "圆桌工作室", "releaseDate": "2025-02-27", "stage": ""}, {"id": "game-243c473263", "name": "Avatar Legends: Realms Collide", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Tilting Point LLC", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-97d01558d8", "name": "群星纪元", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "景秀游戏", "releaseDate": "2025-04-17", "stage": ""}, {"id": "game-7608e868c9", "name": "Game of Thrones: Dragonfire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Warner Bros. Games", "releaseDate": "2025-05-03", "stage": ""}, {"id": "game-b1aae191db", "name": "龙石战争", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "腾讯凯博 / 儒意景秀", "releaseDate": "2025-06-26", "stage": ""}, {"id": "game-ccadbd22bd", "name": "Fate War", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-08-05", "stage": ""}, {"id": "game-4c042f681c", "name": "三国群英传：策定九州", "category": "三国", "tags": ["三国"], "developer": "星辉游戏", "releaseDate": "2025-10-11", "stage": ""}, {"id": "game-f4ae9a9d5d", "name": "九牧之野", "category": "三国", "tags": ["三国"], "developer": "仙峰游戏 / 雷霆游戏", "releaseDate": "2025-12-18", "stage": ""}, {"id": "game-e0880ec4e3", "name": "Three Kingdoms: World Conquest", "category": "三国", "tags": ["三国"], "developer": "Rastar Mobile", "releaseDate": "2026-01-25", "stage": ""}, {"id": "game-3dd196863a", "name": "三国：天下归心", "category": "三国", "tags": ["三国"], "developer": "恺英网络 / 乘风工作室", "releaseDate": "2026-04-16", "stage": ""}, {"id": "game-3a54f321ca", "name": "Frozen War", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-badc6f958c", "name": "Disney Realm Breakers", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "JOYCITY Corp.", "releaseDate": "2025-07-24", "stage": ""}, {"id": "game-354cb9dea0", "name": "Age of Empires: Survival", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Tencent / TiMi Studio Group", "releaseDate": "2025-07-14", "stage": ""}, {"id": "game-186bfb2e69", "name": "Civilization: Eras & Allies 2K", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K, Inc.", "releaseDate": "2025-06-18", "stage": ""}, {"id": "game-5abc1a7061", "name": "Warline: Sniper Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Farlight Games", "releaseDate": "2025-08-01", "stage": ""}, {"id": "game-6a20202625", "name": "Savage Survival: Jurassic Isle", "category": "恐龙/原始", "tags": ["恐龙/原始"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2024-12-23", "stage": ""}, {"id": "game-5a5bc9685e", "name": "Xeno Warpath", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Wanda Cinemas Games", "releaseDate": "2025-12-06", "stage": ""}, {"id": "game-65497967b7", "name": "Godzilla x Kong: Titan Chasers", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Tilting Point LLC", "releaseDate": "2025-02-25", "stage": ""}, {"id": "game-cad2f965d4", "name": "Resident Evil Survival Unit", "category": "末日生存", "tags": ["末日生存"], "developer": "Aniplex Inc. / JOYCITY", "releaseDate": "2025-11-18", "stage": ""}, {"id": "game-e5489f6c90", "name": "Dawn Watch: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "STARFORTUNE INTERACTIVE ENTERTAINMENT TECHNOLOGY CO., LIMITED", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-86daa992be", "name": "Mafia Mobile", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-09-17", "stage": ""}, {"id": "game-df6e8fc3ea", "name": "EVE Galaxy Conquest", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "CCP ehf.", "releaseDate": "2024-09-26", "stage": ""}, {"id": "game-e63af2fa25", "name": "DC: Dark Legion", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "FunPlus International AG", "releaseDate": "2025-03-13", "stage": ""}, {"id": "game-81671d4762", "name": "High Seas Hero: Dig & Build", "category": "航海", "tags": ["航海"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2025-01-09", "stage": ""}, {"id": "game-11a22c688b", "name": "Dark War:Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "Florere Game Limited", "releaseDate": "2024-09-11", "stage": ""}, {"id": "game-df9dd13a7d", "name": "Grand Gangster War", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "WGAME TECHNOLOGY LIMITED", "releaseDate": "2025-01-03", "stage": ""}, {"id": "game-7fbb28856e", "name": "Age Of Sails", "category": "航海", "tags": ["航海"], "developer": "Estoty LLC", "releaseDate": "2024-12-11", "stage": ""}, {"id": "game-8a227d6488", "name": "Marsaction 2: Space Homestead", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "LEXIANGCO.,LIMITED", "releaseDate": "2024-01-10", "stage": ""}, {"id": "game-81444e2707", "name": "Final War: Frozen Defense", "category": "末日生存", "tags": ["末日生存"], "developer": "HaoPlay Limited", "releaseDate": "2025-04-09", "stage": ""}, {"id": "game-a259a61f95", "name": "1900: War Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Zero Heart Game HK", "releaseDate": "", "stage": "测试中"}, {"id": "game-8d02aa0b0a", "name": "Gangland: Syndicate Rise", "category": "监狱/犯罪", "tags": ["测试中", "监狱/犯罪"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-cd4a4ef8b6", "name": "Z War:Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Beacon Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-3b9a5d7ab9", "name": "Trigger & Truck", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "StarWish", "releaseDate": "", "stage": "测试中"}, {"id": "game-ea1c16b2b2", "name": "Dreamio Rush", "category": "宠物/驯兽", "tags": ["测试中", "宠物/驯兽"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d07f735f30", "name": "Dragon's Finale", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d8bc8217cc", "name": "Frozen Island", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Linkify Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e04780dda4", "name": "Catch & Build: Land of Pals", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Joy Nice Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5bd4ed473", "name": "Titan Rush", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "RATING GAME", "releaseDate": "", "stage": "测试中"}, {"id": "game-96f5699d46", "name": "Lost Waters", "category": "航海", "tags": ["测试中", "航海"], "developer": "Warrior Cabera", "releaseDate": "", "stage": "测试中"}, {"id": "game-9d1b16b417", "name": "Mad Asylum(CBT)", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Etolies Game", "releaseDate": "", "stage": "CBT"}, {"id": "game-f9c166b0bd", "name": "Endless Zombies", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Vividiy", "releaseDate": "", "stage": "测试中"}, {"id": "game-3fcf79fbf1", "name": "Wingstrike", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "MOONTECH PTE LTD", "releaseDate": "", "stage": "测试中"}, {"id": "game-daf0e7cac4", "name": "Last Outbreak", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "LumoraTech", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a8daec90b", "name": "MistCrush Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Skystone Games Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-05f168e4f4", "name": "last survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "HKNovaGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-082f082da5", "name": "Monster Survival:Palkie Empire", "category": "宠物/驯兽", "tags": ["测试中", "宠物/驯兽"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-bbdc3ffc8f", "name": "MarmotShot", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-3206d9f330", "name": "Marmot Shelter", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-7fc97f17e0", "name": "Siege of Lava", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Madfun Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a72986bf0", "name": "Heroic Era", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "Arclight Studio", "releaseDate": "", "stage": "测试中"}, {"id": "game-2d62de7f88", "name": "Z War：Survival Game", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FUNY FISH TECHNOLOGY CO., LTD.", "releaseDate": "", "stage": "测试中"}, {"id": "game-2968f2d1a1", "name": "Zoink! Bounce Brigade", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Oblivion land", "releaseDate": "", "stage": "测试中 / SLG候选"}, {"id": "game-e11905906d", "name": "Darkout Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-fa646b0738", "name": "Mine Cosmos", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Peachcat Online Co., Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-331ac24367", "name": "Z-Fortress", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Happy Loong Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-4578df9f64", "name": "Deepsea Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Lunova Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-806e40881e", "name": "Sea of Sand", "category": "其他", "tags": ["测试中", "其他"], "developer": "ACT10 Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-c26782973a", "name": "BlitzLoot", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-0cd58275e0", "name": "Doomlord: Pixel Haven", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Mighty Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-0a73d03f32", "name": "Lightbreak", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Galaxy Play Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e4d51f4f07", "name": "Silent Shield: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Larks Holding Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-20cdf009be", "name": "City of Wars: Powered by Yakuza", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "HKBBGL", "releaseDate": "", "stage": "区域上线"}, {"id": "game-1424c37b06", "name": "Dark Shot Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "待核", "releaseDate": "2025-09-24", "stage": "测试中"}, {"id": "game-3d7891431b", "name": "Three Kingdoms: Grand Strategy", "category": "三国", "tags": ["三国"], "developer": "KONG SOFTWARE JOINT STOCK COMPANY", "releaseDate": "2025-11-29", "stage": "已上线"}, {"id": "game-8a2b75b367", "name": "Supremacy: Warhammer 40,000", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Stillfront Supremacy GmbH", "releaseDate": "2026-03-31", "stage": "预注册"}, {"id": "game-35563e4574", "name": "Last Home", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "待核", "releaseDate": "", "stage": "测试中"}, {"id": "game-7d65affb27", "name": "Fading Earth", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FunPlus International AG", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5dbed2258", "name": "Guardians of Elderon", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "BoomBit", "releaseDate": "", "stage": "测试中"}, {"id": "game-847e06f63a", "name": "Mad Rocket: Fog of War", "category": "现代战争", "tags": ["现代战争"], "developer": "Ratatat Studios / Four Thirty Three", "releaseDate": "", "stage": "已上线"}, {"id": "game-04b4849bc8", "name": "Heroes of History: Epic Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames GmbH", "releaseDate": "2024-09-23", "stage": "已上线"}, {"id": "game-5f6fe9f332", "name": "Crown of Bones", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Bravo Games Limited", "releaseDate": "2024-11-21", "stage": "测试中"}, {"id": "game-03ece9540b", "name": "Civilization VI", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K Games", "releaseDate": "2020-11-16", "stage": ""}, {"id": "game-ddf2ca016a", "name": "The Battle of Polytopia", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Midjiwan AB", "releaseDate": "2016-02-03", "stage": ""}, {"id": "game-c41ac7cb1e", "name": "Northgard", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Shiro Games", "releaseDate": "2019-09-12 (PC), 2021-08-24 (Android)", "stage": ""}, {"id": "game-41d3941f78", "name": "Rome: Total War", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive (原 SEGA)", "releaseDate": "2016-08-23 (iOS), 2018-12-19 (Android)", "stage": ""}, {"id": "game-0b239ac85a", "name": "Civilization VII", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Firaxis Games", "releaseDate": "2025", "stage": ""}, {"id": "game-9031c015ee", "name": "Rebel Inc.", "category": "现代战争", "tags": ["现代战争"], "developer": "Ndemic Creations", "releaseDate": "2018-12-06", "stage": ""}, {"id": "game-927f899d78", "name": "Tiles Survive!", "category": "其他", "tags": ["其他"], "developer": "FunPlus International AG", "releaseDate": "2025-07-03", "stage": ""}, {"id": "game-cc24c1e947", "name": "Path to Glory", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Ludigames / Gameloft", "releaseDate": "2025-01-14", "stage": "测试中"}, {"id": "game-3a5cc1d461", "name": "Final Outpost: Definitive Edition", "category": "末日生存", "tags": ["末日生存"], "developer": "Exabyte Games", "releaseDate": "2025-06-12", "stage": "已上线"}, {"id": "game-f333a03746", "name": "Thronefall", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Doghowl Games Ltd.", "releaseDate": "2025-05-19", "stage": "已上线"}, {"id": "game-c33b540376", "name": "Total War: NAPOLEON", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive Ltd", "releaseDate": "2025-12-02", "stage": "已上线"}, {"id": "game-83aed76423", "name": "Dawnmaker", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Arpentor Studio / Acram Digital", "releaseDate": "2025-12-18", "stage": "已上线"}, {"id": "game-9648be1501", "name": "Reiner Knizia's My City", "category": "现代战争", "tags": ["现代战争"], "developer": "My City Digital", "releaseDate": "2025-06-30", "stage": "已上线"}, {"id": "game-6b30ed1e77", "name": "As Far As The Eye", "category": "现代战争", "tags": ["现代战争"], "developer": "GoblinzPublishing", "releaseDate": "", "stage": "已上线"}, {"id": "game-912befec43", "name": "Happy Citizens - Mayor Sim", "category": "现代战争", "tags": ["现代战争"], "developer": "LifeSim", "releaseDate": "2025-09-16", "stage": "已上线"}, {"id": "game-2dc56717be", "name": "Empire Heroes: Strategy Game", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Nature Games", "releaseDate": "2025-06-16", "stage": "已上线"}, {"id": "game-b569320aef", "name": "Trimo Heroes: Pixel Offense", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "EOAG Games Co.,Ltd", "releaseDate": "2025-05-31", "stage": "已上线"}, {"id": "game-d7cbd9a18f", "name": "Project Z: 72H Siege Conquest", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "WD Games", "releaseDate": "2025-08-19", "stage": "测试中"}, {"id": "game-a413b8b884", "name": "Dino Cataclysm: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Nox Joy", "releaseDate": "2025-05-09", "stage": "测试中"}, {"id": "game-de3fccafc1", "name": "Jurassic War Survival", "category": "恐龙/原始", "tags": ["测试中", "恐龙/原始"], "developer": "Funter", "releaseDate": "2025-04-29", "stage": "测试中"}, {"id": "game-1d768f3b28", "name": "Stormborn Era", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Leniu Games", "releaseDate": "2025-10-23", "stage": "测试中"}, {"id": "game-41f6440bb0", "name": "Heroes of Mavia", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Skrice Studios", "releaseDate": "2024-01-31", "stage": "已上线"}, {"id": "game-a6017176ca", "name": "Songs of Conquest Mobile", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Coffee Stain / Lavapotion", "releaseDate": "2025-03-13", "stage": "预注册"}, {"id": "game-ff31b60c59", "name": "Game of Legends: Dragons Rise", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "TGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-aa11c01293", "name": "Age of Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Wuhan Xin Chi Technology Co., Ltd.", "releaseDate": "2025-11-06", "stage": "测试中"}, {"id": "game-317b9dae61", "name": "Art of Conquest 2", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Lilith Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-b8ddc638df", "name": "Rise of Stars", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Wemade Max / LightCON", "releaseDate": "2022-02-25", "stage": "已上线"}, {"id": "game-498974a53d", "name": "Rise of Cultures", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames GmbH", "releaseDate": "2021-11-25", "stage": "已上线"}, {"id": "game-5461a00ce9", "name": "Inkvasion", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Lioncode Games", "releaseDate": "2024-11-14", "stage": "已上线"}, {"id": "game-35b7d56d52", "name": "Grunt Rush", "category": "现代战争", "tags": ["现代战争"], "developer": "Room8 Group / Top App Games Ltd", "releaseDate": "2025-01-23", "stage": "已上线"}, {"id": "game-4f9a721b72", "name": "Future Warfare: Mercenaries", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Capetown Games", "releaseDate": "2025-01-16", "stage": "测试中"}, {"id": "game-b1a1f268f9", "name": "Freeciv", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "The Freeciv Project", "releaseDate": "", "stage": "已上线"}, {"id": "game-0f549929c7", "name": "Pocket Tales: Survival Game", "category": "末日生存", "tags": ["末日生存"], "developer": "Azur Interactive Games Limited", "releaseDate": "2025-12-26", "stage": "已上线"}, {"id": "game-36d052bc0a", "name": "Amazing Cultivation Simulator", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "GSQ Games", "releaseDate": "2025-06-03", "stage": "已上线"}, {"id": "game-56a3e98491", "name": "Domination Dynasty", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "DFW Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-3faa6200f2", "name": "Super Citycon", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "2024-11-02", "stage": "测试中"}, {"id": "game-bdee37c659", "name": "王于兴师", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Crazy Panda FZCO", "releaseDate": "2026-03-27", "stage": "已上线"}, {"id": "game-701e9700fc", "name": "Command & Conquer: Legions", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Level Infinite", "releaseDate": "", "stage": "测试中"}, {"id": "game-e02c178736", "name": "World War: Machines Conquest", "category": "现代战争", "tags": ["现代战争"], "developer": "BY Aliens L.L.C-FZ", "releaseDate": "", "stage": "已上线"}, {"id": "game-e18dfa8d98", "name": "War and Magic: Kingdom Reborn", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "GOAT Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-9ace0342f0", "name": "Dawn of Ages", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Stratosphere Games GmbH", "releaseDate": "", "stage": "已上线"}, {"id": "game-8abfb9f87e", "name": "LOST in Blue 2: Survival Game", "category": "末日生存", "tags": ["末日生存"], "developer": "Volcano Force Technology Co., Limited", "releaseDate": "", "stage": "已上线"}, {"id": "game-c2ab3a73b5", "name": "Deadly Dudes", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "NetEase Games", "releaseDate": "2025-07-11", "stage": "测试中"}, {"id": "game-cb8a2071d9", "name": "Alliance At War", "category": "现代战争", "tags": ["现代战争"], "developer": "Outerdawn Limited", "releaseDate": "", "stage": "已上线"}, {"id": "game-55b68ffba2", "name": "World at Risk", "category": "现代战争", "tags": ["现代战争"], "developer": "LION STUDIO", "releaseDate": "2024-07-27", "stage": "已上线"}, {"id": "game-76d3f74274", "name": "Empires & Allies", "category": "现代战争", "tags": ["现代战争"], "developer": "Zynga Inc.", "releaseDate": "2015-03-05", "stage": "已上线"}, {"id": "game-c99c3d7791", "name": "战火与永恒", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "YOOZOO (Singapore) Pte. Ltd.", "releaseDate": "2021-01-28", "stage": "已上线"}, {"id": "game-e5396de2ce", "name": "Total Battle: War Strategy", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Scorewarrior", "releaseDate": "2017-01-01", "stage": "已上线"}, {"id": "game-c44860747a", "name": "War Planet Online", "category": "现代战争", "tags": ["现代战争"], "developer": "Gameloft", "releaseDate": "2017-09-21", "stage": "已上线"}, {"id": "game-bef4ff99a8", "name": "March of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Gameloft", "releaseDate": "2015-09-17", "stage": "已上线"}, {"id": "game-cdc7236034", "name": "Vikings: War of Clans", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Plarium Global Ltd", "releaseDate": "2015-08-05", "stage": "已上线"}, {"id": "game-84591fb839", "name": "DomiNations", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Big Huge Games", "releaseDate": "2015-04-01", "stage": "已上线"}, {"id": "game-fa3ad72dc6", "name": "Warhammer: Chaos & Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Tilting Point", "releaseDate": "2019-10-17", "stage": "已上线"}, {"id": "game-7d58908169", "name": "War Eternal", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "ONEMT", "releaseDate": "2018-09-20", "stage": "已上线"}, {"id": "game-eb4a38299d", "name": "Lords Mobile: Kingdom Wars", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "", "stage": "已上线"}, {"id": "game-9bb457f4c5", "name": "Mobile Royale: Kingdom Defense", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "", "stage": "已上线"}, {"id": "game-01fade9b10", "name": "Misty Continent: Cursed Island", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "", "stage": "已上线"}, {"id": "game-097f07487e", "name": "Warpath: Ace Shooter", "category": "现代战争", "tags": ["现代战争"], "developer": "Lilith Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-e67ed6e60d", "name": "Supremacy: Call of War 1942", "category": "现代战争", "tags": ["现代战争"], "developer": "Bytro Labs", "releaseDate": "", "stage": "已上线"}, {"id": "game-018672fd32", "name": "Supremacy: World War 3", "category": "现代战争", "tags": ["现代战争"], "developer": "Bytro Labs", "releaseDate": "", "stage": "已上线"}, {"id": "game-be344231a6", "name": "Supremacy 1914 - World War 1", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Bytro Labs", "releaseDate": "", "stage": "已上线"}, {"id": "game-cad4d48e47", "name": "March of Nations", "category": "现代战争", "tags": ["现代战争"], "developer": "Trophym Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-00ac505982", "name": "Infinity Clan", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Top Games Inc.", "releaseDate": "", "stage": "已上线"}, {"id": "game-cb4351db53", "name": "Hexapolis - Civilization game", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "NOXGAMES s.r.o.", "releaseDate": "", "stage": "已上线"}];
 const GAME_MAP = new Map(GAME_INDEX.map(item => [item.id, item]));
 const STORAGE_KEYS = {
   playlist: 'game-info-playlist',
