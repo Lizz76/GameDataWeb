@@ -305,6 +305,7 @@ body {
 .link-pill, .shot-pill { display: inline-flex; align-items: center; gap: 6px; padding: 9px 13px; border-radius: 999px; text-decoration: none; font-weight: 700; border: 1px solid transparent; }
 .link-pill { color: var(--accent-deep); background: rgba(155, 79, 58, 0.1); border-color: rgba(155, 79, 58, 0.12); }
 .shot-pill { color: var(--ink); background: rgba(36, 50, 65, 0.06); border-color: rgba(36, 50, 65, 0.08); }
+.link-pill:hover, .shot-pill:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(42, 28, 18, 0.08); }
 .media-panel { display: grid; gap: 12px; height: 100%; }
 .media-frame {
   position: relative;
@@ -5833,6 +5834,23 @@ function buildMediaMarkup(url) {
   }
   return `<a class="shot-pill" href="${safeUrl}" target="_blank" rel="noopener noreferrer">\u67e5\u770b\u89c6\u9891<span>\u2197</span></a>`;
 }
+function buildLinkMarkup(url, label) {
+  const safeUrl = url.replace(/"/g, '&quot;');
+  const safeLabel = (label || '\u8bbf\u95ee\u94fe\u63a5').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return `<a class="link-pill" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeLabel}<span>\u2197</span></a>`;
+}
+function enhanceLinkFields() {
+  document.querySelectorAll('.field').forEach(field => {
+    const label = field.querySelector('.field-label');
+    const value = field.querySelector('.field-value');
+    if (!label || !value) return;
+    const labelText = (label.textContent || '').trim();
+    if (labelText !== '\u5b98\u7f51') return;
+    const url = extractMediaUrl(value);
+    if (!url) return;
+    value.innerHTML = buildLinkMarkup(url, '\u8bbf\u95ee\u5b98\u7f51');
+  });
+}
 function enhanceMediaFields() {
   document.querySelectorAll('.field-grid').forEach(grid => {
     const mediaField = Array.from(grid.children).find(item => item.classList && item.classList.contains('field-compact'))
@@ -6234,6 +6252,7 @@ bootstrapLibraryData();
 loadCurrentLibraryState();
 applySortMode();
 updateSortButtonLabel();
+enhanceLinkFields();
 enhanceMediaFields();
 syncLibraryHero();
 renderCategoryChips();
