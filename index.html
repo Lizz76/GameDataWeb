@@ -57,6 +57,49 @@ body {
   display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 999px;
   background: rgba(255, 250, 243, 0.08); border: 1px solid rgba(242, 228, 214, 0.12); color: rgba(248, 241, 232, 0.82); font-size: 12px;
 }
+.library-switch {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, 0.1);
+  border: 1px solid rgba(242, 228, 214, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.library-switch-label {
+  margin-right: 6px;
+  padding-left: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(248, 241, 232, 0.56);
+}
+.library-switch-button {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: transparent;
+  color: rgba(248, 241, 232, 0.82);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+.library-switch-button:hover {
+  color: #fff8f1;
+  border-color: rgba(242, 228, 214, 0.12);
+}
+.library-switch-button.is-active {
+  color: #2d1f16;
+  background: linear-gradient(135deg, #f5e8da, #ead3bb);
+  border-color: rgba(242, 228, 214, 0.38);
+  box-shadow: 0 10px 18px rgba(17, 10, 7, 0.18);
+}
 .hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 16px; border-radius: 22px; border: 1px solid rgba(242, 228, 214, 0.16); background: rgba(248, 241, 232, 0.08); }
 .stat { padding: 14px 12px; border-radius: 16px; border: 1px solid rgba(242, 228, 214, 0.12); background: rgba(255, 250, 243, 0.08); }
 .stat-label { display: block; margin-bottom: 10px; font-size: 12px; color: rgba(242, 228, 214, 0.72); }
@@ -91,6 +134,38 @@ body {
 .workspace { position: relative; }
 .library-pane { min-width: 0; padding-right: 396px; }
 .cards { padding: 22px; display: grid; gap: 16px; }
+.library-empty {
+  display: none;
+  margin: 0 22px 22px;
+  padding: 28px 28px 30px;
+  border: 1px dashed rgba(90, 63, 41, 0.18);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 252, 247, 0.95), rgba(246, 238, 228, 0.92));
+  box-shadow: var(--shadow-soft);
+}
+.library-empty.is-visible { display: block; }
+.library-empty-kicker {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.library-empty-title {
+  margin: 0;
+  font-family: "STSong", "Songti SC", "Noto Serif SC", serif;
+  font-size: 34px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+.library-empty-copy {
+  margin: 14px 0 0;
+  max-width: 580px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
 .game-card { position: relative; border: 1px solid rgba(90, 63, 41, 0.14); border-radius: 24px; background: linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(248, 240, 231, 0.98)); box-shadow: var(--shadow-soft); padding: 18px 18px 16px; content-visibility: auto; contain-intrinsic-size: 360px; }
 .game-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: linear-gradient(180deg, var(--accent), rgba(141, 67, 49, 0.12)); }
 .game-card.is-played::after { content: ""; position: absolute; inset: 10px 10px auto auto; width: 12px; height: 12px; border-radius: 50%; background: var(--olive); box-shadow: 0 0 0 4px rgba(88, 104, 74, 0.14); }
@@ -256,6 +331,9 @@ body {
 }
 @media (max-width: 920px) {
   .hero-grid, .toolbar, .hero-stats, .playlist-stats { grid-template-columns: 1fr; }
+  .library-switch { width: 100%; justify-content: space-between; }
+  .library-switch-label { display: none; }
+  .library-switch-button { flex: 1 1 0; text-align: center; }
   .card-head { flex-direction: column; }
   .field, .field-wide, .field-compact { grid-column: span 12; }
   .playlist-head-row { min-height: 0; }
@@ -276,11 +354,16 @@ body {
     <section class="hero">
       <div class="hero-grid">
         <div>
-          <div class="hero-kicker">CURATED PLAY INDEX</div>
-          <h1>游戏资讯库</h1>
+          <div class="hero-kicker" id="libraryKicker">STRATEGY LIBRARY</div>
+          <h1 id="libraryTitle">SLG游戏资讯库</h1>
           <div class="hero-meta">
-            <span class="hero-meta-item">点击卡片按钮加入游玩清单</span>
-            <span class="hero-meta-item">勾选后会同步显示已玩标记</span>
+            <span class="hero-meta-item" id="libraryMetaPrimary">聚焦沙盘、生存、4X 等战斗型 SLG</span>
+            <span class="hero-meta-item" id="libraryMetaSecondary">点击卡片按钮加入游玩清单，勾选后会同步显示已玩标记</span>
+          </div>
+          <div class="library-switch" role="tablist" aria-label="资讯库切换">
+            <span class="library-switch-label">Library</span>
+            <button class="library-switch-button is-active" type="button" data-library="slg" onclick="switchLibrary(this.dataset.library)">SLG游戏资讯库</button>
+            <button class="library-switch-button" type="button" data-library="indie" onclick="switchLibrary(this.dataset.library)">独立游戏资讯库</button>
           </div>
         </div>
         <div class="hero-stats">
@@ -300,22 +383,7 @@ body {
       </div>
     </section>
 
-    <section class="chip-row"><span class="chip-label">题材标签</span><button class="chip is-active" type="button" onclick="filterByCategory('', this)">全部</button>
-<button class="chip" type="button" data-category="三国" onclick="filterByCategory(this.dataset.category, this)">三国</button>
-<button class="chip" type="button" data-category="监狱/犯罪" onclick="filterByCategory(this.dataset.category, this)">监狱/犯罪</button>
-<button class="chip" type="button" data-category="历史/中世纪" onclick="filterByCategory(this.dataset.category, this)">历史/中世纪</button>
-<button class="chip" type="button" data-category="北欧/维京" onclick="filterByCategory(this.dataset.category, this)">北欧/维京</button>
-<button class="chip" type="button" data-category="西部" onclick="filterByCategory(this.dataset.category, this)">西部</button>
-<button class="chip" type="button" data-category="现代战争" onclick="filterByCategory(this.dataset.category, this)">现代战争</button>
-<button class="chip" type="button" data-category="末日生存" onclick="filterByCategory(this.dataset.category, this)">末日生存</button>
-<button class="chip" type="button" data-category="科幻/太空" onclick="filterByCategory(this.dataset.category, this)">科幻/太空</button>
-<button class="chip" type="button" data-category="航海" onclick="filterByCategory(this.dataset.category, this)">航海</button>
-<button class="chip" type="button" data-category="奇幻/魔幻" onclick="filterByCategory(this.dataset.category, this)">奇幻/魔幻</button>
-<button class="chip" type="button" data-category="宠物/驯兽" onclick="filterByCategory(this.dataset.category, this)">宠物/驯兽</button>
-<button class="chip" type="button" data-category="动物/拟人" onclick="filterByCategory(this.dataset.category, this)">动物/拟人</button>
-<button class="chip" type="button" data-category="恐龙/原始" onclick="filterByCategory(this.dataset.category, this)">恐龙/原始</button>
-<button class="chip" type="button" data-category="其他" onclick="filterByCategory(this.dataset.category, this)">其他</button>
-<button class="chip" type="button" data-category="测试中" onclick="filterByCategory(this.dataset.category, this)">测试中</button><button class="chip" type="button" data-category="已游玩" onclick="filterByCategory(this.dataset.category, this)">已游玩</button></section>
+<section class="chip-row" id="chipRow"><span class="chip-label">题材标签</span></section>
     <div class="summary"><span>数据源：<strong>games_data.json</strong></span><span>最后同步：<strong>2026-03-23 17:27:12</strong></span></div>
 
     <section class="workspace">
@@ -5355,7 +5423,11 @@ body {
     <div class="field field-warning"><div class="field-label">不足</div><div class="field-value">1. 当前主要可靠落地页还是商店页；2. IP 预期高，对内容持续更新要求也高；3. 海战系统如果缺少足够差异会偏模板化。</div></div>
     <div class="field field-compact"><div class="field-label">视频</div><div class="field-value">https://www.youtube.com/watch?v=TZJc-c1rOMI</div></div>
   </div>
-</article></main></div>
+</article></main><section class="library-empty" id="libraryEmpty" aria-live="polite">
+<div class="library-empty-kicker">INDIE LIBRARY</div>
+<h2 class="library-empty-title">独立游戏资讯库正在整理中</h2>
+<p class="library-empty-copy">这里会逐步收录玩法独特、新颖、有创意、容易上头的独立游戏。当前先把切换框架搭好，后面我们只要补数据，就能直接切换成独立游戏库视图。</p>
+</section></div>
       <aside class="playlist-pane" id="playlistPane">
         <div class="playlist-shell">
           <div class="playlist-head">
@@ -5394,17 +5466,36 @@ body {
 
 <script>
 const GAME_INDEX = [{"id": "game-94db617c7f", "name": "三国志·战略版", "category": "三国", "tags": ["三国"], "developer": "广州灵犀互动娱乐有限公司（阿里互娱）", "releaseDate": "2019-09-20", "stage": ""}, {"id": "game-cd0c883253", "name": "率土之滨", "category": "三国", "tags": ["三国"], "developer": "网易游戏", "releaseDate": "2015-10-22", "stage": ""}, {"id": "game-797c34099e", "name": "万国觉醒", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "莉莉丝游戏", "releaseDate": "2020-09-23", "stage": ""}, {"id": "game-8f0f426acd", "name": "无尽冬日", "category": "末日生存", "tags": ["末日生存"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2022-12-18", "stage": ""}, {"id": "game-a8975b3eb6", "name": "可狱不可囚（Lands of Jail）", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "SINGAPORE JUST GAME TECHNOLOGY PTE. LTD.", "releaseDate": "2025-03-15", "stage": ""}, {"id": "game-3c9a12d8c0", "name": "Palmon: Survival", "category": "宠物/驯兽", "tags": ["宠物/驯兽"], "developer": "LILITH TECHNOLOGY HONG KONG LIMITED", "releaseDate": "待公布（测试中）", "stage": ""}, {"id": "game-0ddf5accbd", "name": "Last War: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "FUNFLY PTE. LTD.", "releaseDate": "2023-08-10", "stage": ""}, {"id": "game-58cd32e5c0", "name": "Puzzles & Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "37GAMES", "releaseDate": "2020-08-25", "stage": ""}, {"id": "game-9786528684", "name": "Top Heroes: Kingdom Saga", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "RiverGame", "releaseDate": "2024-06-12", "stage": ""}, {"id": "game-90f17ae6d9", "name": "Kingshot", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2024-09-15", "stage": ""}, {"id": "game-90b9ec2c17", "name": "State of Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "KingsGroup Holdings", "releaseDate": "2019-11-14", "stage": ""}, {"id": "game-c1379cf4b6", "name": "Evony: The King's Return", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "TG Inc.", "releaseDate": "2016-05-16", "stage": ""}, {"id": "game-8b7ed8b7bd", "name": "口袋奇兵", "category": "现代战争", "tags": ["现代战争"], "developer": "River Game", "releaseDate": "2019-08-20", "stage": ""}, {"id": "game-31da4d0b50", "name": "旭日之城", "category": "末日生存", "tags": ["末日生存"], "developer": "CamelStudio", "releaseDate": "2021-03-15", "stage": ""}, {"id": "game-3fd6624aa5", "name": "Kingdoms of Heckfire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Scopely", "releaseDate": "2022-05-17", "stage": ""}, {"id": "game-bd000b4a5c", "name": "Vikingard", "category": "北欧/维京", "tags": ["北欧/维京"], "developer": "Hero Games", "releaseDate": "2021-11-30", "stage": ""}, {"id": "game-c2f3ea2940", "name": "Rise of Castles: Ice and Fire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Long Tech Network Limited", "releaseDate": "2020-07-15", "stage": ""}, {"id": "game-f2a6f46f32", "name": "Conquerors: Golden Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2019-03-28", "stage": ""}, {"id": "game-d4f10e70dd", "name": "Forge of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames", "releaseDate": "2012-04-17", "stage": ""}, {"id": "game-9851ed118c", "name": "Goodgame Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Goodgame Studios", "releaseDate": "2011-08-14", "stage": ""}, {"id": "game-fd43fb8ba3", "name": "无尽的拉格朗日", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "网易游戏", "releaseDate": "2021-08-18", "stage": "已上线"}, {"id": "game-f509c2dff4", "name": "王国纪元", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG", "releaseDate": "2016-02-26", "stage": ""}, {"id": "game-bd0405f547", "name": "列王的纷争", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "智明星通", "releaseDate": "2014-07-01", "stage": ""}, {"id": "game-7ef18ebcd7", "name": "文明与征服", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "广州四三九九信息科技有限公司", "releaseDate": "2021-12-29", "stage": "已上线"}, {"id": "game-1d6ed3fdb5", "name": "Doomsday: Last Survivors", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2018-06-12", "stage": ""}, {"id": "game-b86f05805f", "name": "部落冲突", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Supercell", "releaseDate": "2012-08-02", "stage": ""}, {"id": "game-24c6e42bc8", "name": "海岛奇兵", "category": "现代战争", "tags": ["现代战争"], "developer": "Supercell", "releaseDate": "2014-03-26", "stage": ""}, {"id": "game-6a7bf57b61", "name": "Age of Empires Mobile", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Level Infinite", "releaseDate": "2024-10-15", "stage": ""}, {"id": "game-bc203b63ae", "name": "Game of War: Fire Age", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Machine Zone", "releaseDate": "2013-07-01", "stage": ""}, {"id": "game-d4d2b0415f", "name": "Mobile Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Machine Zone", "releaseDate": "2015-11-05", "stage": ""}, {"id": "game-55d16299e1", "name": "火枪纪元", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2017-03-15", "stage": ""}, {"id": "game-844f59700b", "name": "小小蚁国", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "StarUnion", "releaseDate": "2020-01-15", "stage": ""}, {"id": "game-80fa0808e2", "name": "万龙觉醒", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Farlight Games", "releaseDate": "2023-03-25", "stage": ""}, {"id": "game-d292a88d96", "name": "Star Trek Fleet Command", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Scopely, Inc.", "releaseDate": "2018-11-29", "stage": ""}, {"id": "game-bd07451dd5", "name": "Puzzles & Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "37GAMES", "releaseDate": "2020-03-15", "stage": ""}, {"id": "game-c34276d36a", "name": "猿族时代", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Holdfast", "releaseDate": "2021-04-15", "stage": ""}, {"id": "game-5be97f4f24", "name": "Foundation: Galactic Frontier", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "FunPlus", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-433504c4b5", "name": "阿瓦隆之王", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Century Games", "releaseDate": "2025 (持续更新)", "stage": ""}, {"id": "game-985c6c7044", "name": "Beyond Astra", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "未知", "releaseDate": "2025", "stage": ""}, {"id": "game-aa180c1347", "name": "战火与秩序", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "CamelStudio", "releaseDate": "2016-04-05", "stage": ""}, {"id": "game-f91d9e7fb4", "name": "黑道风云", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2017-05-16", "stage": ""}, {"id": "game-8824479690", "name": "行尸走肉：幸存者", "category": "末日生存", "tags": ["末日生存"], "developer": "Galaxy Play Technology Limited", "releaseDate": "2021-04-12", "stage": ""}, {"id": "game-e2772e8549", "name": "Ant Legion: For The Swarm", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "37GAMES", "releaseDate": "2022-05-06", "stage": ""}, {"id": "game-8320df13b3", "name": "Sea of Conquest: Pirate War", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "2024-01-02", "stage": ""}, {"id": "game-21f9302d7e", "name": "Project Entropy", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "FunPlus International AG", "releaseDate": "2023-09-19", "stage": ""}, {"id": "game-86212d100c", "name": "胜利之吻", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2019-09-27", "stage": ""}, {"id": "game-0987d45cce", "name": "野蛮时代", "category": "恐龙/原始", "tags": ["恐龙/原始"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2016-08-05", "stage": ""}, {"id": "game-0a2cbfb827", "name": "Invasion: Aerial Warfare", "category": "现代战争", "tags": ["现代战争"], "developer": "Tap4fun (Hong Kong) Limited", "releaseDate": "2014-12-07", "stage": ""}, {"id": "game-f043fc26a7", "name": "荒野国度", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "圆桌工作室", "releaseDate": "2025-02-27", "stage": ""}, {"id": "game-243c473263", "name": "Avatar Legends: Realms Collide", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Tilting Point LLC", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-97d01558d8", "name": "群星纪元", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "景秀游戏", "releaseDate": "2025-04-17", "stage": ""}, {"id": "game-7608e868c9", "name": "Game of Thrones: Dragonfire", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Warner Bros. Games", "releaseDate": "2025-05-03", "stage": ""}, {"id": "game-b1aae191db", "name": "龙石战争", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "腾讯凯博 / 儒意景秀", "releaseDate": "2025-06-26", "stage": ""}, {"id": "game-ccadbd22bd", "name": "Fate War", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-08-05", "stage": ""}, {"id": "game-4c042f681c", "name": "三国群英传：策定九州", "category": "三国", "tags": ["三国"], "developer": "星辉游戏", "releaseDate": "2025-10-11", "stage": ""}, {"id": "game-f4ae9a9d5d", "name": "九牧之野", "category": "三国", "tags": ["三国"], "developer": "仙峰游戏 / 雷霆游戏", "releaseDate": "2025-12-18", "stage": ""}, {"id": "game-e0880ec4e3", "name": "Three Kingdoms: World Conquest", "category": "三国", "tags": ["三国"], "developer": "Rastar Mobile", "releaseDate": "2026-01-25", "stage": ""}, {"id": "game-3dd196863a", "name": "三国：天下归心", "category": "三国", "tags": ["三国"], "developer": "恺英网络 / 乘风工作室", "releaseDate": "2026-04-16", "stage": ""}, {"id": "game-3a54f321ca", "name": "Frozen War", "category": "末日生存", "tags": ["末日生存"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-03-18", "stage": ""}, {"id": "game-badc6f958c", "name": "Disney Realm Breakers", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "JOYCITY Corp.", "releaseDate": "2025-07-24", "stage": ""}, {"id": "game-354cb9dea0", "name": "Age of Empires: Survival", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Tencent / TiMi Studio Group", "releaseDate": "2025-07-14", "stage": ""}, {"id": "game-186bfb2e69", "name": "Civilization: Eras & Allies 2K", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K, Inc.", "releaseDate": "2025-06-18", "stage": ""}, {"id": "game-5abc1a7061", "name": "Warline: Sniper Strike", "category": "现代战争", "tags": ["现代战争"], "developer": "Farlight Games", "releaseDate": "2025-08-01", "stage": ""}, {"id": "game-6a20202625", "name": "Savage Survival: Jurassic Isle", "category": "恐龙/原始", "tags": ["恐龙/原始"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2024-12-23", "stage": ""}, {"id": "game-5a5bc9685e", "name": "Xeno Warpath", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Wanda Cinemas Games", "releaseDate": "2025-12-06", "stage": ""}, {"id": "game-65497967b7", "name": "Godzilla x Kong: Titan Chasers", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Tilting Point LLC", "releaseDate": "2025-02-25", "stage": ""}, {"id": "game-cad2f965d4", "name": "Resident Evil Survival Unit", "category": "末日生存", "tags": ["末日生存"], "developer": "Aniplex Inc. / JOYCITY", "releaseDate": "2025-11-18", "stage": ""}, {"id": "game-e5489f6c90", "name": "Dawn Watch: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "STARFORTUNE INTERACTIVE ENTERTAINMENT TECHNOLOGY CO., LIMITED", "releaseDate": "2025-10-21", "stage": ""}, {"id": "game-86daa992be", "name": "Mafia Mobile", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2025-09-17", "stage": ""}, {"id": "game-df6e8fc3ea", "name": "EVE Galaxy Conquest", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "CCP ehf.", "releaseDate": "2024-09-26", "stage": ""}, {"id": "game-e63af2fa25", "name": "DC: Dark Legion", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "FunPlus International AG", "releaseDate": "2025-03-13", "stage": ""}, {"id": "game-81671d4762", "name": "High Seas Hero: Dig & Build", "category": "航海", "tags": ["航海"], "developer": "Century Games Pte. Ltd.", "releaseDate": "2025-01-09", "stage": ""}, {"id": "game-11a22c688b", "name": "Dark War:Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "Florere Game Limited", "releaseDate": "2024-09-11", "stage": ""}, {"id": "game-df9dd13a7d", "name": "Grand Gangster War", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "WGAME TECHNOLOGY LIMITED", "releaseDate": "2025-01-03", "stage": ""}, {"id": "game-7fbb28856e", "name": "Age Of Sails", "category": "航海", "tags": ["航海"], "developer": "Estoty LLC", "releaseDate": "2024-12-11", "stage": ""}, {"id": "game-8a227d6488", "name": "Marsaction 2: Space Homestead", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "LEXIANGCO.,LIMITED", "releaseDate": "2024-01-10", "stage": ""}, {"id": "game-81444e2707", "name": "Final War: Frozen Defense", "category": "末日生存", "tags": ["末日生存"], "developer": "HaoPlay Limited", "releaseDate": "2025-04-09", "stage": ""}, {"id": "game-a259a61f95", "name": "1900: War Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Zero Heart Game HK", "releaseDate": "", "stage": "测试中"}, {"id": "game-8d02aa0b0a", "name": "Gangland: Syndicate Rise", "category": "监狱/犯罪", "tags": ["测试中", "监狱/犯罪"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-cd4a4ef8b6", "name": "Z War:Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Beacon Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-3b9a5d7ab9", "name": "Trigger & Truck", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "StarWish", "releaseDate": "", "stage": "测试中"}, {"id": "game-ea1c16b2b2", "name": "Dreamio Rush", "category": "宠物/驯兽", "tags": ["测试中", "宠物/驯兽"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "2024-10-28", "stage": "测试中"}, {"id": "game-d07f735f30", "name": "Dragon's Finale", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-d8bc8217cc", "name": "Frozen Island", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Linkify Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e04780dda4", "name": "Catch & Build: Land of Pals", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Joy Nice Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5bd4ed473", "name": "Titan Rush", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "RATING GAME", "releaseDate": "", "stage": "测试中"}, {"id": "game-96f5699d46", "name": "Lost Waters", "category": "航海", "tags": ["测试中", "航海"], "developer": "Warrior Cabera", "releaseDate": "", "stage": "测试中"}, {"id": "game-9d1b16b417", "name": "Mad Asylum(CBT)", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Etolies Game", "releaseDate": "", "stage": "CBT"}, {"id": "game-f9c166b0bd", "name": "Endless Zombies", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Vividiy", "releaseDate": "", "stage": "测试中"}, {"id": "game-3fcf79fbf1", "name": "Wingstrike", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "MOONTECH PTE LTD", "releaseDate": "2026-02-06", "stage": "测试中"}, {"id": "game-daf0e7cac4", "name": "Last Outbreak", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "LumoraTech", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a8daec90b", "name": "MistCrush Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Skystone Games Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-05f168e4f4", "name": "last survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "HKNovaGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-082f082da5", "name": "Monster Survival:Palkie Empire", "category": "宠物/驯兽", "tags": ["测试中", "宠物/驯兽"], "developer": "UMICHAT", "releaseDate": "", "stage": "测试中"}, {"id": "game-bbdc3ffc8f", "name": "MarmotShot", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-3206d9f330", "name": "Marmot Shelter", "category": "动物/拟人", "tags": ["测试中", "动物/拟人"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-7fc97f17e0", "name": "Siege of Lava", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Madfun Game", "releaseDate": "", "stage": "测试中"}, {"id": "game-1a72986bf0", "name": "Heroic Era", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "Arclight Studio", "releaseDate": "2024-01-10", "stage": "测试中"}, {"id": "game-2d62de7f88", "name": "Z War：Survival Game", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FUNY FISH TECHNOLOGY CO., LTD.", "releaseDate": "", "stage": "测试中"}, {"id": "game-2968f2d1a1", "name": "Zoink! Bounce Brigade", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Oblivion land", "releaseDate": "2026-01-29", "stage": "测试中 / SLG候选"}, {"id": "game-e11905906d", "name": "Darkout Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "", "stage": "测试中"}, {"id": "game-fa646b0738", "name": "Mine Cosmos", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Peachcat Online Co., Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-331ac24367", "name": "Z-Fortress", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Happy Loong Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-4578df9f64", "name": "Deepsea Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Lunova Game", "releaseDate": "2024-12-16", "stage": "测试中"}, {"id": "game-806e40881e", "name": "Sea of Sand", "category": "其他", "tags": ["测试中", "其他"], "developer": "ACT10 Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-c26782973a", "name": "BlitzLoot", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Rhinos", "releaseDate": "", "stage": "测试中"}, {"id": "game-0cd58275e0", "name": "Doomlord: Pixel Haven", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Mighty Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-0a73d03f32", "name": "Lightbreak", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Galaxy Play Technology Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-e4d51f4f07", "name": "Silent Shield: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Larks Holding Limited", "releaseDate": "", "stage": "测试中"}, {"id": "game-20cdf009be", "name": "City of Wars: Powered by Yakuza", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "HKBBGL", "releaseDate": "", "stage": "区域上线"}, {"id": "game-1424c37b06", "name": "Dark Shot Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "待核", "releaseDate": "2025-09-24", "stage": "测试中"}, {"id": "game-3d7891431b", "name": "Three Kingdoms: Grand Strategy", "category": "三国", "tags": ["三国"], "developer": "KONG SOFTWARE JOINT STOCK COMPANY", "releaseDate": "2025-11-29", "stage": "已上线"}, {"id": "game-8a2b75b367", "name": "Supremacy: Warhammer 40,000", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Stillfront Supremacy GmbH", "releaseDate": "2026-03-31", "stage": "预注册"}, {"id": "game-35563e4574", "name": "Last Home", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "待核", "releaseDate": "", "stage": "测试中"}, {"id": "game-7d65affb27", "name": "Fading Earth", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "FunPlus International AG", "releaseDate": "", "stage": "测试中"}, {"id": "game-f5dbed2258", "name": "Guardians of Elderon", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "BoomBit", "releaseDate": "", "stage": "测试中"}, {"id": "game-847e06f63a", "name": "Mad Rocket: Fog of War", "category": "现代战争", "tags": ["现代战争"], "developer": "Ratatat Studios / Four Thirty Three", "releaseDate": "", "stage": "已上线"}, {"id": "game-04b4849bc8", "name": "Heroes of History: Epic Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames GmbH", "releaseDate": "2024-09-23", "stage": "已上线"}, {"id": "game-5f6fe9f332", "name": "Crown of Bones", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Bravo Games Limited", "releaseDate": "2024-11-21", "stage": "测试中"}, {"id": "game-03ece9540b", "name": "Civilization VI", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "2K Games", "releaseDate": "2020-11-16", "stage": ""}, {"id": "game-ddf2ca016a", "name": "The Battle of Polytopia", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Midjiwan AB", "releaseDate": "2016-02-03", "stage": ""}, {"id": "game-c41ac7cb1e", "name": "Northgard", "category": "北欧/维京", "tags": ["北欧/维京"], "developer": "Shiro Games", "releaseDate": "2019-09-12 (PC), 2021-08-24 (Android)", "stage": ""}, {"id": "game-41d3941f78", "name": "Rome: Total War", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive (原 SEGA)", "releaseDate": "2016-08-23 (iOS), 2018-12-19 (Android)", "stage": ""}, {"id": "game-0b239ac85a", "name": "Civilization VII", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Firaxis Games", "releaseDate": "2025", "stage": ""}, {"id": "game-9031c015ee", "name": "Rebel Inc.", "category": "现代战争", "tags": ["现代战争"], "developer": "Ndemic Creations", "releaseDate": "2018-12-06", "stage": ""}, {"id": "game-927f899d78", "name": "Tiles Survive!", "category": "其他", "tags": ["其他"], "developer": "FunPlus International AG", "releaseDate": "2025-07-03", "stage": ""}, {"id": "game-cc24c1e947", "name": "Path to Glory", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Ludigames / Gameloft", "releaseDate": "2025-01-14", "stage": "测试中"}, {"id": "game-3a5cc1d461", "name": "Final Outpost: Definitive Edition", "category": "末日生存", "tags": ["末日生存"], "developer": "Exabyte Games", "releaseDate": "2025-06-12", "stage": "已上线"}, {"id": "game-f333a03746", "name": "Thronefall", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Doghowl Games Ltd.", "releaseDate": "2025-05-19", "stage": "已上线"}, {"id": "game-c33b540376", "name": "Total War: NAPOLEON", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Feral Interactive Ltd", "releaseDate": "2025-12-02", "stage": "已上线"}, {"id": "game-83aed76423", "name": "Dawnmaker", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Arpentor Studio / Acram Digital", "releaseDate": "2025-12-18", "stage": "已上线"}, {"id": "game-9648be1501", "name": "Reiner Knizia's My City", "category": "现代战争", "tags": ["现代战争"], "developer": "My City Digital", "releaseDate": "2025-06-30", "stage": "已上线"}, {"id": "game-6b30ed1e77", "name": "As Far As The Eye", "category": "现代战争", "tags": ["现代战争"], "developer": "GoblinzPublishing", "releaseDate": "2025-03-05", "stage": "已上线"}, {"id": "game-912befec43", "name": "Happy Citizens - Mayor Sim", "category": "现代战争", "tags": ["现代战争"], "developer": "LifeSim", "releaseDate": "2025-09-16", "stage": "已上线"}, {"id": "game-2dc56717be", "name": "Empire Heroes: Strategy Game", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Nature Games", "releaseDate": "2025-06-16", "stage": "已上线"}, {"id": "game-b569320aef", "name": "Trimo Heroes: Pixel Offense", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "EOAG Games Co.,Ltd", "releaseDate": "2025-05-31", "stage": "已上线"}, {"id": "game-d7cbd9a18f", "name": "Project Z: 72H Siege Conquest", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "WD Games", "releaseDate": "2025-08-19", "stage": "测试中"}, {"id": "game-a413b8b884", "name": "Dino Cataclysm: Survival", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "Nox Joy", "releaseDate": "2025-05-09", "stage": "测试中"}, {"id": "game-de3fccafc1", "name": "Jurassic War Survival", "category": "恐龙/原始", "tags": ["测试中", "恐龙/原始"], "developer": "Funter", "releaseDate": "2025-04-29", "stage": "测试中"}, {"id": "game-1d768f3b28", "name": "Stormborn Era", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Leniu Games", "releaseDate": "2025-10-23", "stage": "测试中"}, {"id": "game-41f6440bb0", "name": "Heroes of Mavia", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Skrice Studios", "releaseDate": "2024-01-31", "stage": "已上线"}, {"id": "game-a6017176ca", "name": "Songs of Conquest Mobile", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Coffee Stain / Lavapotion", "releaseDate": "2025-03-13", "stage": "预注册"}, {"id": "game-ff31b60c59", "name": "Game of Legends: Dragons Rise", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "TGame", "releaseDate": "", "stage": "测试中"}, {"id": "game-aa11c01293", "name": "Age of Evolution", "category": "历史/中世纪", "tags": ["测试中", "历史/中世纪"], "developer": "Wuhan Xin Chi Technology Co., Ltd.", "releaseDate": "2025-11-06", "stage": "测试中"}, {"id": "game-317b9dae61", "name": "Art of Conquest 2", "category": "奇幻/魔幻", "tags": ["测试中", "奇幻/魔幻"], "developer": "Lilith Games", "releaseDate": "", "stage": "测试中"}, {"id": "game-b8ddc638df", "name": "Rise of Stars", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Wemade Max / LightCON", "releaseDate": "2022-02-25", "stage": "已上线"}, {"id": "game-498974a53d", "name": "Rise of Cultures", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "InnoGames GmbH", "releaseDate": "2021-11-25", "stage": "已上线"}, {"id": "game-5461a00ce9", "name": "Inkvasion", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Lioncode Games", "releaseDate": "2024-11-14", "stage": "已上线"}, {"id": "game-35b7d56d52", "name": "Grunt Rush", "category": "现代战争", "tags": ["现代战争"], "developer": "Room8 Group / Top App Games Ltd", "releaseDate": "2025-01-23", "stage": "已上线"}, {"id": "game-4f9a721b72", "name": "Future Warfare: Mercenaries", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Capetown Games", "releaseDate": "2025-01-16", "stage": "测试中"}, {"id": "game-b1a1f268f9", "name": "Freeciv", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "The Freeciv Project", "releaseDate": "", "stage": "已上线"}, {"id": "game-0f549929c7", "name": "Pocket Tales: Survival Game", "category": "末日生存", "tags": ["末日生存"], "developer": "Azur Interactive Games Limited", "releaseDate": "2025-12-26", "stage": "已上线"}, {"id": "game-36d052bc0a", "name": "Amazing Cultivation Simulator", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "GSQ Games", "releaseDate": "2025-06-03", "stage": "已上线"}, {"id": "game-56a3e98491", "name": "Domination Dynasty", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "DFW Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-3faa6200f2", "name": "Super Citycon", "category": "现代战争", "tags": ["测试中", "现代战争"], "developer": "SkyRise Digital Pte. Ltd.", "releaseDate": "2024-11-02", "stage": "测试中"}, {"id": "game-bdee37c659", "name": "王于兴师", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Crazy Panda FZCO", "releaseDate": "2026-03-27", "stage": "已上线"}, {"id": "game-701e9700fc", "name": "Command & Conquer: Legions", "category": "科幻/太空", "tags": ["测试中", "科幻/太空"], "developer": "Level Infinite", "releaseDate": "", "stage": "测试中"}, {"id": "game-e02c178736", "name": "World War: Machines Conquest", "category": "现代战争", "tags": ["现代战争"], "developer": "BY Aliens L.L.C-FZ", "releaseDate": "", "stage": "已上线"}, {"id": "game-e18dfa8d98", "name": "War and Magic: Kingdom Reborn", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "GOAT Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-9ace0342f0", "name": "Dawn of Ages", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Stratosphere Games GmbH", "releaseDate": "", "stage": "已上线"}, {"id": "game-8abfb9f87e", "name": "LOST in Blue 2: Survival Game", "category": "末日生存", "tags": ["末日生存"], "developer": "Volcano Force Technology Co., Limited", "releaseDate": "", "stage": "已上线"}, {"id": "game-c2ab3a73b5", "name": "Deadly Dudes", "category": "末日生存", "tags": ["测试中", "末日生存"], "developer": "NetEase Games", "releaseDate": "2025-07-11", "stage": "测试中"}, {"id": "game-cb8a2071d9", "name": "Alliance At War", "category": "现代战争", "tags": ["现代战争"], "developer": "Outerdawn Limited", "releaseDate": "2021-03-10", "stage": "已上线"}, {"id": "game-55b68ffba2", "name": "World at Risk", "category": "现代战争", "tags": ["现代战争"], "developer": "LION STUDIO", "releaseDate": "2024-07-27", "stage": "已上线"}, {"id": "game-76d3f74274", "name": "Empires & Allies", "category": "现代战争", "tags": ["现代战争"], "developer": "Zynga Inc.", "releaseDate": "2015-03-05", "stage": "已上线"}, {"id": "game-c99c3d7791", "name": "战火与永恒", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "YOOZOO (Singapore) Pte. Ltd.", "releaseDate": "2021-01-28", "stage": "已上线"}, {"id": "game-e5396de2ce", "name": "Total Battle: War Strategy", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Scorewarrior", "releaseDate": "2017-01-01", "stage": "已上线"}, {"id": "game-c44860747a", "name": "War Planet Online", "category": "现代战争", "tags": ["现代战争"], "developer": "Gameloft", "releaseDate": "2017-09-21", "stage": "已上线"}, {"id": "game-bef4ff99a8", "name": "March of Empires", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Gameloft", "releaseDate": "2015-09-17", "stage": "已上线"}, {"id": "game-cdc7236034", "name": "Vikings: War of Clans", "category": "北欧/维京", "tags": ["北欧/维京"], "developer": "Plarium Global Ltd", "releaseDate": "2015-08-05", "stage": "已上线"}, {"id": "game-84591fb839", "name": "DomiNations", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Big Huge Games", "releaseDate": "2015-04-01", "stage": "已上线"}, {"id": "game-fa3ad72dc6", "name": "Warhammer: Chaos & Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Tilting Point", "releaseDate": "2019-10-17", "stage": "已上线"}, {"id": "game-7d58908169", "name": "War Eternal", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "ONEMT", "releaseDate": "2018-09-20", "stage": "已上线"}, {"id": "game-eb4a38299d", "name": "Lords Mobile: Kingdom Wars", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2016-03-31", "stage": "已上线"}, {"id": "game-9bb457f4c5", "name": "Mobile Royale: Kingdom Defense", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2019-01-14", "stage": "已上线"}, {"id": "game-01fade9b10", "name": "Misty Continent: Cursed Island", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "", "stage": "已上线"}, {"id": "game-097f07487e", "name": "Warpath: Ace Shooter", "category": "现代战争", "tags": ["现代战争"], "developer": "Lilith Games", "releaseDate": "2021-03-15", "stage": "已上线"}, {"id": "game-e67ed6e60d", "name": "Supremacy: Call of War 1942", "category": "现代战争", "tags": ["现代战争"], "developer": "Bytro Labs", "releaseDate": "", "stage": "已上线"}, {"id": "game-018672fd32", "name": "Supremacy: World War 3", "category": "现代战争", "tags": ["现代战争"], "developer": "Bytro Labs", "releaseDate": "2020-09-03", "stage": "已上线"}, {"id": "game-be344231a6", "name": "Supremacy 1914 - World War 1", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Bytro Labs", "releaseDate": "2019-04-24", "stage": "已上线"}, {"id": "game-cad4d48e47", "name": "March of Nations", "category": "现代战争", "tags": ["现代战争"], "developer": "Trophym Games", "releaseDate": "", "stage": "已上线"}, {"id": "game-00ac505982", "name": "Infinity Clan", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Top Games Inc.", "releaseDate": "2022-03-13", "stage": "已上线"}, {"id": "game-cb4351db53", "name": "Hexapolis - Civilization game", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "NOXGAMES s.r.o.", "releaseDate": "2021-10-08", "stage": "已上线"}, {"id": "game-b5e189427f", "name": "Grand Cross: Age of Titans", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Netmarble", "releaseDate": "", "stage": "已上线"}, {"id": "game-36aed0c2e8", "name": "Empire: Four Kingdoms", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Goodgame Studios", "releaseDate": "2013-03-12", "stage": "已上线"}, {"id": "game-fe14688c17", "name": "Land of Empires: Immortal", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Nuverse", "releaseDate": "2022-04-19", "stage": "已上线"}, {"id": "game-71ce2e440f", "name": "Kingdom Maker", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Global Worldwide", "releaseDate": "", "stage": "已上线"}, {"id": "game-5c27649c90", "name": "Stormshot: Isle of Adventure", "category": "航海", "tags": ["航海"], "developer": "FunPlus International AG", "releaseDate": "", "stage": "已上线"}, {"id": "game-eb6309c9e0", "name": "Z Day: Hearts of Heroes", "category": "现代战争", "tags": ["现代战争"], "developer": "FunPlus International AG", "releaseDate": "2018-08-07", "stage": "已上线"}, {"id": "game-16957b5479", "name": "Dragon Siege: Kingdom Conquest", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "NDREAM Corporation", "releaseDate": "2024-01-17", "stage": "已上线"}, {"id": "game-0a11c36f98", "name": "Mech & Aliens: Robot Battle", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Rightsoft Labs", "releaseDate": "2024-05-11", "stage": "已上线"}, {"id": "game-6076fa6df7", "name": "Viking Rise", "category": "北欧/维京", "tags": ["北欧/维京"], "developer": "IGG SINGAPORE PTE. LTD.", "releaseDate": "2023-04-13", "stage": "已上线"}, {"id": "game-abdbc1bbc9", "name": "Last Shelter: Survival", "category": "末日生存", "tags": ["末日生存"], "developer": "Long Tech Network Limited", "releaseDate": "2018-02-19", "stage": "已上线"}, {"id": "game-a1e49d14bb", "name": "Days of Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "ONEMT", "releaseDate": "2018-07-03", "stage": "已上线"}, {"id": "game-1746ce3b0b", "name": "Clash of Queens: Light or Dark", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Elex Wireless", "releaseDate": "2016-06-06", "stage": "已上线"}, {"id": "game-79441ddbe9", "name": "Abyss of Empire", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "MIRACLE GAMES SG PTE. LTD.", "releaseDate": "2017-12-08", "stage": "已上线"}, {"id": "game-3347eadae6", "name": "Rise of the Kings", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "ONEMT", "releaseDate": "2016-06-29", "stage": "已上线"}, {"id": "game-a4406337b0", "name": "Guns of Glory: Lost Island", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "FunPlus International AG", "releaseDate": "2017-09-21", "stage": "已上线"}, {"id": "game-84adf65801", "name": "Revenge of Sultans", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "ONEMT", "releaseDate": "", "stage": "已上线"}, {"id": "game-cdcb6b901d", "name": "Age of Kings", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "Elex Wireless", "releaseDate": "2022-07-25", "stage": "已上线"}, {"id": "game-ab85c9a7be", "name": "War and Order", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Camel Games", "releaseDate": "2016-04-06", "stage": ""}, {"id": "game-e38de8bd4c", "name": "Call of Dragons", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Farlight Games / Lilith Games", "releaseDate": "2023-03-28", "stage": ""}, {"id": "game-75930b6118", "name": "Infinity Kingdom", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "YOUZU(SINGAPORE)PTE. LTD.", "releaseDate": "2021-01-27", "stage": ""}, {"id": "game-30c0ce1398", "name": "King of Avalon", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "FunPlus International AG", "releaseDate": "2016-07-13", "stage": ""}, {"id": "game-64154b9159", "name": "Mafia City", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2017-05-16", "stage": ""}, {"id": "game-cb46a26bb2", "name": "War Commander: Rogue Assault", "category": "现代战争", "tags": ["现代战争"], "developer": "KIXEYE", "releaseDate": "2016-12-21", "stage": ""}, {"id": "game-82bb149a22", "name": "The Grand Mafia", "category": "监狱/犯罪", "tags": ["监狱/犯罪"], "developer": "VoyagerOne Pte. Ltd.", "releaseDate": "2020-08-06", "stage": ""}, {"id": "game-791d39b835", "name": "Age of Apes", "category": "动物/拟人", "tags": ["动物/拟人"], "developer": "TAP4FUN (HONGKONG) LIMITED", "releaseDate": "2020-09-29", "stage": ""}, {"id": "game-42c47fbb2a", "name": "West Game", "category": "西部", "tags": ["西部"], "developer": "LEXIANGCO.,LIMITED", "releaseDate": "2019-04-15", "stage": ""}, {"id": "game-c01fe7c605", "name": "Call of Spartan", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "彦斌 文", "releaseDate": "2017-08-10", "stage": ""}, {"id": "game-b3ff4e6248", "name": "Titan Throne", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "Camel Games", "releaseDate": "2019-07-17", "stage": "已上线"}, {"id": "game-aca55a39f5", "name": "Infinite Galaxy", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Camel Games", "releaseDate": "2021-01-21", "stage": "已上线"}, {"id": "game-8f26737463", "name": "Hades' Star", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Parallel Space Inc", "releaseDate": "2017-09-14", "stage": "已上线"}, {"id": "game-281d45f498", "name": "Lords & Knights", "category": "历史/中世纪", "tags": ["历史/中世纪"], "developer": "XYRALITY GmbH", "releaseDate": "2011-08-16", "stage": "已上线"}, {"id": "game-cfb7d94686", "name": "星舰帝国", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Seven Pirates", "releaseDate": "2016-11-17", "stage": "已上线"}, {"id": "game-27cdb7e8d4", "name": "ASTROKINGS: Galactic Survival", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "ANGames Co.,Ltd", "releaseDate": "2019-01-31", "stage": "已上线"}, {"id": "game-dc9241ed7b", "name": "Rise of Firstborn", "category": "奇幻/魔幻", "tags": ["奇幻/魔幻"], "developer": "KIXEYE Inc", "releaseDate": "2018-05-23", "stage": "已上线"}, {"id": "game-72fda80dcf", "name": "Nova Empire: Space Wars MMO", "category": "科幻/太空", "tags": ["科幻/太空"], "developer": "Game Bear Tech Co., Ltd.", "releaseDate": "2017-11-15", "stage": "已上线"}, {"id": "game-2b901ca8d0", "name": "Pirates of the Caribbean : ToW", "category": "航海", "tags": ["航海"], "developer": "JOYCITY Corp", "releaseDate": "2017-05-11", "stage": "已上线"}];
-const GAME_MAP = new Map(GAME_INDEX.map(item => [item.id, item]));
+const GAME_MAP = new Map(GAME_INDEX.map(item => [item.id, { ...item, library: item.library || 'slg' }]));
+const LIBRARY_CONFIG = {
+  slg: {
+    kicker: 'STRATEGY LIBRARY',
+    title: 'SLG游戏资讯库',
+    metaPrimary: '聚焦沙盘、生存、4X 等战斗型 SLG',
+    metaSecondary: '点击卡片按钮加入游玩清单，勾选后会同步显示已玩标记'
+  },
+  indie: {
+    kicker: 'INDIE LIBRARY',
+    title: '独立游戏资讯库',
+    metaPrimary: '聚焦玩法独特、新颖、有创意、容易上头的独立游戏',
+    metaSecondary: '当前先预留切换入口，后续补入独游数据后就会在这里展示'
+  }
+};
 const STORAGE_KEYS = {
-  playlist: 'game-info-playlist',
-  played: 'game-info-played',
+  playlistByLibrary: 'game-info-playlist-by-library',
+  playedByLibrary: 'game-info-played-by-library',
+  legacyPlaylist: 'game-info-playlist',
+  legacyPlayed: 'game-info-played',
   playlistMinimized: 'game-info-playlist-minimized',
   playlistPosition: 'game-info-playlist-position'
 };
+let currentLibrary = 'slg';
 let currentCategory = '';
 let currentSortMode = 'newest';
-let playlist = loadArray(STORAGE_KEYS.playlist);
-let playedSet = new Set(loadArray(STORAGE_KEYS.played));
+let playlistByLibrary = loadLibraryStateMap(STORAGE_KEYS.playlistByLibrary, STORAGE_KEYS.legacyPlaylist);
+let playedByLibrary = loadLibraryStateMap(STORAGE_KEYS.playedByLibrary, STORAGE_KEYS.legacyPlayed);
+let playlist = Array.isArray(playlistByLibrary[currentLibrary]) ? [...playlistByLibrary[currentLibrary]] : [];
+let playedSet = new Set(Array.isArray(playedByLibrary[currentLibrary]) ? playedByLibrary[currentLibrary] : []);
 let playlistMinimized = loadBoolean(STORAGE_KEYS.playlistMinimized, false);
 let playlistDragState = null;
 function loadArray(key) {
@@ -5415,6 +5506,25 @@ function loadArray(key) {
   } catch (error) {
     return [];
   }
+}
+function loadLibraryStateMap(key, legacyKey) {
+  const base = { slg: [], indie: [] };
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        return {
+          slg: Array.isArray(parsed.slg) ? parsed.slg : [],
+          indie: Array.isArray(parsed.indie) ? parsed.indie : []
+        };
+      }
+    }
+  } catch (error) {
+  }
+  const legacy = loadArray(legacyKey);
+  if (legacy.length > 0) base.slg = legacy;
+  return base;
 }
 function loadBoolean(key, fallback) {
   try {
@@ -5535,8 +5645,97 @@ function enhanceMediaFields() {
   });
 }
 function saveState() {
-  localStorage.setItem(STORAGE_KEYS.playlist, JSON.stringify(playlist));
-  localStorage.setItem(STORAGE_KEYS.played, JSON.stringify(Array.from(playedSet)));
+  playlistByLibrary[currentLibrary] = Array.from(playlist);
+  playedByLibrary[currentLibrary] = Array.from(playedSet);
+  localStorage.setItem(STORAGE_KEYS.playlistByLibrary, JSON.stringify(playlistByLibrary));
+  localStorage.setItem(STORAGE_KEYS.playedByLibrary, JSON.stringify(playedByLibrary));
+}
+function bootstrapLibraryData() {
+  document.querySelectorAll('.game-card').forEach(card => {
+    if (!card.dataset.library) card.dataset.library = 'slg';
+  });
+}
+function loadCurrentLibraryState() {
+  playlist = Array.isArray(playlistByLibrary[currentLibrary]) ? [...playlistByLibrary[currentLibrary]] : [];
+  playedSet = new Set(Array.isArray(playedByLibrary[currentLibrary]) ? playedByLibrary[currentLibrary] : []);
+}
+function getCurrentLibraryCards() {
+  return Array.from(document.querySelectorAll('.game-card')).filter(card => (card.dataset.library || 'slg') === currentLibrary);
+}
+function getCurrentLibraryChipOrder() {
+  const ordered = [];
+  const seen = new Set();
+  let hasTesting = false;
+  getCurrentLibraryCards().forEach(card => {
+    (card.dataset.tags || '')
+      .split('|')
+      .map(item => item.trim())
+      .filter(Boolean)
+      .forEach(tag => {
+        if (tag === '测试中') {
+          hasTesting = true;
+          return;
+        }
+        if (tag === '已游玩') return;
+        if (!seen.has(tag)) {
+          seen.add(tag);
+          ordered.push(tag);
+        }
+      });
+  });
+  if (hasTesting) ordered.push('测试中');
+  ordered.push('已游玩');
+  return ordered;
+}
+function getCurrentLibraryCategoryCount() {
+  return getCurrentLibraryChipOrder().filter(tag => tag !== '测试中' && tag !== '已游玩').length;
+}
+function renderCategoryChips() {
+  const row = document.getElementById('chipRow');
+  if (!row) return;
+  row.innerHTML = '<span class="chip-label">题材标签</span>';
+  const allButton = document.createElement('button');
+  allButton.className = `chip${currentCategory ? '' : ' is-active'}`;
+  allButton.type = 'button';
+  allButton.dataset.category = '';
+  allButton.textContent = '全部';
+  allButton.addEventListener('click', () => filterByCategory('', allButton));
+  row.appendChild(allButton);
+  getCurrentLibraryChipOrder().forEach(category => {
+    const button = document.createElement('button');
+    button.className = `chip${currentCategory === category ? ' is-active' : ''}`;
+    button.type = 'button';
+    button.dataset.category = category;
+    button.textContent = category;
+    button.addEventListener('click', () => filterByCategory(category, button));
+    row.appendChild(button);
+  });
+}
+function updateLibrarySummary(visible) {
+  const total = getCurrentLibraryCards().length;
+  const visibleValue = typeof visible === 'number' ? visible : total;
+  const totalNode = document.getElementById('gameCount');
+  const categoryNode = document.getElementById('categoryCount');
+  const visibleNode = document.getElementById('visibleCount');
+  if (totalNode) totalNode.textContent = String(total);
+  if (categoryNode) categoryNode.textContent = String(getCurrentLibraryCategoryCount());
+  if (visibleNode) visibleNode.textContent = String(visibleValue);
+  const empty = document.getElementById('libraryEmpty');
+  if (empty) empty.classList.toggle('is-visible', currentLibrary === 'indie' && total === 0);
+}
+function syncLibraryHero() {
+  const config = LIBRARY_CONFIG[currentLibrary] || LIBRARY_CONFIG.slg;
+  const kicker = document.getElementById('libraryKicker');
+  const title = document.getElementById('libraryTitle');
+  const metaPrimary = document.getElementById('libraryMetaPrimary');
+  const metaSecondary = document.getElementById('libraryMetaSecondary');
+  if (kicker) kicker.textContent = config.kicker;
+  if (title) title.textContent = config.title;
+  if (metaPrimary) metaPrimary.textContent = config.metaPrimary;
+  if (metaSecondary) metaSecondary.textContent = config.metaSecondary;
+  document.querySelectorAll('.library-switch-button').forEach(button => {
+    button.classList.toggle('is-active', button.dataset.library === currentLibrary);
+  });
 }
 function savePlaylistUiState() {
   localStorage.setItem(STORAGE_KEYS.playlistMinimized, String(playlistMinimized));
@@ -5570,20 +5769,30 @@ function filterNow() {
   const cards = document.querySelectorAll('.game-card');
   let visible = 0;
   cards.forEach(card => {
+    const matchesLibrary = (card.dataset.library || 'slg') === currentLibrary;
     const tags = (card.dataset.tags || '').split('|').map(item => item.trim()).filter(Boolean);
     const matchesPlayed = currentCategory === '已游玩' ? playedSet.has(card.dataset.gameId) : true;
     const matchesCategory = !currentCategory || currentCategory === '已游玩' ? true : tags.includes(currentCategory);
     const matchesQuery = !query || card.textContent.toLowerCase().includes(query);
-    const show = matchesCategory && matchesPlayed && matchesQuery;
+    const show = matchesLibrary && matchesCategory && matchesPlayed && matchesQuery;
     card.classList.toggle('hidden', !show);
     if (show) visible += 1;
   });
-  document.getElementById('visibleCount').textContent = String(visible);
+  updateLibrarySummary(visible);
 }
 function filterByCategory(category, button) {
   document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
   if (button) button.classList.add('is-active');
   currentCategory = category || '';
+  filterNow();
+}
+function switchLibrary(library) {
+  currentLibrary = library === 'indie' ? 'indie' : 'slg';
+  currentCategory = '';
+  loadCurrentLibraryState();
+  syncLibraryHero();
+  renderCategoryChips();
+  renderPlaylist();
   filterNow();
 }
 function resetAll() {
@@ -5592,9 +5801,7 @@ function resetAll() {
   currentCategory = '';
   currentSortMode = 'newest';
   updateSortButtonLabel();
-  const firstChip = Array.from(document.querySelectorAll('.chip')).find(item => (item.dataset.category || '') === '');
-  document.querySelectorAll('.chip').forEach(item => item.classList.remove('is-active'));
-  if (firstChip) firstChip.classList.add('is-active');
+  renderCategoryChips();
   applySortMode();
   filterNow();
 }
@@ -5627,6 +5834,16 @@ function syncPlayedFlags() {
 function jumpToGameCard(gameId) {
   const card = document.querySelector(`.game-card[data-game-id="${CSS.escape(gameId)}"]`);
   if (!card) return;
+  const targetLibrary = card.dataset.library || 'slg';
+  if (targetLibrary !== currentLibrary) {
+    currentLibrary = targetLibrary;
+    currentCategory = '';
+    loadCurrentLibraryState();
+    syncLibraryHero();
+    renderCategoryChips();
+    renderPlaylist();
+    filterNow();
+  }
   card.classList.remove('is-targeted');
   window.requestAnimationFrame(() => {
     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -5783,9 +6000,13 @@ function toggleSortOrder() {
   filterNow();
 }
 bindPlaylistMiniball();
+bootstrapLibraryData();
+loadCurrentLibraryState();
 applySortMode();
 updateSortButtonLabel();
 enhanceMediaFields();
+syncLibraryHero();
+renderCategoryChips();
 applyPlaylistUi();
 renderPlaylist();
 filterNow();
